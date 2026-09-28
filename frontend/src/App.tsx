@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { useAuth } from "./store/auth";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -29,24 +30,26 @@ export default function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route element={<ProtectedRoute />}>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/mapa" element={<SdohMap />} />
-          <Route path="/equidad" element={<Equity />} />
-          <Route path="/hospitales" element={<Hospitals />} />
-          <Route path="/alertas" element={<Alerts />} />
-          <Route path="/reportes" element={<Reports />} />
-          <Route path="/usuarios" element={<Users />} />
-          <Route path="/perfil" element={<Profile />} />
-          <Route path="/crisp-dm" element={<CrispDm />} />
-          <Route path="/crisp-dm/:phase" element={<CrispDm />} />
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mapa" element={<SdohMap />} />
+            <Route path="/equidad" element={<Equity />} />
+            <Route path="/hospitales" element={<Hospitals />} />
+            <Route path="/alertas" element={<Alerts />} />
+            <Route path="/reportes" element={<Reports />} />
+            <Route path="/usuarios" element={<Users />} />
+            <Route path="/perfil" element={<Profile />} />
+            <Route path="/crisp-dm" element={<CrispDm />} />
+            <Route path="/crisp-dm/:phase" element={<CrispDm />} />
+          </Route>
         </Route>
-      </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </ErrorBoundary>
   );
 }

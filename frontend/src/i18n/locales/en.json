@@ -2,7 +2,7 @@
   "nav": {
     "platform": "Platform",
     "dashboard": "3D Dashboard",
-    "sdohMap": "SDOH Map",
+    "sdohMap": "GIS Satellite Map",
     "equity": "Health Equity",
     "hospitals": "Hospitals",
     "alerts": "Alerts",

@@ -76,6 +76,7 @@ def tracts_geojson(
             {
                 "type": "Feature",
                 "properties": {
+                    "id": t.id,
                     "geoid": t.geoid,
                     "name": t.name,
                     "population": t.total_population,

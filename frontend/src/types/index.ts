@@ -60,6 +60,29 @@ export interface EquityIndex {
   risk_level?: string;
 }
 
+export interface Hospital {
+  id: number;
+  name: string;
+  slug?: string;
+  cms_id?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip_code?: string;
+  description?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
+export interface Catchment {
+  id: number;
+  hospital_id: number;
+  name: string;
+  catchment_type: string;
+  radius_km?: number;
+  tract_count?: number;
+}
+
 export interface GeoFeature {
   type: string;
   properties: {

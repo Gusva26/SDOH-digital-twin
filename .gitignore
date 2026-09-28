@@ -38,3 +38,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Modelos ML entrenados (se regeneran con make train)
+backend/ml_artifacts/**/*.joblib

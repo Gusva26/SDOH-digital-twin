@@ -1,0 +1,5089 @@
+{
+ "dataset": {
+  "tracts": 1632,
+  "counties": {
+   "Cook County": 1328,
+   "New York County": 304
+  },
+  "features": [
+   "pct_no_health_insurance",
+   "pct_food_insecurity",
+   "pct_food_stamps",
+   "pct_housing_insecurity",
+   "pct_utility_shutoff",
+   "pct_no_transportation",
+   "pct_lack_social_support",
+   "pct_loneliness",
+   "pct_routine_checkup",
+   "pct_cholesterol_screening",
+   "pct_smoking",
+   "pct_inactivity",
+   "pct_binge_drinking"
+  ],
+  "names": {
+   "pct_no_health_insurance": "Sin seguro médico (%)",
+   "pct_food_insecurity": "Inseguridad alimentaria (%)",
+   "pct_food_stamps": "Recibe ayuda alimentaria (SNAP) (%)",
+   "pct_housing_insecurity": "Inseguridad de vivienda (%)",
+   "pct_utility_shutoff": "Amenaza de corte de servicios (%)",
+   "pct_no_transportation": "Falta de transporte confiable (%)",
+   "pct_lack_social_support": "Falta de apoyo social (%)",
+   "pct_loneliness": "Soledad (%)",
+   "pct_routine_checkup": "Chequeo médico anual (%)",
+   "pct_cholesterol_screening": "Cribado de colesterol (%)",
+   "pct_smoking": "Tabaquismo (%)",
+   "pct_inactivity": "Inactividad física (%)",
+   "pct_binge_drinking": "Consumo excesivo de alcohol (%)",
+   "pct_fair_poor_health": "Salud autorreportada regular o mala (%)",
+   "pct_diabetes": "Diabetes (%)",
+   "pct_obesity": "Obesidad (%)",
+   "pct_high_bp": "Hipertensión (%)",
+   "pct_chd": "Enfermedad coronaria (%)",
+   "pct_depression": "Depresión (%)",
+   "pct_mental_distress": "Malestar mental frecuente (%)"
+  }
+ },
+ "eda": {
+  "describe": [
+   {
+    "Código": "pct_no_health_insurance",
+    "Variable": "Sin seguro médico (%)",
+    "n": 1632,
+    "Media": 11.65,
+    "Mediana": 9.65,
+    "Moda": 4.7,
+    "Frec. moda": 19,
+    "Nº modas": 2,
+    "Media recortada 10%": 10.605,
+    "Desv. típica": 7.416,
+    "CV %": 63.663,
+    "Mín": 2.1,
+    "Q1": 6.0,
+    "Q3": 15.3,
+    "Máx": 41.9,
+    "RIC": 9.3,
+    "MAD": 6.301,
+    "Asimetría": 1.198,
+    "Curtosis (exceso)": 1.049
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Variable": "Inseguridad alimentaria (%)",
+    "n": 1632,
+    "Media": 21.939,
+    "Mediana": 17.9,
+    "Moda": 9.0,
+    "Frec. moda": 14,
+    "Nº modas": 1,
+    "Media recortada 10%": 20.4,
+    "Desv. típica": 14.151,
+    "CV %": 64.501,
+    "Mín": 3.7,
+    "Q1": 9.8,
+    "Q3": 31.625,
+    "Máx": 67.1,
+    "RIC": 21.825,
+    "MAD": 14.085,
+    "Asimetría": 0.801,
+    "Curtosis (exceso)": -0.248
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)",
+    "n": 1632,
+    "Media": 19.618,
+    "Mediana": 14.1,
+    "Moda": 5.1,
+    "Frec. moda": 15,
+    "Nº modas": 2,
+    "Media recortada 10%": 17.288,
+    "Desv. típica": 15.58,
+    "CV %": 79.415,
+    "Mín": 2.5,
+    "Q1": 7.2,
+    "Q3": 27.8,
+    "Máx": 74.4,
+    "RIC": 20.6,
+    "MAD": 12.38,
+    "Asimetría": 1.179,
+    "Curtosis (exceso)": 0.695
+   },
+   {
+    "Código": "pct_housing_insecurity",
+    "Variable": "Inseguridad de vivienda (%)",
+    "n": 1632,
+    "Media": 17.79,
+    "Mediana": 14.7,
+    "Moda": 6.9,
+    "Frec. moda": 19,
+    "Nº modas": 1,
+    "Media recortada 10%": 16.729,
+    "Desv. típica": 10.404,
+    "CV %": 58.485,
+    "Mín": 3.7,
+    "Q1": 8.8,
+    "Q3": 25.4,
+    "Máx": 50.6,
+    "RIC": 16.6,
+    "MAD": 10.526,
+    "Asimetría": 0.741,
+    "Curtosis (exceso)": -0.408
+   },
+   {
+    "Código": "pct_utility_shutoff",
+    "Variable": "Amenaza de corte de servicios (%)",
+    "n": 1632,
+    "Media": 10.704,
+    "Mediana": 8.0,
+    "Moda": 4.2,
+    "Frec. moda": 31,
+    "Nº modas": 1,
+    "Media recortada 10%": 9.528,
+    "Desv. típica": 7.584,
+    "CV %": 70.849,
+    "Mín": 2.2,
+    "Q1": 4.8,
+    "Q3": 14.6,
+    "Máx": 41.5,
+    "RIC": 9.8,
+    "MAD": 5.634,
+    "Asimetría": 1.314,
+    "Curtosis (exceso)": 1.317
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Variable": "Falta de transporte confiable (%)",
+    "n": 1632,
+    "Media": 10.62,
+    "Mediana": 8.7,
+    "Moda": 4.3,
+    "Frec. moda": 28,
+    "Nº modas": 1,
+    "Media recortada 10%": 9.776,
+    "Desv. típica": 6.37,
+    "CV %": 59.979,
+    "Mín": 2.7,
+    "Q1": 5.4,
+    "Q3": 14.4,
+    "Máx": 35.9,
+    "RIC": 9.0,
+    "MAD": 5.782,
+    "Asimetría": 1.1,
+    "Curtosis (exceso)": 0.755
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Variable": "Falta de apoyo social (%)",
+    "n": 1632,
+    "Media": 27.641,
+    "Mediana": 27.0,
+    "Moda": 20.8,
+    "Frec. moda": 17,
+    "Nº modas": 3,
+    "Media recortada 10%": 27.452,
+    "Desv. típica": 5.602,
+    "CV %": 20.268,
+    "Mín": 16.3,
+    "Q1": 22.8,
+    "Q3": 32.1,
+    "Máx": 44.5,
+    "RIC": 9.3,
+    "MAD": 6.968,
+    "Asimetría": 0.241,
+    "Curtosis (exceso)": -0.975
+   },
+   {
+    "Código": "pct_loneliness",
+    "Variable": "Soledad (%)",
+    "n": 1632,
+    "Media": 35.853,
+    "Mediana": 35.6,
+    "Moda": 36.9,
+    "Frec. moda": 22,
+    "Nº modas": 1,
+    "Media recortada 10%": 35.77,
+    "Desv. típica": 4.095,
+    "CV %": 11.422,
+    "Mín": 26.4,
+    "Q1": 32.6,
+    "Q3": 38.8,
+    "Máx": 55.4,
+    "RIC": 6.2,
+    "MAD": 4.596,
+    "Asimetría": 0.25,
+    "Curtosis (exceso)": -0.23
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Variable": "Chequeo médico anual (%)",
+    "n": 1632,
+    "Media": 77.595,
+    "Mediana": 77.9,
+    "Moda": 76.2,
+    "Frec. moda": 31,
+    "Nº modas": 1,
+    "Media recortada 10%": 77.641,
+    "Desv. típica": 3.705,
+    "CV %": 4.775,
+    "Mín": 67.5,
+    "Q1": 74.7,
+    "Q3": 80.3,
+    "Máx": 86.6,
+    "RIC": 5.6,
+    "MAD": 4.003,
+    "Asimetría": -0.128,
+    "Curtosis (exceso)": -0.723
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Variable": "Cribado de colesterol (%)",
+    "n": 1632,
+    "Media": 87.393,
+    "Mediana": 87.65,
+    "Moda": 88.0,
+    "Frec. moda": 25,
+    "Nº modas": 1,
+    "Media recortada 10%": 87.546,
+    "Desv. típica": 3.443,
+    "CV %": 3.94,
+    "Mín": 69.4,
+    "Q1": 85.1,
+    "Q3": 90.0,
+    "Máx": 95.2,
+    "RIC": 4.9,
+    "MAD": 3.632,
+    "Asimetría": -0.544,
+    "Curtosis (exceso)": 0.709
+   },
+   {
+    "Código": "pct_smoking",
+    "Variable": "Tabaquismo (%)",
+    "n": 1632,
+    "Media": 11.327,
+    "Mediana": 10.7,
+    "Moda": 11.8,
+    "Frec. moda": 23,
+    "Nº modas": 1,
+    "Media recortada 10%": 10.82,
+    "Desv. típica": 4.923,
+    "CV %": 43.46,
+    "Mín": 3.7,
+    "Q1": 7.5,
+    "Q3": 13.725,
+    "Máx": 37.7,
+    "RIC": 6.225,
+    "MAD": 4.596,
+    "Asimetría": 1.018,
+    "Curtosis (exceso)": 1.317
+   },
+   {
+    "Código": "pct_inactivity",
+    "Variable": "Inactividad física (%)",
+    "n": 1632,
+    "Media": 23.801,
+    "Mediana": 22.5,
+    "Moda": 23.4,
+    "Frec. moda": 14,
+    "Nº modas": 1,
+    "Media recortada 10%": 23.237,
+    "Desv. típica": 9.154,
+    "CV %": 38.461,
+    "Mín": 8.5,
+    "Q1": 16.0,
+    "Q3": 30.625,
+    "Máx": 53.4,
+    "RIC": 14.625,
+    "MAD": 10.823,
+    "Asimetría": 0.471,
+    "Curtosis (exceso)": -0.587
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Variable": "Consumo excesivo de alcohol (%)",
+    "n": 1632,
+    "Media": 18.953,
+    "Mediana": 19.0,
+    "Moda": 20.3,
+    "Frec. moda": 30,
+    "Nº modas": 1,
+    "Media recortada 10%": 18.795,
+    "Desv. típica": 4.103,
+    "CV %": 21.647,
+    "Mín": 9.2,
+    "Q1": 15.975,
+    "Q3": 21.1,
+    "Máx": 30.8,
+    "RIC": 5.125,
+    "MAD": 3.855,
+    "Asimetría": 0.276,
+    "Curtosis (exceso)": -0.336
+   },
+   {
+    "Código": "pct_obesity",
+    "Variable": "Obesidad (%)",
+    "n": 1632,
+    "Media": 29.921,
+    "Mediana": 28.7,
+    "Moda": 25.1,
+    "Frec. moda": 19,
+    "Nº modas": 1,
+    "Media recortada 10%": 29.727,
+    "Desv. típica": 8.825,
+    "CV %": 29.495,
+    "Mín": 11.6,
+    "Q1": 24.2,
+    "Q3": 36.025,
+    "Máx": 52.8,
+    "RIC": 11.825,
+    "MAD": 8.006,
+    "Asimetría": 0.276,
+    "Curtosis (exceso)": -0.546
+   }
+  ],
+  "outliers": [
+   {
+    "Código": "pct_no_health_insurance",
+    "Variable": "Sin seguro médico (%)",
+    "Límite inf. (Tukey)": -7.95,
+    "Límite sup. (Tukey)": 29.25,
+    "Atípicos IQR": 57,
+    "% IQR": 3.493,
+    "Atípicos z-robusto (>3,5)": 37,
+    "Atípicos z clásico (>3)": 16,
+    "Altos": 57,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Variable": "Inseguridad alimentaria (%)",
+    "Límite inf. (Tukey)": -22.937,
+    "Límite sup. (Tukey)": 64.362,
+    "Atípicos IQR": 6,
+    "% IQR": 0.368,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 6,
+    "Altos": 6,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)",
+    "Límite inf. (Tukey)": -23.7,
+    "Límite sup. (Tukey)": 58.7,
+    "Atípicos IQR": 43,
+    "% IQR": 2.635,
+    "Atípicos z-robusto (>3,5)": 49,
+    "Atípicos z clásico (>3)": 14,
+    "Altos": 43,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_housing_insecurity",
+    "Variable": "Inseguridad de vivienda (%)",
+    "Límite inf. (Tukey)": -16.1,
+    "Límite sup. (Tukey)": 50.3,
+    "Atípicos IQR": 2,
+    "% IQR": 0.123,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 4,
+    "Altos": 2,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_utility_shutoff",
+    "Variable": "Amenaza de corte de servicios (%)",
+    "Límite inf. (Tukey)": -9.9,
+    "Límite sup. (Tukey)": 29.3,
+    "Atípicos IQR": 50,
+    "% IQR": 3.064,
+    "Atípicos z-robusto (>3,5)": 64,
+    "Atípicos z clásico (>3)": 21,
+    "Altos": 50,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Variable": "Falta de transporte confiable (%)",
+    "Límite inf. (Tukey)": -8.1,
+    "Límite sup. (Tukey)": 27.9,
+    "Atípicos IQR": 28,
+    "% IQR": 1.716,
+    "Atípicos z-robusto (>3,5)": 19,
+    "Atípicos z clásico (>3)": 17,
+    "Altos": 28,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Variable": "Falta de apoyo social (%)",
+    "Límite inf. (Tukey)": 8.85,
+    "Límite sup. (Tukey)": 46.05,
+    "Atípicos IQR": 0,
+    "% IQR": 0.0,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 1,
+    "Altos": 0,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_loneliness",
+    "Variable": "Soledad (%)",
+    "Límite inf. (Tukey)": 23.3,
+    "Límite sup. (Tukey)": 48.1,
+    "Atípicos IQR": 4,
+    "% IQR": 0.245,
+    "Atípicos z-robusto (>3,5)": 2,
+    "Atípicos z clásico (>3)": 3,
+    "Altos": 4,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Variable": "Chequeo médico anual (%)",
+    "Límite inf. (Tukey)": 66.3,
+    "Límite sup. (Tukey)": 88.7,
+    "Atípicos IQR": 0,
+    "% IQR": 0.0,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 0,
+    "Altos": 0,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Variable": "Cribado de colesterol (%)",
+    "Límite inf. (Tukey)": 77.75,
+    "Límite sup. (Tukey)": 97.35,
+    "Atípicos IQR": 8,
+    "% IQR": 0.49,
+    "Atípicos z-robusto (>3,5)": 6,
+    "Atípicos z clásico (>3)": 8,
+    "Altos": 0,
+    "Bajos": 8
+   },
+   {
+    "Código": "pct_smoking",
+    "Variable": "Tabaquismo (%)",
+    "Límite inf. (Tukey)": -1.837,
+    "Límite sup. (Tukey)": 23.062,
+    "Atípicos IQR": 46,
+    "% IQR": 2.819,
+    "Atípicos z-robusto (>3,5)": 12,
+    "Atípicos z clásico (>3)": 15,
+    "Altos": 46,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_inactivity",
+    "Variable": "Inactividad física (%)",
+    "Límite inf. (Tukey)": -5.938,
+    "Límite sup. (Tukey)": 52.562,
+    "Atípicos IQR": 1,
+    "% IQR": 0.061,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 3,
+    "Altos": 1,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Variable": "Consumo excesivo de alcohol (%)",
+    "Límite inf. (Tukey)": 8.287,
+    "Límite sup. (Tukey)": 28.788,
+    "Atípicos IQR": 12,
+    "% IQR": 0.735,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 0,
+    "Altos": 12,
+    "Bajos": 0
+   },
+   {
+    "Código": "pct_obesity",
+    "Variable": "Obesidad (%)",
+    "Límite inf. (Tukey)": 6.463,
+    "Límite sup. (Tukey)": 53.762,
+    "Atípicos IQR": 0,
+    "% IQR": 0.0,
+    "Atípicos z-robusto (>3,5)": 0,
+    "Atípicos z clásico (>3)": 0,
+    "Altos": 0,
+    "Bajos": 0
+   }
+  ],
+  "normality": [
+   {
+    "Código": "pct_no_health_insurance",
+    "Variable": "Sin seguro médico (%)",
+    "Shapiro-Wilk W": 0.8924,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 289.1102,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 50.3543,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Variable": "Inseguridad alimentaria (%)",
+    "Shapiro-Wilk W": 0.9134,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 143.3499,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 44.5773,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)",
+    "Shapiro-Wilk W": 0.8665,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 267.7145,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 70.3284,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_housing_insecurity",
+    "Variable": "Inseguridad de vivienda (%)",
+    "Shapiro-Wilk W": 0.9168,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 139.2567,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 44.7987,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_utility_shutoff",
+    "Variable": "Amenaza de corte de servicios (%)",
+    "Shapiro-Wilk W": 0.8581,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 336.1735,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 72.9451,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Variable": "Falta de transporte confiable (%)",
+    "Shapiro-Wilk W": 0.8935,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 246.898,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 51.9156,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Variable": "Falta de apoyo social (%)",
+    "Shapiro-Wilk W": 0.9675,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 331.256,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 16.3837,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_loneliness",
+    "Variable": "Soledad (%)",
+    "Shapiro-Wilk W": 0.9892,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 21.0083,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 4.4928,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Variable": "Chequeo médico anual (%)",
+    "Shapiro-Wilk W": 0.9862,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 99.0167,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 6.6168,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Variable": "Cribado de colesterol (%)",
+    "Shapiro-Wilk W": 0.9804,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 91.467,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 4.2787,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_smoking",
+    "Variable": "Tabaquismo (%)",
+    "Shapiro-Wilk W": 0.9367,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 247.9078,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 21.6774,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_inactivity",
+    "Variable": "Inactividad física (%)",
+    "Shapiro-Wilk W": 0.9615,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 103.6287,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 17.2381,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Variable": "Consumo excesivo de alcohol (%)",
+    "Shapiro-Wilk W": 0.9812,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 31.1418,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 7.9764,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   },
+   {
+    "Código": "pct_obesity",
+    "Variable": "Obesidad (%)",
+    "Shapiro-Wilk W": 0.9759,
+    "p Shapiro": 0.0,
+    "D'Agostino K²": 59.4304,
+    "p D'Agostino": 0.0,
+    "Anderson-Darling A²": 11.5519,
+    "A² crítico 5%": 0.752,
+    "¿Normal? (α=0,05)": "No"
+   }
+  ],
+  "interp_describe": "Se describen 14 variables. 7 presentan asimetría positiva relevante (media > mediana) y 3 son leptocúrticas, lo que anticipa valores atípicos y falta de normalidad. La mayor desigualdad entre tracts está en «Recibe ayuda alimentaria (SNAP) (%)» (CV = 79.4 %) y la menor en «Cribado de colesterol (%)» (CV = 3.9 %). Cuando media y mediana divergen, conviene resumir con mediana/RIC y usar pruebas no paramétricas en la fase inferencial.",
+  "interp_outliers": "En total se marcan 257 valores atípicos por Tukey (249 por arriba y 8 por abajo) y 189 por z-robusto. La variable con más atípicos es «Sin seguro médico (%)» (57 tracts, 3.5 %). 3 variables no tienen atípicos. Los atípicos por arriba son tracts con carga social o sanitaria excepcional: no son errores de medición (CDC ya publica estimaciones suavizadas) sino los casos de mayor prioridad, por eso no se eliminan. Para que no dominen el ajuste se usan medianas en la imputación, escalado estándar dentro del pipeline y modelos de árboles robustos a extremos.",
+  "interp_normality": "14 de 14 variables rechazan la normalidad en al menos una de las tres pruebas (α = 0,05). Con n ≈ 1632 tracts las pruebas detectan desviaciones pequeñas; por eso se complementan con el tamaño de la asimetría/curtosis y el gráfico Q-Q. Conclusión metodológica: los supuestos de las pruebas paramétricas clásicas (t, ANOVA, Pearson) no se sostienen, y la fase inferencial usa alternativas robustas: Spearman, Kruskal-Wallis, Friedman/Nemenyi, Wilcoxon, McNemar exacto, bootstrap y permutaciones.",
+  "interp_corr": "De 91 pares, 57 tienen |ρ| ≥ 0,7 (asociación fuerte). El más fuerte es «Inseguridad alimentaria (%)» con «Falta de transporte confiable (%)» (ρ = +0.99). Esta multicolinealidad significa que los determinantes sociales se acumulan en los mismos tracts; los modelos de árboles la toleran, pero la importancia de cada variable debe leerse como compartida con sus correlacionadas. Con el objetivo, las asociaciones más fuertes son: «Amenaza de corte de servicios (%)» (ρ = +0.88), «Tabaquismo (%)» (ρ = +0.88), «Recibe ayuda alimentaria (SNAP) (%)» (ρ = +0.87).",
+  "missing_cells": 0
+ },
+ "prep": {
+  "cuts": [
+   24.2,
+   28.7,
+   36.0
+  ],
+  "n_train": 1305,
+  "n_test": 327,
+  "table": [
+   {
+    "Conjunto": "Entrenamiento",
+    "n": 1305,
+    "Bajo": 327,
+    "Moderado": 327,
+    "Alto": 325,
+    "Crítico": 326
+   },
+   {
+    "Conjunto": "Prueba",
+    "n": 327,
+    "Bajo": 82,
+    "Moderado": 82,
+    "Alto": 81,
+    "Crítico": 82
+   }
+  ],
+  "n_used": 1632
+ },
+ "training": {
+  "table": [
+   {
+    "Modelo": "Regresión Logística",
+    "Rol": "Línea base lineal e interpretable",
+    "Configs. probadas": 5,
+    "Mejores hiperparámetros": "C=100.0",
+    "F1 train": 0.9451,
+    "F1 CV": 0.9278,
+    "F1 test": 0.9357,
+    "Accuracy test": 0.9358,
+    "ROC-AUC test": 0.995,
+    "Tiempo (s)": 15.0092,
+    "Estado": "Seleccionado"
+   },
+   {
+    "Modelo": "Gradient Boosting",
+    "Rol": "Boosting de árboles (tipo XGBoost), fuerte en datos tabulares",
+    "Configs. probadas": 4,
+    "Mejores hiperparámetros": "learning_rate=0.1, max_depth=6",
+    "F1 train": 1.0,
+    "F1 CV": 0.9151,
+    "F1 test": 0.9261,
+    "Accuracy test": 0.9266,
+    "ROC-AUC test": 0.9921,
+    "Tiempo (s)": 26.5457,
+    "Estado": "Candidato"
+   },
+   {
+    "Modelo": "Random Forest",
+    "Rol": "Ensamble de árboles (bagging), robusto a no linealidades",
+    "Configs. probadas": 4,
+    "Mejores hiperparámetros": "max_depth=None, min_samples_leaf=1",
+    "F1 train": 1.0,
+    "F1 CV": 0.9052,
+    "F1 test": 0.9167,
+    "Accuracy test": 0.9174,
+    "ROC-AUC test": 0.989,
+    "Tiempo (s)": 10.9191,
+    "Estado": "Candidato"
+   },
+   {
+    "Modelo": "Red Neuronal (MLP)",
+    "Rol": "Perceptrón multicapa, enfoque de deep learning",
+    "Configs. probadas": 4,
+    "Mejores hiperparámetros": "alpha=0.01, hidden_layer_sizes=(64, 32)",
+    "F1 train": 0.8614,
+    "F1 CV": 0.8406,
+    "F1 test": 0.9018,
+    "Accuracy test": 0.9021,
+    "ROC-AUC test": 0.9892,
+    "Tiempo (s)": 3.5919,
+    "Estado": "Candidato"
+   },
+   {
+    "Modelo": "Línea base (azar estratificado)",
+    "Rol": "Referencia: predice al azar respetando la frecuencia de clases",
+    "Configs. probadas": 1,
+    "Mejores hiperparámetros": "strategy=stratified",
+    "F1 train": 0.2517,
+    "F1 CV": 0.2527,
+    "F1 test": 0.2327,
+    "Accuracy test": 0.2355,
+    "ROC-AUC test": 0.4902,
+    "Tiempo (s)": 0.2061,
+    "Estado": "Referencia"
+   }
+  ],
+  "selection": [
+   {
+    "Puesto": 1,
+    "Modelo": "Regresión Logística",
+    "F1 CV": 0.9278,
+    "± desv.": 0.0181,
+    "F1 test": 0.9357,
+    "Accuracy balanceada": 0.9357,
+    "Kappa de Cohen": 0.9144,
+    "ROC-AUC": 0.995,
+    "Sobreajuste (train−CV)": 0.0173,
+    "Tiempo (s)": 15.0092
+   },
+   {
+    "Puesto": 2,
+    "Modelo": "Gradient Boosting",
+    "F1 CV": 0.9151,
+    "± desv.": 0.0154,
+    "F1 test": 0.9261,
+    "Accuracy balanceada": 0.9265,
+    "Kappa de Cohen": 0.9021,
+    "ROC-AUC": 0.9921,
+    "Sobreajuste (train−CV)": 0.0849,
+    "Tiempo (s)": 26.5457
+   },
+   {
+    "Puesto": 3,
+    "Modelo": "Random Forest",
+    "F1 CV": 0.9052,
+    "± desv.": 0.0165,
+    "F1 test": 0.9167,
+    "Accuracy balanceada": 0.9173,
+    "Kappa de Cohen": 0.8899,
+    "ROC-AUC": 0.989,
+    "Sobreajuste (train−CV)": 0.0948,
+    "Tiempo (s)": 10.9191
+   },
+   {
+    "Puesto": 4,
+    "Modelo": "Red Neuronal (MLP)",
+    "F1 CV": 0.8406,
+    "± desv.": 0.0557,
+    "F1 test": 0.9018,
+    "Accuracy balanceada": 0.9019,
+    "Kappa de Cohen": 0.8695,
+    "ROC-AUC": 0.9892,
+    "Sobreajuste (train−CV)": 0.0209,
+    "Tiempo (s)": 3.5919
+   }
+  ],
+  "cv": [
+   {
+    "Modelo": "Regresión Logística",
+    "Folds": 10,
+    "F1 medio": 0.9278,
+    "Desv.": 0.0181,
+    "IC95% inf.": 0.9149,
+    "IC95% sup.": 0.9408,
+    "Mín": 0.9085,
+    "Máx": 0.958,
+    "CV del F1 %": 1.9528
+   },
+   {
+    "Modelo": "Gradient Boosting",
+    "Folds": 10,
+    "F1 medio": 0.9151,
+    "Desv.": 0.0154,
+    "IC95% inf.": 0.9041,
+    "IC95% sup.": 0.9262,
+    "Mín": 0.8929,
+    "Máx": 0.9346,
+    "CV del F1 %": 1.6864
+   },
+   {
+    "Modelo": "Random Forest",
+    "Folds": 10,
+    "F1 medio": 0.9052,
+    "Desv.": 0.0165,
+    "IC95% inf.": 0.8934,
+    "IC95% sup.": 0.917,
+    "Mín": 0.8809,
+    "Máx": 0.9347,
+    "CV del F1 %": 1.8224
+   },
+   {
+    "Modelo": "Red Neuronal (MLP)",
+    "Folds": 10,
+    "F1 medio": 0.8406,
+    "Desv.": 0.0557,
+    "IC95% inf.": 0.8007,
+    "IC95% sup.": 0.8804,
+    "Mín": 0.7274,
+    "Máx": 0.9154,
+    "CV del F1 %": 6.6306
+   },
+   {
+    "Modelo": "Línea base (azar estratificado)",
+    "Folds": 10,
+    "F1 medio": 0.2527,
+    "Desv.": 0.0211,
+    "IC95% inf.": 0.2377,
+    "IC95% sup.": 0.2678,
+    "Mín": 0.2294,
+    "Máx": 0.29,
+    "CV del F1 %": 8.333
+   }
+  ],
+  "best": "Regresión Logística",
+  "best_params": {
+   "logistic_regression": {
+    "C": 100.0
+   },
+   "random_forest": {
+    "max_depth": null,
+    "min_samples_leaf": 1
+   },
+   "gradient_boosting": {
+    "learning_rate": 0.1,
+    "max_depth": 6
+   },
+   "mlp": {
+    "alpha": 0.01,
+    "hidden_layer_sizes": [
+     64,
+     32
+    ]
+   },
+   "baseline": {
+    "strategy": "stratified"
+   }
+  },
+  "grids": {
+   "Regresión Logística": [
+    {
+     "Configuración": "C=100.0",
+     "F1 CV (media)": 0.9278,
+     "F1 CV (desv.)": 0.0172,
+     "F1 train (media)": 0.9451,
+     "Accuracy CV": 0.928,
+     "Tiempo ajuste (s)": 0.3202,
+     "Ranking": 1
+    },
+    {
+     "Configuración": "C=10.0",
+     "F1 CV (media)": 0.9097,
+     "F1 CV (desv.)": 0.0182,
+     "F1 train (media)": 0.9246,
+     "Accuracy CV": 0.9096,
+     "Tiempo ajuste (s)": 0.2183,
+     "Ranking": 2
+    },
+    {
+     "Configuración": "C=1.0",
+     "F1 CV (media)": 0.8567,
+     "F1 CV (desv.)": 0.0222,
+     "F1 train (media)": 0.8704,
+     "Accuracy CV": 0.8559,
+     "Tiempo ajuste (s)": 0.0951,
+     "Ranking": 3
+    },
+    {
+     "Configuración": "C=0.1",
+     "F1 CV (media)": 0.792,
+     "F1 CV (desv.)": 0.0265,
+     "F1 train (media)": 0.8048,
+     "Accuracy CV": 0.7912,
+     "Tiempo ajuste (s)": 0.0875,
+     "Ranking": 4
+    },
+    {
+     "Configuración": "C=0.01",
+     "F1 CV (media)": 0.7566,
+     "F1 CV (desv.)": 0.0232,
+     "F1 train (media)": 0.7651,
+     "Accuracy CV": 0.7563,
+     "Tiempo ajuste (s)": 0.065,
+     "Ranking": 5
+    }
+   ],
+   "Gradient Boosting": [
+    {
+     "Configuración": "learning_rate=0.1, max_depth=6",
+     "F1 CV (media)": 0.9151,
+     "F1 CV (desv.)": 0.0146,
+     "F1 train (media)": 1.0,
+     "Accuracy CV": 0.9153,
+     "Tiempo ajuste (s)": 2.3592,
+     "Ranking": 1
+    },
+    {
+     "Configuración": "learning_rate=0.05, max_depth=6",
+     "F1 CV (media)": 0.9136,
+     "F1 CV (desv.)": 0.0142,
+     "F1 train (media)": 1.0,
+     "Accuracy CV": 0.9138,
+     "Tiempo ajuste (s)": 2.7886,
+     "Ranking": 2
+    },
+    {
+     "Configuración": "learning_rate=0.05, max_depth=None",
+     "F1 CV (media)": 0.9112,
+     "F1 CV (desv.)": 0.0168,
+     "F1 train (media)": 1.0,
+     "Accuracy CV": 0.9115,
+     "Tiempo ajuste (s)": 3.1992,
+     "Ranking": 3
+    },
+    {
+     "Configuración": "learning_rate=0.1, max_depth=None",
+     "F1 CV (media)": 0.9104,
+     "F1 CV (desv.)": 0.0169,
+     "F1 train (media)": 1.0,
+     "Accuracy CV": 0.9107,
+     "Tiempo ajuste (s)": 3.8766,
+     "Ranking": 4
+    }
+   ],
+   "Random Forest": [
+    {
+     "Configuración": "max_depth=None, min_samples_leaf=1",
+     "F1 CV (media)": 0.9052,
+     "F1 CV (desv.)": 0.0156,
+     "F1 train (media)": 1.0,
+     "Accuracy CV": 0.9057,
+     "Tiempo ajuste (s)": 1.6488,
+     "Ranking": 1
+    },
+    {
+     "Configuración": "max_depth=10, min_samples_leaf=1",
+     "F1 CV (media)": 0.9044,
+     "F1 CV (desv.)": 0.0126,
+     "F1 train (media)": 0.9977,
+     "Accuracy CV": 0.905,
+     "Tiempo ajuste (s)": 1.4637,
+     "Ranking": 2
+    },
+    {
+     "Configuración": "max_depth=None, min_samples_leaf=4",
+     "F1 CV (media)": 0.8963,
+     "F1 CV (desv.)": 0.0144,
+     "F1 train (media)": 0.9648,
+     "Accuracy CV": 0.8969,
+     "Tiempo ajuste (s)": 1.7796,
+     "Ranking": 3
+    },
+    {
+     "Configuración": "max_depth=10, min_samples_leaf=4",
+     "F1 CV (media)": 0.8927,
+     "F1 CV (desv.)": 0.012,
+     "F1 train (media)": 0.9625,
+     "Accuracy CV": 0.8935,
+     "Tiempo ajuste (s)": 1.3588,
+     "Ranking": 4
+    }
+   ],
+   "Red Neuronal (MLP)": [
+    {
+     "Configuración": "alpha=0.01, hidden_layer_sizes=(64, 32)",
+     "F1 CV (media)": 0.8406,
+     "F1 CV (desv.)": 0.0529,
+     "F1 train (media)": 0.8614,
+     "Accuracy CV": 0.8414,
+     "Tiempo ajuste (s)": 0.6023,
+     "Ranking": 1
+    },
+    {
+     "Configuración": "alpha=0.0001, hidden_layer_sizes=(64, 32)",
+     "F1 CV (media)": 0.8307,
+     "F1 CV (desv.)": 0.0511,
+     "F1 train (media)": 0.8496,
+     "Accuracy CV": 0.8318,
+     "Tiempo ajuste (s)": 0.6688,
+     "Ranking": 2
+    },
+    {
+     "Configuración": "alpha=0.0001, hidden_layer_sizes=(32,)",
+     "F1 CV (media)": 0.7494,
+     "F1 CV (desv.)": 0.0872,
+     "F1 train (media)": 0.7585,
+     "Accuracy CV": 0.7517,
+     "Tiempo ajuste (s)": 0.268,
+     "Ranking": 3
+    },
+    {
+     "Configuración": "alpha=0.01, hidden_layer_sizes=(32,)",
+     "F1 CV (media)": 0.7494,
+     "F1 CV (desv.)": 0.0872,
+     "F1 train (media)": 0.7585,
+     "Accuracy CV": 0.7517,
+     "Tiempo ajuste (s)": 0.4075,
+     "Ranking": 3
+    }
+   ]
+  },
+  "class_report": [
+   {
+    "Nivel": "Bajo",
+    "Precisión": 0.9494,
+    "Sensibilidad (recall)": 0.9146,
+    "F1": 0.9317,
+    "Soporte": 82
+   },
+   {
+    "Nivel": "Moderado",
+    "Precisión": 0.881,
+    "Sensibilidad (recall)": 0.9024,
+    "F1": 0.8916,
+    "Soporte": 82
+   },
+   {
+    "Nivel": "Alto",
+    "Precisión": 0.9494,
+    "Sensibilidad (recall)": 0.9259,
+    "F1": 0.9375,
+    "Soporte": 81
+   },
+   {
+    "Nivel": "Crítico",
+    "Precisión": 0.9647,
+    "Sensibilidad (recall)": 1.0,
+    "F1": 0.982,
+    "Soporte": 82
+   },
+   {
+    "Nivel": "Promedio macro",
+    "Precisión": 0.9361,
+    "Sensibilidad (recall)": 0.9357,
+    "F1": 0.9357,
+    "Soporte": 327
+   }
+  ],
+  "confusion": [
+   [
+    75,
+    7,
+    0,
+    0
+   ],
+   [
+    4,
+    74,
+    4,
+    0
+   ],
+   [
+    0,
+    3,
+    75,
+    3
+   ],
+   [
+    0,
+    0,
+    0,
+    82
+   ]
+  ],
+  "importance": [
+   {
+    "Código": "pct_housing_insecurity",
+    "Importancia": 0.5818647494196677,
+    "Desv.": 0.020024377567586054,
+    "Variable": "Inseguridad de vivienda (%)"
+   },
+   {
+    "Código": "pct_utility_shutoff",
+    "Importancia": 0.5474722658101847,
+    "Desv.": 0.03170386983689528,
+    "Variable": "Amenaza de corte de servicios (%)"
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Importancia": 0.5086039447854332,
+    "Desv.": 0.0308756208817977,
+    "Variable": "Inseguridad alimentaria (%)"
+   },
+   {
+    "Código": "pct_smoking",
+    "Importancia": 0.37704209987191717,
+    "Desv.": 0.03395750348151965,
+    "Variable": "Tabaquismo (%)"
+   },
+   {
+    "Código": "pct_inactivity",
+    "Importancia": 0.376408910251269,
+    "Desv.": 0.024739531180259934,
+    "Variable": "Inactividad física (%)"
+   },
+   {
+    "Código": "pct_no_health_insurance",
+    "Importancia": 0.37400554372508854,
+    "Desv.": 0.020970759860038466,
+    "Variable": "Sin seguro médico (%)"
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Importancia": 0.3300430368729506,
+    "Desv.": 0.021999565238658533,
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)"
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Importancia": 0.25041607655225046,
+    "Desv.": 0.02464640365290056,
+    "Variable": "Falta de transporte confiable (%)"
+   },
+   {
+    "Código": "pct_loneliness",
+    "Importancia": 0.24761179964621166,
+    "Desv.": 0.01685324002666788,
+    "Variable": "Soledad (%)"
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Importancia": 0.22300101755811513,
+    "Desv.": 0.020498115598664844,
+    "Variable": "Consumo excesivo de alcohol (%)"
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Importancia": 0.12775614492367107,
+    "Desv.": 0.014426253566620998,
+    "Variable": "Cribado de colesterol (%)"
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Importancia": 0.08312817523665195,
+    "Desv.": 0.01773401256019498,
+    "Variable": "Falta de apoyo social (%)"
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Importancia": 0.06594643929818664,
+    "Desv.": 0.014904619878200444,
+    "Variable": "Chequeo médico anual (%)"
+   }
+  ],
+  "interp": {
+   "training": "Se entrenaron 4 algoritmos más una línea base al azar, probando en total 17 configuraciones de hiperparámetros con 10 particiones de validación cruzada cada una (57 s). El mejor, Regresión Logística, alcanza F1-macro 0.928 en CV y 0.936 en prueba, frente a 0.253 del azar: el modelo aprende una señal real de los determinantes sociales (3.7× la línea base). El peor candidato es Red Neuronal (MLP) (0.841). La brecha train–CV del mejor es 0.017: sin sobreajuste apreciable.",
+   "cv": "El mejor modelo (Regresión Logística) obtiene F1 = 0.9278 con IC 95 % [0.9149, 0.9408] sobre 10 folds; su F1 oscila entre 0.908 y 0.958. Su intervalo se solapa con el del segundo (Gradient Boosting), por lo que la diferencia puede no ser real: se contrasta formalmente en «Pruebas inferenciales». El modelo más estable entre particiones es Gradient Boosting (desv. 0.0154). Una desviación baja indica que el desempeño no depende de qué tracts caen en cada fold.",
+   "learning": "Con 156 tracts el F1 de validación es 0.866 y con 1044 llega a 0.929; el último incremento de datos aporta +0.001. La curva se ha estabilizado: más datos del mismo tipo aportarían poco. La distancia final train–validación es 0.016 (varianza contenida).",
+   "confusion": "De 327 tracts de prueba, 306 (94%) se clasifican en su nivel exacto y 21 (6%) en un nivel vecino; solo 0 (0%) fallan por dos o más niveles. Los errores se concentran junto a la diagonal porque los niveles son cuartiles de una variable continua: confundir Alto con Crítico es un error de frontera, no de concepto. La clase mejor reconocida es Crítico (sensibilidad 100%) y la peor Moderado (90%); las clases intermedias suelen ser las más difíciles al tener vecinos por ambos lados. Para priorizar intervenciones importa el nivel Crítico: sensibilidad 100% y precisión 96%.",
+   "roc": "AUC macro = 0.995. Por nivel: Crítico 1.000, Alto 0.994, Bajo 0.998, Moderado 0.989. Un AUC de 0,9 significa que, tomando al azar un tract de ese nivel y otro que no lo es, el modelo asigna mayor probabilidad al correcto el 90 % de las veces. El nivel Moderado es el más difícil de separar del resto.",
+   "importance": "Las variables que más sostienen las predicciones son: «Inseguridad de vivienda (%)» (−0.582 de F1 si se desordena), «Amenaza de corte de servicios (%)» (−0.547 de F1 si se desordena), «Inseguridad alimentaria (%)» (−0.509 de F1 si se desordena). 0 variables tienen una importancia indistinguible de cero (su efecto no supera su propia variabilidad). Al estar los determinantes correlacionados, una variable puede parecer poco importante porque otra correlacionada aporta la misma información; la importancia es predictiva, no causal.",
+   "selection": "Criterio declarado: mayor F1-macro medio en validación cruzada (el test no se usa para elegir, solo para confirmar). Gana Regresión Logística con 0.9278, +0.0127 sobre Gradient Boosting. En prueba confirma F1 = 0.9357, ROC-AUC = 0.9950 y kappa = 0.914 (acuerdo casi perfecto más allá del azar). El más rápido es Red Neuronal (MLP) (3.6 s). Si la ventaja del ganador no resulta estadísticamente significativa en la fase inferencial, un modelo más simple o rápido sería una alternativa igualmente defendible.",
+   "hp": {
+    "Regresión Logística": "Regresión Logística: se probaron 5 configuraciones; la ganadora es «C=100.0» con F1 CV = 0.9278 ± 0.0172. La diferencia entre la mejor y la peor configuración es 0.1712, mayor que la variabilidad entre folds: la sintonía de hiperparámetros sí mejora el modelo. Significado: C: inverso de la regularización L2 (C pequeño = modelo más simple).",
+    "Gradient Boosting": "Gradient Boosting: se probaron 4 configuraciones; la ganadora es «learning_rate=0.1, max_depth=6» con F1 CV = 0.9151 ± 0.0146. La diferencia entre la mejor y la peor configuración es 0.0047, menor que la variabilidad entre folds: el modelo es poco sensible a estos hiperparámetros y la elección concreta apenas importa. Significado: learning_rate: tamaño del paso del boosting (bajo = aprendizaje más gradual); max_depth: profundidad máxima de cada árbol (None = sin límite).",
+    "Random Forest": "Random Forest: se probaron 4 configuraciones; la ganadora es «max_depth=None, min_samples_leaf=1» con F1 CV = 0.9052 ± 0.0156. La diferencia entre la mejor y la peor configuración es 0.0125, menor que la variabilidad entre folds: el modelo es poco sensible a estos hiperparámetros y la elección concreta apenas importa. Significado: max_depth: profundidad máxima de cada árbol (None = sin límite); min_samples_leaf: mínimo de tracts por hoja (más alto = árboles más suaves).",
+    "Red Neuronal (MLP)": "Red Neuronal (MLP): se probaron 4 configuraciones; la ganadora es «alpha=0.01, hidden_layer_sizes=(64, 32)» con F1 CV = 0.8406 ± 0.0529. La diferencia entre la mejor y la peor configuración es 0.0912, mayor que la variabilidad entre folds: la sintonía de hiperparámetros sí mejora el modelo. Significado: alpha: penalización L2 de los pesos de la red; hidden_layer_sizes: neuronas por capa oculta."
+   }
+  },
+  "learning_curve": {
+   "sizes": [
+    156,
+    334,
+    511,
+    689,
+    866,
+    1044
+   ],
+   "train": [
+    [
+     0.9418652966845737,
+     0.9412254901960784,
+     0.9432418718851722,
+     0.9248667998667998,
+     0.9681410465179395
+    ],
+    [
+     0.9509813981199524,
+     0.9359451862561923,
+     0.9386638499779181,
+     0.9396534324601021,
+     0.9608496289446606
+    ],
+    [
+     0.9464831555616855,
+     0.9504926127810431,
+     0.9394150595011344,
+     0.9435309755226629,
+     0.9450761825072428
+    ],
+    [
+     0.9322963150729049,
+     0.9494517054976165,
+     0.9352818877297068,
+     0.9537597093187702,
+     0.9511176857330703
+    ],
+    [
+     0.9408994459254668,
+     0.947078707750784,
+     0.9436496895194066,
+     0.9536939807043987,
+     0.9574756735984867
+    ],
+    [
+     0.9386806907269114,
+     0.9416272414802327,
+     0.9464888086543661,
+     0.9462987113654844,
+     0.954059804934819
+    ]
+   ],
+   "valid": [
+    [
+     0.9119176684017799,
+     0.8807794066620402,
+     0.8501115661025451,
+     0.8419174659836799,
+     0.8474547073879358
+    ],
+    [
+     0.9346492732442535,
+     0.9038681470698671,
+     0.8916156794601375,
+     0.8731063629862461,
+     0.8874622203755169
+    ],
+    [
+     0.9344452942540822,
+     0.8961089418844073,
+     0.9223890615338328,
+     0.9006566760937013,
+     0.9091314380633029
+    ],
+    [
+     0.9538644204572376,
+     0.9114456441996031,
+     0.9218551560632934,
+     0.9045163052378672,
+     0.9202544792570491
+    ],
+    [
+     0.9541604005426072,
+     0.9111539859631462,
+     0.9379921545106897,
+     0.9121479451109162,
+     0.9243491273156741
+    ],
+    [
+     0.9578650948436143,
+     0.9148690981057394,
+     0.9379921545106897,
+     0.908465099157047,
+     0.92789427589197
+    ]
+   ]
+  },
+  "seconds": 57.16355534000104
+ },
+ "inference": {
+  "friedman": {
+   "keys": [
+    "logistic_regression",
+    "gradient_boosting",
+    "random_forest",
+    "mlp"
+   ],
+   "names": [
+    "Regresión Logística",
+    "Gradient Boosting",
+    "Random Forest",
+    "Red Neuronal (MLP)"
+   ],
+   "stat": 26.75999999999999,
+   "p": 6.610389889099015e-06,
+   "kendall_w": 0.8919999999999997,
+   "avg_ranks": [
+    1.0,
+    2.2,
+    2.9,
+    3.9
+   ],
+   "cd": 1.4832311854364129,
+   "n": 10,
+   "k": 4
+  },
+  "friedman_table": [
+   {
+    "Modelo": "Regresión Logística",
+    "Rango medio (1 = mejor)": 1.0,
+    "Distancia al mejor": 0.0,
+    "¿Distinguible del mejor? (Nemenyi)": "—"
+   },
+   {
+    "Modelo": "Gradient Boosting",
+    "Rango medio (1 = mejor)": 2.2,
+    "Distancia al mejor": 1.2,
+    "¿Distinguible del mejor? (Nemenyi)": "No"
+   },
+   {
+    "Modelo": "Random Forest",
+    "Rango medio (1 = mejor)": 2.9,
+    "Distancia al mejor": 1.9,
+    "¿Distinguible del mejor? (Nemenyi)": "Sí"
+   },
+   {
+    "Modelo": "Red Neuronal (MLP)",
+    "Rango medio (1 = mejor)": 3.9,
+    "Distancia al mejor": 2.9,
+    "¿Distinguible del mejor? (Nemenyi)": "Sí"
+   }
+  ],
+  "pairwise": [
+   {
+    "Modelo A": "Regresión Logística",
+    "Modelo B": "Gradient Boosting",
+    "Δ F1 medio (A−B)": 0.0127,
+    "Wilcoxon p": 0.002,
+    "t Nadeau-Bengio": 2.1257,
+    "p corregida N-B": 0.0625,
+    "r rango-biserial": 1.0,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.2294,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Regresión Logística",
+    "Modelo B": "Random Forest",
+    "Δ F1 medio (A−B)": 0.0227,
+    "Wilcoxon p": 0.002,
+    "t Nadeau-Bengio": 2.9996,
+    "p corregida N-B": 0.015,
+    "r rango-biserial": 1.0,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.0898,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Regresión Logística",
+    "Modelo B": "Red Neuronal (MLP)",
+    "Δ F1 medio (A−B)": 0.0873,
+    "Wilcoxon p": 0.002,
+    "t Nadeau-Bengio": 2.3969,
+    "p corregida N-B": 0.0401,
+    "r rango-biserial": 1.0,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.2005,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Gradient Boosting",
+    "Modelo B": "Random Forest",
+    "Δ F1 medio (A−B)": 0.01,
+    "Wilcoxon p": 0.0371,
+    "t Nadeau-Bengio": 1.4547,
+    "p corregida N-B": 0.1797,
+    "r rango-biserial": 0.7455,
+    "Wilcoxon p (Holm)": 0.0371,
+    "N-B p (Holm)": 0.2294,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Gradient Boosting",
+    "Modelo B": "Red Neuronal (MLP)",
+    "Δ F1 medio (A−B)": 0.0746,
+    "Wilcoxon p": 0.002,
+    "t Nadeau-Bengio": 2.178,
+    "p corregida N-B": 0.0574,
+    "r rango-biserial": 1.0,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.2294,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Random Forest",
+    "Modelo B": "Red Neuronal (MLP)",
+    "Δ F1 medio (A−B)": 0.0646,
+    "Wilcoxon p": 0.0039,
+    "t Nadeau-Bengio": 2.0149,
+    "p corregida N-B": 0.0747,
+    "r rango-biserial": 0.9636,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.2294,
+    "¿Diferencia significativa?": "Solo una prueba"
+   },
+   {
+    "Modelo A": "Regresión Logística",
+    "Modelo B": "Línea base (azar estratificado)",
+    "Δ F1 medio (A−B)": 0.6751,
+    "Wilcoxon p": 0.002,
+    "t Nadeau-Bengio": 37.8675,
+    "p corregida N-B": 0.0,
+    "r rango-biserial": 1.0,
+    "Wilcoxon p (Holm)": 0.0137,
+    "N-B p (Holm)": 0.0,
+    "¿Diferencia significativa?": "Sí (ambas)"
+   }
+  ],
+  "mcnemar": {
+   "a": "Regresión Logística",
+   "b": "Gradient Boosting",
+   "n11": 294,
+   "n10": 12,
+   "n01": 9,
+   "n00": 12,
+   "p_exact": 0.6636238098144531,
+   "chi2": 0.19047619047619047,
+   "p_chi2": 0.6625205835400574
+  },
+  "bootstrap": [
+   {
+    "Modelo": "Regresión Logística",
+    "F1 test": 0.9357,
+    "IC95% inf.": 0.9084,
+    "IC95% sup.": 0.9609,
+    "Amplitud IC": 0.0524
+   },
+   {
+    "Modelo": "Gradient Boosting",
+    "F1 test": 0.9261,
+    "IC95% inf.": 0.8971,
+    "IC95% sup.": 0.9537,
+    "Amplitud IC": 0.0566
+   },
+   {
+    "Modelo": "Random Forest",
+    "F1 test": 0.9167,
+    "IC95% inf.": 0.8861,
+    "IC95% sup.": 0.9456,
+    "Amplitud IC": 0.0595
+   },
+   {
+    "Modelo": "Red Neuronal (MLP)",
+    "F1 test": 0.9018,
+    "IC95% inf.": 0.8688,
+    "IC95% sup.": 0.9324,
+    "Amplitud IC": 0.0636
+   },
+   {
+    "Modelo": "Línea base (azar estratificado)",
+    "F1 test": 0.2327,
+    "IC95% inf.": 0.1865,
+    "IC95% sup.": 0.275,
+    "Amplitud IC": 0.0886
+   }
+  ],
+  "bootstrap_diff": {
+   "a": "Regresión Logística",
+   "b": "Gradient Boosting",
+   "mean": 0.009325622888402002,
+   "lo": -0.018560851095593738,
+   "hi": 0.03685474184508124,
+   "p_le0": 0.26
+  },
+  "permutation": {
+   "score": 0.9294171445018122,
+   "p": 0.004975124378109453,
+   "n": 200,
+   "perm_mean": 0.2458484240119678,
+   "perm_max": 0.2891719431723073
+  },
+  "spearman": [
+   {
+    "Código": "pct_utility_shutoff",
+    "Variable": "Amenaza de corte de servicios (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8842,
+    "IC95% inf.": 0.871,
+    "IC95% sup.": 0.8961,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_smoking",
+    "Variable": "Tabaquismo (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8793,
+    "IC95% inf.": 0.8657,
+    "IC95% sup.": 0.8916,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8686,
+    "IC95% inf.": 0.8539,
+    "IC95% sup.": 0.8819,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_housing_insecurity",
+    "Variable": "Inseguridad de vivienda (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8635,
+    "IC95% inf.": 0.8483,
+    "IC95% sup.": 0.8772,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Variable": "Inseguridad alimentaria (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8488,
+    "IC95% inf.": 0.8322,
+    "IC95% sup.": 0.8639,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Variable": "Falta de transporte confiable (%)",
+    "n": 1632,
+    "ρ Spearman": 0.839,
+    "IC95% inf.": 0.8215,
+    "IC95% sup.": 0.855,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_inactivity",
+    "Variable": "Inactividad física (%)",
+    "n": 1632,
+    "ρ Spearman": 0.8162,
+    "IC95% inf.": 0.7966,
+    "IC95% sup.": 0.8341,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_no_health_insurance",
+    "Variable": "Sin seguro médico (%)",
+    "n": 1632,
+    "ρ Spearman": 0.7665,
+    "IC95% inf.": 0.7428,
+    "IC95% sup.": 0.7884,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Variable": "Falta de apoyo social (%)",
+    "n": 1632,
+    "ρ Spearman": 0.7567,
+    "IC95% inf.": 0.7322,
+    "IC95% sup.": 0.7793,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Variable": "Consumo excesivo de alcohol (%)",
+    "n": 1632,
+    "ρ Spearman": -0.7075,
+    "IC95% inf.": -0.7336,
+    "IC95% sup.": -0.6793,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Fuerte"
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Variable": "Cribado de colesterol (%)",
+    "n": 1632,
+    "ρ Spearman": -0.4626,
+    "IC95% inf.": -0.5018,
+    "IC95% sup.": -0.4215,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Moderada"
+   },
+   {
+    "Código": "pct_loneliness",
+    "Variable": "Soledad (%)",
+    "n": 1632,
+    "ρ Spearman": 0.4518,
+    "IC95% inf.": 0.4103,
+    "IC95% sup.": 0.4914,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Moderada"
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Variable": "Chequeo médico anual (%)",
+    "n": 1632,
+    "ρ Spearman": 0.1338,
+    "IC95% inf.": 0.0856,
+    "IC95% sup.": 0.1813,
+    "p": 0.0,
+    "p (Holm)": 0.0,
+    "Fuerza": "Débil"
+   }
+  ],
+  "kruskal": [
+   {
+    "Código": "pct_utility_shutoff",
+    "Variable": "Amenaza de corte de servicios (%)",
+    "H": 1227.1268,
+    "p": 0.0,
+    "ε²": 0.7519,
+    "Mediana Bajo": 4.0,
+    "Mediana Moderado": 5.4,
+    "Mediana Alto": 9.8,
+    "Mediana Crítico": 19.7,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_smoking",
+    "Variable": "Tabaquismo (%)",
+    "H": 1188.3354,
+    "p": 0.0,
+    "ε²": 0.7281,
+    "Mediana Bajo": 5.9,
+    "Mediana Moderado": 9.0,
+    "Mediana Alto": 11.8,
+    "Mediana Crítico": 16.5,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_food_stamps",
+    "Variable": "Recibe ayuda alimentaria (SNAP) (%)",
+    "H": 1184.323,
+    "p": 0.0,
+    "ε²": 0.7256,
+    "Mediana Bajo": 5.3,
+    "Mediana Moderado": 8.7,
+    "Mediana Alto": 17.45,
+    "Mediana Crítico": 38.35,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_housing_insecurity",
+    "Variable": "Inseguridad de vivienda (%)",
+    "H": 1173.589,
+    "p": 0.0,
+    "ε²": 0.719,
+    "Mediana Bajo": 7.4,
+    "Mediana Moderado": 10.0,
+    "Mediana Alto": 18.2,
+    "Mediana Crítico": 31.1,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_food_insecurity",
+    "Variable": "Inseguridad alimentaria (%)",
+    "H": 1129.5655,
+    "p": 0.0,
+    "ε²": 0.692,
+    "Mediana Bajo": 7.6,
+    "Mediana Moderado": 11.4,
+    "Mediana Alto": 22.15,
+    "Mediana Crítico": 39.9,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_no_transportation",
+    "Variable": "Falta de transporte confiable (%)",
+    "H": 1119.0045,
+    "p": 0.0,
+    "ε²": 0.6855,
+    "Mediana Bajo": 4.7,
+    "Mediana Moderado": 6.0,
+    "Mediana Alto": 10.3,
+    "Mediana Crítico": 18.1,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_inactivity",
+    "Variable": "Inactividad física (%)",
+    "H": 1035.4077,
+    "p": 0.0,
+    "ε²": 0.6342,
+    "Mediana Bajo": 13.9,
+    "Mediana Moderado": 18.1,
+    "Mediana Alto": 25.5,
+    "Mediana Crítico": 34.15,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_lack_social_support",
+    "Variable": "Falta de apoyo social (%)",
+    "H": 991.9834,
+    "p": 0.0,
+    "ε²": 0.6075,
+    "Mediana Bajo": 22.4,
+    "Mediana Moderado": 23.2,
+    "Mediana Alto": 27.8,
+    "Mediana Crítico": 34.7,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_no_health_insurance",
+    "Variable": "Sin seguro médico (%)",
+    "H": 983.5385,
+    "p": 0.0,
+    "ε²": 0.6023,
+    "Mediana Bajo": 4.6,
+    "Mediana Moderado": 7.5,
+    "Mediana Alto": 15.0,
+    "Mediana Crítico": 14.45,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_binge_drinking",
+    "Variable": "Consumo excesivo de alcohol (%)",
+    "H": 837.165,
+    "p": 0.0,
+    "ε²": 0.5124,
+    "Mediana Bajo": 22.6,
+    "Mediana Moderado": 19.9,
+    "Mediana Alto": 19.2,
+    "Mediana Crítico": 13.9,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_loneliness",
+    "Variable": "Soledad (%)",
+    "H": 601.1967,
+    "p": 0.0,
+    "ε²": 0.3674,
+    "Mediana Bajo": 34.7,
+    "Mediana Moderado": 32.2,
+    "Mediana Alto": 35.3,
+    "Mediana Crítico": 39.25,
+    "p (Holm)": 0.0,
+    "Efecto": "Grande"
+   },
+   {
+    "Código": "pct_cholesterol_screening",
+    "Variable": "Cribado de colesterol (%)",
+    "H": 350.8198,
+    "p": 0.0,
+    "ε²": 0.2136,
+    "Mediana Bajo": 89.6,
+    "Mediana Moderado": 89.1,
+    "Mediana Alto": 86.1,
+    "Mediana Crítico": 85.85,
+    "p (Holm)": 0.0,
+    "Efecto": "Mediano"
+   },
+   {
+    "Código": "pct_routine_checkup",
+    "Variable": "Chequeo médico anual (%)",
+    "H": 288.6188,
+    "p": 0.0,
+    "ε²": 0.1754,
+    "Mediana Bajo": 78.5,
+    "Mediana Moderado": 77.4,
+    "Mediana Alto": 75.3,
+    "Mediana Crítico": 80.6,
+    "p (Holm)": 0.0,
+    "Efecto": "Mediano"
+   }
+  ],
+  "counties": {
+   "applicable": true,
+   "H": 521.8178513043279,
+   "p": 1.7023371755917272e-115,
+   "eps2": 0.31952015417443425,
+   "table": [
+    {
+     "Condado": "Cook County",
+     "Tracts": 1328,
+     "Mediana": 30.4,
+     "RIC": 12.3
+    },
+    {
+     "Condado": "New York County",
+     "Tracts": 304,
+     "Mediana": 16.8,
+     "RIC": 8.125
+    }
+   ],
+   "k": 2,
+   "n": 1632
+  },
+  "interp": {
+   "friedman": "Friedman χ² = 26.76 con 3 g.l., p = < 0,001 sobre 10 folds. Se rechaza H0: al menos un modelo rinde distinto. El tamaño del efecto (W de Kendall = 0.892) es grande, es decir, la ordenación de modelos es muy consistente entre folds. Con la diferencia crítica de Nemenyi (CD = 1.483 rangos) no se distinguen del mejor: Gradient Boosting; ese grupo es estadísticamente equivalente.",
+   "cd": "Regresión Logística ocupa el mejor rango medio (1.00). Dentro de la banda (equivalentes al mejor): Gradient Boosting. Fuera de la banda (significativamente peores): Random Forest, Red Neuronal (MLP). Si varios modelos comparten banda, la elección entre ellos puede basarse en criterios secundarios como interpretabilidad o coste computacional.",
+   "pairwise": "Se contrastan 7 pares con dos pruebas y corrección de Holm por comparaciones múltiples. Regresión Logística supera de forma robusta (ambas pruebas) a: Línea base (azar estratificado). Frente a Gradient Boosting, Random Forest, Red Neuronal (MLP) la diferencia no es concluyente: la t corregida de Nadeau-Bengio es más conservadora que Wilcoxon porque tiene en cuenta que los folds comparten datos de entrenamiento. El r rango-biserial (−1 a 1) indica en qué proporción de folds gana A: |r| > 0,5 es un efecto grande.",
+   "mcnemar": "Sobre los mismos tracts de prueba, Regresión Logística acierta donde Gradient Boosting falla en 12 casos y al revés en 9. Solo esas celdas discordantes informan de la diferencia. McNemar exacto: p = 0.6636 (χ² con corrección de continuidad = 0.19, p = 0.6625). No es significativa: ambos modelos cometen una cantidad de errores compatible con el azar sobre este conjunto de prueba.",
+   "bootstrap": "El F1 de prueba del mejor modelo (Regresión Logística) es 0.9357 con IC 95 % bootstrap [0.9084, 0.9609]: esa es la incertidumbre por haber evaluado sobre una muestra finita de tracts. La diferencia pareada Regresión Logística − Gradient Boosting vale +0.0093 con IC 95 % [-0.0186, +0.0369]; el intervalo incluye el 0 (en el 26% de las réplicas el segundo iguala o supera al primero), así que la ventaja no está garantizada.",
+   "permutation": "Al desordenar al azar los niveles de riesgo 200 veces, Regresión Logística obtiene de media F1 = 0.246 (máximo 0.289), mientras que con las etiquetas reales logra 0.929. p = 0.0050 (el mínimo alcanzable es 1/201 = 0.0050): el modelo capta una relación real entre determinantes sociales y resultado de salud, no un artefacto del azar.",
+   "spearman": "13 de 13 determinantes se asocian significativamente con «Obesidad (%)» tras Holm. Asociados a MAYOR prevalencia: «Amenaza de corte de servicios (%)» (ρ = +0.88), «Tabaquismo (%)» (ρ = +0.88), «Recibe ayuda alimentaria (SNAP) (%)» (ρ = +0.87). Asociados a MENOR prevalencia (factores protectores): «Consumo excesivo de alcohol (%)» (ρ = -0.71), «Cribado de colesterol (%)» (ρ = -0.46). Los intervalos estrechos reflejan el tamaño muestral; con n grande incluso ρ pequeñas son significativas, por eso se interpreta la fuerza (|ρ|) y no solo el p-valor. Son asociaciones ecológicas entre tracts, no efectos causales individuales.",
+   "kruskal": "13 de 13 determinantes difieren significativamente entre los cuatro niveles de riesgo. 11 con efecto grande (ε² ≥ 0,26). El más discriminante es «Amenaza de corte de servicios (%)» (ε² = 0.752): su mediana pasa de 4.0 % en tracts de riesgo Bajo a 19.7 % en los Críticos. Estas variables son las que permiten al modelo separar los niveles, y coinciden en buena medida con la importancia por permutación.",
+   "counties": "Kruskal-Wallis H = 521.82, p = < 0,001, ε² = 0.320 con 2 condados. La prevalencia de «Obesidad (%)» difiere entre condados: la mediana más alta es la de Cook County (30.4 %) y la más baja la de New York County (16.8 %). Por eso los niveles de riesgo son relativos al área de estudio completa y un modelo entrenado aquí debe recalibrarse antes de aplicarse a otro territorio."
+  }
+ },
+ "generalization": [
+  {
+   "code": "pct_fair_poor_health",
+   "name": "Salud autorreportada regular o mala (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9769692821715502,
+   "sd": 0.016050678083192976,
+   "test_f1": 0.9846417898114611,
+   "auc": 0.9995853644147323,
+   "kappa": 0.9796121952740195,
+   "baseline": 0.24328295630004299
+  },
+  {
+   "code": "pct_diabetes",
+   "name": "Diabetes (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9470772748658434,
+   "sd": 0.00511490524803284,
+   "test_f1": 0.9286122364989123,
+   "auc": 0.9940854706543603,
+   "kappa": 0.9061095575751523,
+   "baseline": 0.24434517195403868
+  },
+  {
+   "code": "pct_obesity",
+   "name": "Obesidad (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9278255036632561,
+   "sd": 0.018118337534699783,
+   "test_f1": 0.9356948029593735,
+   "auc": 0.9949980745083339,
+   "kappa": 0.9143701523804774
+  },
+  {
+   "code": "pct_high_bp",
+   "name": "Hipertensión (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9331710253689229,
+   "sd": 0.017539707556447882,
+   "test_f1": 0.9450403238972148,
+   "auc": 0.9942169781541517,
+   "kappa": 0.9266157989228008,
+   "baseline": 0.2536861442470736
+  },
+  {
+   "code": "pct_chd",
+   "name": "Enfermedad coronaria (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9061589941142472,
+   "sd": 0.014605603133231568,
+   "test_f1": 0.9199369169382937,
+   "auc": 0.9892928954125337,
+   "kappa": 0.893929186316341,
+   "baseline": 0.2284103222408536
+  },
+  {
+   "code": "pct_depression",
+   "name": "Depresión (%)",
+   "best": "Regresión Logística",
+   "cv": 0.8509373825566365,
+   "sd": 0.02754232104436731,
+   "test_f1": 0.8627304006325642,
+   "auc": 0.9725368712877216,
+   "kappa": 0.8204843479020325,
+   "baseline": 0.2339503271232537
+  },
+  {
+   "code": "pct_mental_distress",
+   "name": "Malestar mental frecuente (%)",
+   "best": "Regresión Logística",
+   "cv": 0.9251444822662032,
+   "sd": 0.02560996273900796,
+   "test_f1": 0.9321762762486681,
+   "auc": 0.9925706977469246,
+   "kappa": 0.9102645661041051,
+   "baseline": 0.2492727887710493
+  }
+ ],
+ "bench": {
+  "phase": "evaluation",
+  "year": 2023,
+  "executed_at": "2026-09-28T21:37:27Z",
+  "scale": {
+   "tracts": 1632,
+   "indicators": 27,
+   "population": 6969720
+  },
+  "latency": {
+   "repeats": 30,
+   "median_seconds": 0.2655,
+   "p95_seconds": 0.3572,
+   "min_seconds": 0.1436,
+   "max_seconds": 2.3053,
+   "seconds_per_100k_inhabitants": 0.0038,
+   "projected_at_target_population": 0.019,
+   "target_seconds": 5.0,
+   "target_population": 500000,
+   "meets_h3": true
+  },
+  "risk_distribution": {
+   "moderate": 408,
+   "high": 245,
+   "low": 815,
+   "critical": 164
+  },
+  "sensitivity": {
+   "runs": 20,
+   "perturbation": 0.25,
+   "spearman_mean": 0.9998,
+   "spearman_min": 0.9991,
+   "risk_level_stability_pct": 98.88
+  },
+  "data_quality": {
+   "expected_observations": 44064,
+   "observed": 39168,
+   "completeness": 88.89,
+   "uniqueness_constraint": "uq_tract_catalog_year (tract_id, catalog_id, year)",
+   "checks": [
+    "Completitud: registros sin GEOID, medida o valor son descartados en la ingesta.",
+    "Consistencia: unicidad de la terna tracto-indicador-año.",
+    "Plausibilidad: intervalos low_ci / high_ci y sample_size de la fuente.",
+    "Direccionalidad: atributo higher_is_better del catálogo."
+   ]
+  },
+  "process_review": [
+   "El compuesto se calcula en O(n · k) con percentil por bisección: la distribución global se precomputa una sola vez por ejecución.",
+   "La normalización se indexa por tract_id, no por el valor del indicador.",
+   "La recomputación es idempotente (restricción uq_equity_tract_year_type)."
+  ],
+  "limitations": [
+   "Evaluación formativa sobre el conjunto disponible; no valida epidemiológicamente los índices.",
+   "CDC PLACES son estimaciones de área pequeña basadas en modelos; la validación externa requiere contrastar con registros clínicos."
+  ]
+ },
+ "hypotheses": {
+  "target": "pct_obesity",
+  "executed_at": "2026-09-28T21:37:27Z",
+  "model_selection": {
+   "target": "pct_obesity",
+   "target_name": "Obesidad (%)",
+   "deployed": "Gradient Boosting",
+   "selection_metric": "F1-macro (validación cruzada estratificada)",
+   "cv_folds": 5,
+   "n_samples": 1632,
+   "n_train": 1305,
+   "n_test": 327,
+   "candidates": [
+    {
+     "name": "Gradient Boosting",
+     "role": "Boosting de árboles (tipo XGBoost), fuerte en datos tabulares",
+     "cv_f1_mean": 0.9162,
+     "cv_f1_std": 0.0144,
+     "test_f1_macro": 0.9228,
+     "test_accuracy": 0.9235,
+     "test_roc_auc": 0.9908,
+     "train_seconds": 12.81,
+     "selected": true
+    },
+    {
+     "name": "Regresión Logística",
+     "role": "Línea base lineal e interpretable",
+     "cv_f1_mean": 0.9083,
+     "cv_f1_std": 0.013,
+     "test_f1_macro": 0.9238,
+     "test_accuracy": 0.9235,
+     "test_roc_auc": 0.9926,
+     "train_seconds": 0.51,
+     "selected": false
+    },
+    {
+     "name": "Random Forest",
+     "role": "Ensamble de árboles (bagging), robusto a no linealidades",
+     "cv_f1_mean": 0.9076,
+     "cv_f1_std": 0.0194,
+     "test_f1_macro": 0.9105,
+     "test_accuracy": 0.9113,
+     "test_roc_auc": 0.9889,
+     "train_seconds": 10.03,
+     "selected": false
+    },
+    {
+     "name": "Red Neuronal (MLP)",
+     "role": "Perceptrón multicapa, enfoque de deep learning",
+     "cv_f1_mean": 0.8523,
+     "cv_f1_std": 0.0409,
+     "test_f1_macro": 0.9018,
+     "test_accuracy": 0.9021,
+     "test_roc_auc": 0.9892,
+     "train_seconds": 2.94,
+     "selected": false
+    }
+   ],
+   "paired_test": {
+    "applicable": true,
+    "folds": 5,
+    "winner_scores": [
+     0.931,
+     0.9115,
+     0.9304,
+     0.8733,
+     0.9008
+    ],
+    "runner_scores": [
+     0.8939,
+     0.8387,
+     0.8546,
+     0.8502,
+     0.8447
+    ],
+    "mean_diff": 0.053,
+    "wilcoxon_stat": 15.0,
+    "p_value": 0.0312,
+    "separable": true
+   },
+   "regressor": {
+    "name": "Regresión Ridge (estimación del %)",
+    "r2_test": 0.9728,
+    "mae_test": 1.147,
+    "level_agreement_test": 0.8838,
+    "bias_by_level": {
+     "low": 0.371,
+     "moderate": 0.053,
+     "high": -0.329,
+     "critical": -0.059
+    },
+    "clf_vs_reg_level_agreement": 0.8685
+   },
+   "verdict": "Gradient Boosting supera a Regresión Logística de forma estadísticamente significativa en 5 folds de CV pareada (Δ F1-macro = +0.0530, p = 0.0312 < 0,05). Es el modelo definitivo para producción."
+  },
+  "parity": {
+   "target": "pct_obesity",
+   "target_name": "Obesidad (%)",
+   "target_info": "adultos con obesidad (IMC >= 30)",
+   "applicable": true,
+   "n_test": 327,
+   "n_train": 1305,
+   "regressor": "Regresión Ridge (estimación del %)",
+   "r2_test": 0.9728,
+   "mae_test": 1.147,
+   "rmse_test": 1.47,
+   "bias": -0.003,
+   "resid_sd": 1.472,
+   "obs_mean": 30.02,
+   "obs_min": 13.4,
+   "obs_max": 51.6,
+   "fit_line": {
+    "slope": 0.9667,
+    "intercept": 1.0017,
+    "stderr": 0.009,
+    "r2": 0.9728,
+    "p_value": 0.0
+   },
+   "normality": {
+    "test": "D'Agostino-Pearson (K²)",
+    "statistic": 12.0381,
+    "p_value": 0.0024,
+    "skew": -0.3873,
+    "excess_kurtosis": 0.6093,
+    "normal_at_05": false,
+    "jarque_bera_p": 0.0013
+   },
+   "heteroscedasticity": {
+    "applicable": true,
+    "lm": 1.9816,
+    "r2": 0.0061,
+    "p_value": 0.1592,
+    "homoscedastic": true
+   },
+   "level_agreement": 0.8838,
+   "parity_points": [
+    {
+     "x": 15.6,
+     "y": 15.36
+    },
+    {
+     "x": 31.7,
+     "y": 31.13
+    },
+    {
+     "x": 28.3,
+     "y": 27.82
+    },
+    {
+     "x": 23.0,
+     "y": 21.25
+    },
+    {
+     "x": 36.9,
+     "y": 37.84
+    },
+    {
+     "x": 28.6,
+     "y": 27.22
+    },
+    {
+     "x": 13.9,
+     "y": 12.1
+    },
+    {
+     "x": 13.9,
+     "y": 14.99
+    },
+    {
+     "x": 15.9,
+     "y": 16.79
+    },
+    {
+     "x": 15.8,
+     "y": 16.15
+    },
+    {
+     "x": 34.1,
+     "y": 33.86
+    },
+    {
+     "x": 33.9,
+     "y": 33.47
+    },
+    {
+     "x": 38.6,
+     "y": 35.47
+    },
+    {
+     "x": 32.2,
+     "y": 31.65
+    },
+    {
+     "x": 26.5,
+     "y": 27.03
+    },
+    {
+     "x": 25.1,
+     "y": 25.43
+    },
+    {
+     "x": 31.1,
+     "y": 31.37
+    },
+    {
+     "x": 26.1,
+     "y": 27.1
+    },
+    {
+     "x": 38.2,
+     "y": 39.13
+    },
+    {
+     "x": 43.5,
+     "y": 44.08
+    },
+    {
+     "x": 25.0,
+     "y": 27.21
+    },
+    {
+     "x": 15.8,
+     "y": 16.26
+    },
+    {
+     "x": 15.4,
+     "y": 17.58
+    },
+    {
+     "x": 23.1,
+     "y": 23.87
+    },
+    {
+     "x": 23.0,
+     "y": 23.94
+    },
+    {
+     "x": 26.4,
+     "y": 26.7
+    },
+    {
+     "x": 17.3,
+     "y": 17.61
+    },
+    {
+     "x": 15.0,
+     "y": 17.46
+    },
+    {
+     "x": 26.6,
+     "y": 26.5
+    },
+    {
+     "x": 42.5,
+     "y": 42.28
+    },
+    {
+     "x": 26.4,
+     "y": 26.65
+    },
+    {
+     "x": 20.6,
+     "y": 26.47
+    },
+    {
+     "x": 25.1,
+     "y": 27.02
+    },
+    {
+     "x": 44.7,
+     "y": 43.63
+    },
+    {
+     "x": 21.3,
+     "y": 22.85
+    },
+    {
+     "x": 16.9,
+     "y": 17.76
+    },
+    {
+     "x": 41.9,
+     "y": 40.86
+    },
+    {
+     "x": 28.3,
+     "y": 27.66
+    },
+    {
+     "x": 35.6,
+     "y": 35.74
+    },
+    {
+     "x": 47.1,
+     "y": 45.45
+    },
+    {
+     "x": 25.5,
+     "y": 24.03
+    },
+    {
+     "x": 26.9,
+     "y": 28.26
+    },
+    {
+     "x": 42.2,
+     "y": 42.27
+    },
+    {
+     "x": 35.8,
+     "y": 35.16
+    },
+    {
+     "x": 24.6,
+     "y": 25.05
+    },
+    {
+     "x": 26.5,
+     "y": 26.21
+    },
+    {
+     "x": 15.8,
+     "y": 17.83
+    },
+    {
+     "x": 26.5,
+     "y": 26.03
+    },
+    {
+     "x": 42.7,
+     "y": 40.7
+    },
+    {
+     "x": 32.3,
+     "y": 30.95
+    },
+    {
+     "x": 28.9,
+     "y": 31.05
+    },
+    {
+     "x": 30.3,
+     "y": 30.19
+    },
+    {
+     "x": 21.6,
+     "y": 20.35
+    },
+    {
+     "x": 37.4,
+     "y": 36.5
+    },
+    {
+     "x": 23.9,
+     "y": 22.33
+    },
+    {
+     "x": 49.4,
+     "y": 48.11
+    },
+    {
+     "x": 46.8,
+     "y": 49.53
+    },
+    {
+     "x": 30.4,
+     "y": 31.17
+    },
+    {
+     "x": 45.4,
+     "y": 44.08
+    },
+    {
+     "x": 35.8,
+     "y": 35.43
+    },
+    {
+     "x": 22.9,
+     "y": 22.31
+    },
+    {
+     "x": 36.6,
+     "y": 36.6
+    },
+    {
+     "x": 24.4,
+     "y": 25.24
+    },
+    {
+     "x": 31.0,
+     "y": 31.05
+    },
+    {
+     "x": 27.0,
+     "y": 26.53
+    },
+    {
+     "x": 15.3,
+     "y": 14.59
+    },
+    {
+     "x": 24.0,
+     "y": 25.5
+    },
+    {
+     "x": 23.8,
+     "y": 25.9
+    },
+    {
+     "x": 32.0,
+     "y": 30.59
+    },
+    {
+     "x": 25.5,
+     "y": 24.54
+    },
+    {
+     "x": 22.3,
+     "y": 20.05
+    },
+    {
+     "x": 25.2,
+     "y": 24.99
+    },
+    {
+     "x": 26.0,
+     "y": 24.62
+    },
+    {
+     "x": 24.9,
+     "y": 25.27
+    },
+    {
+     "x": 43.3,
+     "y": 44.81
+    },
+    {
+     "x": 36.9,
+     "y": 35.15
+    },
+    {
+     "x": 29.8,
+     "y": 30.42
+    },
+    {
+     "x": 50.4,
+     "y": 50.4
+    },
+    {
+     "x": 26.1,
+     "y": 25.96
+    },
+    {
+     "x": 39.3,
+     "y": 39.3
+    },
+    {
+     "x": 31.7,
+     "y": 30.61
+    },
+    {
+     "x": 32.9,
+     "y": 30.92
+    },
+    {
+     "x": 25.7,
+     "y": 25.01
+    },
+    {
+     "x": 33.9,
+     "y": 32.96
+    },
+    {
+     "x": 42.3,
+     "y": 43.31
+    },
+    {
+     "x": 51.3,
+     "y": 54.96
+    },
+    {
+     "x": 27.7,
+     "y": 27.14
+    },
+    {
+     "x": 24.1,
+     "y": 25.52
+    },
+    {
+     "x": 35.9,
+     "y": 35.24
+    },
+    {
+     "x": 32.5,
+     "y": 32.5
+    },
+    {
+     "x": 20.7,
+     "y": 21.48
+    },
+    {
+     "x": 29.8,
+     "y": 28.91
+    },
+    {
+     "x": 34.5,
+     "y": 34.95
+    },
+    {
+     "x": 13.5,
+     "y": 13.63
+    },
+    {
+     "x": 33.5,
+     "y": 35.92
+    },
+    {
+     "x": 29.0,
+     "y": 28.36
+    },
+    {
+     "x": 27.5,
+     "y": 26.51
+    },
+    {
+     "x": 25.5,
+     "y": 27.16
+    },
+    {
+     "x": 43.1,
+     "y": 42.72
+    },
+    {
+     "x": 28.5,
+     "y": 26.35
+    },
+    {
+     "x": 24.9,
+     "y": 26.24
+    },
+    {
+     "x": 26.8,
+     "y": 25.73
+    },
+    {
+     "x": 23.1,
+     "y": 22.08
+    },
+    {
+     "x": 36.6,
+     "y": 35.93
+    },
+    {
+     "x": 30.4,
+     "y": 28.61
+    },
+    {
+     "x": 37.7,
+     "y": 35.82
+    },
+    {
+     "x": 24.3,
+     "y": 26.34
+    },
+    {
+     "x": 34.3,
+     "y": 32.93
+    },
+    {
+     "x": 28.7,
+     "y": 28.26
+    },
+    {
+     "x": 14.7,
+     "y": 13.0
+    },
+    {
+     "x": 14.8,
+     "y": 15.77
+    },
+    {
+     "x": 21.8,
+     "y": 19.85
+    },
+    {
+     "x": 29.2,
+     "y": 27.67
+    },
+    {
+     "x": 47.1,
+     "y": 46.26
+    },
+    {
+     "x": 31.9,
+     "y": 31.12
+    },
+    {
+     "x": 28.8,
+     "y": 26.86
+    },
+    {
+     "x": 28.8,
+     "y": 28.42
+    },
+    {
+     "x": 18.3,
+     "y": 18.3
+    },
+    {
+     "x": 26.5,
+     "y": 25.11
+    },
+    {
+     "x": 45.1,
+     "y": 46.26
+    },
+    {
+     "x": 25.9,
+     "y": 25.0
+    },
+    {
+     "x": 27.5,
+     "y": 25.62
+    },
+    {
+     "x": 15.1,
+     "y": 15.17
+    },
+    {
+     "x": 32.5,
+     "y": 30.3
+    },
+    {
+     "x": 27.6,
+     "y": 26.63
+    },
+    {
+     "x": 43.6,
+     "y": 45.42
+    },
+    {
+     "x": 35.7,
+     "y": 32.43
+    },
+    {
+     "x": 37.5,
+     "y": 37.35
+    },
+    {
+     "x": 21.4,
+     "y": 21.64
+    },
+    {
+     "x": 46.7,
+     "y": 46.34
+    },
+    {
+     "x": 34.1,
+     "y": 35.09
+    },
+    {
+     "x": 35.7,
+     "y": 36.5
+    },
+    {
+     "x": 23.0,
+     "y": 23.71
+    },
+    {
+     "x": 49.5,
+     "y": 48.72
+    },
+    {
+     "x": 38.6,
+     "y": 36.91
+    },
+    {
+     "x": 48.7,
+     "y": 49.77
+    },
+    {
+     "x": 45.5,
+     "y": 45.74
+    },
+    {
+     "x": 43.8,
+     "y": 43.24
+    },
+    {
+     "x": 29.3,
+     "y": 28.84
+    },
+    {
+     "x": 42.6,
+     "y": 40.51
+    },
+    {
+     "x": 27.4,
+     "y": 26.57
+    },
+    {
+     "x": 39.5,
+     "y": 39.4
+    },
+    {
+     "x": 49.6,
+     "y": 52.27
+    },
+    {
+     "x": 25.0,
+     "y": 26.55
+    },
+    {
+     "x": 14.5,
+     "y": 18.1
+    },
+    {
+     "x": 28.3,
+     "y": 27.45
+    },
+    {
+     "x": 32.7,
+     "y": 32.25
+    },
+    {
+     "x": 41.2,
+     "y": 40.8
+    },
+    {
+     "x": 22.7,
+     "y": 21.51
+    },
+    {
+     "x": 39.0,
+     "y": 35.76
+    },
+    {
+     "x": 29.6,
+     "y": 27.22
+    },
+    {
+     "x": 26.3,
+     "y": 27.23
+    },
+    {
+     "x": 40.1,
+     "y": 41.32
+    },
+    {
+     "x": 16.5,
+     "y": 19.0
+    },
+    {
+     "x": 36.9,
+     "y": 36.89
+    },
+    {
+     "x": 45.5,
+     "y": 42.16
+    },
+    {
+     "x": 17.9,
+     "y": 19.48
+    },
+    {
+     "x": 36.9,
+     "y": 37.07
+    },
+    {
+     "x": 26.5,
+     "y": 26.14
+    },
+    {
+     "x": 42.1,
+     "y": 43.94
+    },
+    {
+     "x": 27.9,
+     "y": 26.64
+    },
+    {
+     "x": 23.0,
+     "y": 24.18
+    },
+    {
+     "x": 32.5,
+     "y": 33.18
+    },
+    {
+     "x": 17.9,
+     "y": 20.11
+    },
+    {
+     "x": 29.9,
+     "y": 29.04
+    },
+    {
+     "x": 30.6,
+     "y": 29.65
+    },
+    {
+     "x": 26.1,
+     "y": 26.01
+    },
+    {
+     "x": 32.9,
+     "y": 33.0
+    },
+    {
+     "x": 26.5,
+     "y": 26.45
+    },
+    {
+     "x": 22.5,
+     "y": 23.98
+    },
+    {
+     "x": 15.8,
+     "y": 17.77
+    },
+    {
+     "x": 18.2,
+     "y": 19.73
+    },
+    {
+     "x": 27.3,
+     "y": 26.71
+    },
+    {
+     "x": 22.4,
+     "y": 26.88
+    },
+    {
+     "x": 34.1,
+     "y": 32.01
+    },
+    {
+     "x": 23.4,
+     "y": 21.62
+    },
+    {
+     "x": 36.3,
+     "y": 36.82
+    },
+    {
+     "x": 23.6,
+     "y": 22.59
+    },
+    {
+     "x": 27.2,
+     "y": 26.66
+    },
+    {
+     "x": 35.7,
+     "y": 35.05
+    },
+    {
+     "x": 31.3,
+     "y": 31.04
+    },
+    {
+     "x": 15.0,
+     "y": 15.6
+    },
+    {
+     "x": 18.1,
+     "y": 19.25
+    },
+    {
+     "x": 34.5,
+     "y": 33.7
+    },
+    {
+     "x": 27.0,
+     "y": 26.72
+    },
+    {
+     "x": 34.8,
+     "y": 34.33
+    },
+    {
+     "x": 29.1,
+     "y": 29.19
+    },
+    {
+     "x": 27.3,
+     "y": 25.41
+    },
+    {
+     "x": 31.7,
+     "y": 31.05
+    },
+    {
+     "x": 27.4,
+     "y": 26.6
+    },
+    {
+     "x": 28.5,
+     "y": 27.64
+    },
+    {
+     "x": 15.0,
+     "y": 16.68
+    },
+    {
+     "x": 15.5,
+     "y": 16.23
+    },
+    {
+     "x": 24.1,
+     "y": 24.3
+    },
+    {
+     "x": 37.6,
+     "y": 38.22
+    },
+    {
+     "x": 32.9,
+     "y": 33.57
+    },
+    {
+     "x": 32.0,
+     "y": 31.15
+    },
+    {
+     "x": 16.6,
+     "y": 15.18
+    },
+    {
+     "x": 41.5,
+     "y": 40.57
+    },
+    {
+     "x": 25.8,
+     "y": 28.66
+    },
+    {
+     "x": 22.3,
+     "y": 23.62
+    },
+    {
+     "x": 31.4,
+     "y": 30.02
+    },
+    {
+     "x": 26.9,
+     "y": 25.94
+    },
+    {
+     "x": 18.0,
+     "y": 18.35
+    },
+    {
+     "x": 16.2,
+     "y": 19.14
+    },
+    {
+     "x": 46.0,
+     "y": 46.09
+    },
+    {
+     "x": 32.1,
+     "y": 30.91
+    },
+    {
+     "x": 27.8,
+     "y": 26.32
+    },
+    {
+     "x": 23.7,
+     "y": 24.7
+    },
+    {
+     "x": 29.1,
+     "y": 26.91
+    },
+    {
+     "x": 33.6,
+     "y": 33.8
+    },
+    {
+     "x": 43.9,
+     "y": 43.13
+    },
+    {
+     "x": 44.1,
+     "y": 42.46
+    },
+    {
+     "x": 29.5,
+     "y": 29.33
+    },
+    {
+     "x": 41.4,
+     "y": 40.88
+    },
+    {
+     "x": 26.5,
+     "y": 25.37
+    },
+    {
+     "x": 27.0,
+     "y": 27.06
+    },
+    {
+     "x": 44.1,
+     "y": 45.04
+    },
+    {
+     "x": 14.6,
+     "y": 18.57
+    },
+    {
+     "x": 15.2,
+     "y": 16.09
+    },
+    {
+     "x": 31.6,
+     "y": 31.64
+    },
+    {
+     "x": 15.6,
+     "y": 13.79
+    },
+    {
+     "x": 31.6,
+     "y": 29.8
+    },
+    {
+     "x": 44.7,
+     "y": 44.29
+    },
+    {
+     "x": 15.8,
+     "y": 18.34
+    },
+    {
+     "x": 38.4,
+     "y": 38.0
+    },
+    {
+     "x": 24.1,
+     "y": 23.9
+    },
+    {
+     "x": 31.1,
+     "y": 28.39
+    },
+    {
+     "x": 41.6,
+     "y": 41.69
+    },
+    {
+     "x": 30.0,
+     "y": 28.7
+    },
+    {
+     "x": 26.9,
+     "y": 27.63
+    },
+    {
+     "x": 28.5,
+     "y": 27.63
+    },
+    {
+     "x": 42.5,
+     "y": 41.65
+    },
+    {
+     "x": 36.9,
+     "y": 37.84
+    },
+    {
+     "x": 29.7,
+     "y": 28.41
+    },
+    {
+     "x": 26.5,
+     "y": 27.43
+    },
+    {
+     "x": 41.1,
+     "y": 40.93
+    },
+    {
+     "x": 23.5,
+     "y": 21.11
+    },
+    {
+     "x": 26.2,
+     "y": 26.39
+    },
+    {
+     "x": 29.0,
+     "y": 28.27
+    },
+    {
+     "x": 42.1,
+     "y": 40.43
+    },
+    {
+     "x": 25.5,
+     "y": 24.31
+    },
+    {
+     "x": 27.1,
+     "y": 28.61
+    },
+    {
+     "x": 22.0,
+     "y": 22.44
+    },
+    {
+     "x": 16.8,
+     "y": 17.3
+    },
+    {
+     "x": 28.0,
+     "y": 28.58
+    },
+    {
+     "x": 19.7,
+     "y": 22.43
+    },
+    {
+     "x": 42.6,
+     "y": 43.08
+    },
+    {
+     "x": 22.3,
+     "y": 25.28
+    },
+    {
+     "x": 32.1,
+     "y": 32.12
+    },
+    {
+     "x": 25.1,
+     "y": 27.37
+    },
+    {
+     "x": 37.4,
+     "y": 37.9
+    },
+    {
+     "x": 23.2,
+     "y": 25.89
+    },
+    {
+     "x": 19.3,
+     "y": 18.92
+    },
+    {
+     "x": 27.4,
+     "y": 28.23
+    },
+    {
+     "x": 25.1,
+     "y": 24.85
+    },
+    {
+     "x": 24.5,
+     "y": 25.91
+    },
+    {
+     "x": 33.4,
+     "y": 33.66
+    },
+    {
+     "x": 47.0,
+     "y": 47.37
+    },
+    {
+     "x": 37.8,
+     "y": 35.75
+    },
+    {
+     "x": 29.0,
+     "y": 31.24
+    },
+    {
+     "x": 28.1,
+     "y": 30.26
+    },
+    {
+     "x": 28.8,
+     "y": 28.22
+    },
+    {
+     "x": 33.5,
+     "y": 33.67
+    },
+    {
+     "x": 41.3,
+     "y": 42.08
+    },
+    {
+     "x": 15.6,
+     "y": 16.69
+    },
+    {
+     "x": 27.1,
+     "y": 27.68
+    },
+    {
+     "x": 24.6,
+     "y": 25.38
+    },
+    {
+     "x": 40.4,
+     "y": 37.89
+    },
+    {
+     "x": 22.8,
+     "y": 23.83
+    },
+    {
+     "x": 47.7,
+     "y": 48.93
+    },
+    {
+     "x": 28.2,
+     "y": 29.26
+    },
+    {
+     "x": 13.4,
+     "y": 9.12
+    },
+    {
+     "x": 24.1,
+     "y": 24.98
+    },
+    {
+     "x": 35.3,
+     "y": 33.32
+    },
+    {
+     "x": 46.4,
+     "y": 49.42
+    },
+    {
+     "x": 40.8,
+     "y": 42.16
+    },
+    {
+     "x": 15.2,
+     "y": 11.97
+    },
+    {
+     "x": 27.4,
+     "y": 28.71
+    },
+    {
+     "x": 28.4,
+     "y": 26.28
+    },
+    {
+     "x": 30.8,
+     "y": 30.39
+    },
+    {
+     "x": 18.8,
+     "y": 19.13
+    },
+    {
+     "x": 43.9,
+     "y": 43.03
+    },
+    {
+     "x": 48.2,
+     "y": 48.45
+    },
+    {
+     "x": 24.1,
+     "y": 24.76
+    },
+    {
+     "x": 41.8,
+     "y": 39.1
+    },
+    {
+     "x": 30.0,
+     "y": 29.21
+    },
+    {
+     "x": 39.0,
+     "y": 36.59
+    },
+    {
+     "x": 27.5,
+     "y": 26.54
+    },
+    {
+     "x": 25.2,
+     "y": 24.62
+    },
+    {
+     "x": 44.3,
+     "y": 44.61
+    },
+    {
+     "x": 27.2,
+     "y": 26.83
+    },
+    {
+     "x": 32.2,
+     "y": 32.39
+    },
+    {
+     "x": 41.5,
+     "y": 42.66
+    },
+    {
+     "x": 24.2,
+     "y": 26.73
+    },
+    {
+     "x": 24.2,
+     "y": 27.39
+    },
+    {
+     "x": 16.1,
+     "y": 18.2
+    },
+    {
+     "x": 32.1,
+     "y": 35.32
+    },
+    {
+     "x": 26.0,
+     "y": 25.55
+    },
+    {
+     "x": 29.9,
+     "y": 27.81
+    },
+    {
+     "x": 33.3,
+     "y": 34.72
+    },
+    {
+     "x": 51.6,
+     "y": 50.39
+    },
+    {
+     "x": 26.3,
+     "y": 26.46
+    },
+    {
+     "x": 40.2,
+     "y": 40.07
+    },
+    {
+     "x": 39.0,
+     "y": 36.24
+    },
+    {
+     "x": 23.7,
+     "y": 24.94
+    },
+    {
+     "x": 39.1,
+     "y": 40.49
+    },
+    {
+     "x": 32.1,
+     "y": 31.53
+    },
+    {
+     "x": 33.3,
+     "y": 33.81
+    },
+    {
+     "x": 33.5,
+     "y": 32.2
+    },
+    {
+     "x": 17.5,
+     "y": 17.33
+    },
+    {
+     "x": 31.0,
+     "y": 34.62
+    },
+    {
+     "x": 27.0,
+     "y": 26.39
+    },
+    {
+     "x": 43.9,
+     "y": 43.74
+    },
+    {
+     "x": 30.8,
+     "y": 29.24
+    },
+    {
+     "x": 30.4,
+     "y": 30.65
+    },
+    {
+     "x": 26.2,
+     "y": 25.14
+    },
+    {
+     "x": 27.7,
+     "y": 25.5
+    },
+    {
+     "x": 37.8,
+     "y": 38.41
+    },
+    {
+     "x": 29.6,
+     "y": 30.96
+    },
+    {
+     "x": 24.5,
+     "y": 25.34
+    },
+    {
+     "x": 22.8,
+     "y": 25.38
+    },
+    {
+     "x": 37.0,
+     "y": 36.76
+    },
+    {
+     "x": 27.9,
+     "y": 27.84
+    },
+    {
+     "x": 44.0,
+     "y": 42.97
+    },
+    {
+     "x": 15.1,
+     "y": 17.25
+    },
+    {
+     "x": 33.4,
+     "y": 33.18
+    }
+   ],
+   "residual_hist": {
+    "counts": [
+     1,
+     0,
+     0,
+     1,
+     1,
+     3,
+     5,
+     9,
+     12,
+     8,
+     21,
+     29,
+     30,
+     40,
+     42,
+     39,
+     29,
+     19,
+     21,
+     8,
+     3,
+     5,
+     0,
+     1
+    ],
+    "edges": [
+     -5.87,
+     -5.44,
+     -5.02,
+     -4.6,
+     -4.18,
+     -3.75,
+     -3.33,
+     -2.91,
+     -2.48,
+     -2.06,
+     -1.64,
+     -1.22,
+     -0.79,
+     -0.37,
+     0.05,
+     0.48,
+     0.9,
+     1.32,
+     1.74,
+     2.17,
+     2.59,
+     3.01,
+     3.44,
+     3.86,
+     4.28
+    ]
+   },
+   "residual_vs_fitted": [
+    {
+     "x": 15.36,
+     "y": 0.24
+    },
+    {
+     "x": 27.82,
+     "y": 0.48
+    },
+    {
+     "x": 21.25,
+     "y": 1.75
+    },
+    {
+     "x": 37.84,
+     "y": -0.94
+    },
+    {
+     "x": 27.22,
+     "y": 1.38
+    },
+    {
+     "x": 12.1,
+     "y": 1.8
+    },
+    {
+     "x": 14.99,
+     "y": -1.09
+    },
+    {
+     "x": 16.15,
+     "y": -0.35
+    },
+    {
+     "x": 33.86,
+     "y": 0.24
+    },
+    {
+     "x": 33.47,
+     "y": 0.43
+    },
+    {
+     "x": 35.47,
+     "y": 3.13
+    },
+    {
+     "x": 31.65,
+     "y": 0.55
+    },
+    {
+     "x": 27.03,
+     "y": -0.53
+    },
+    {
+     "x": 25.43,
+     "y": -0.33
+    },
+    {
+     "x": 31.37,
+     "y": -0.27
+    },
+    {
+     "x": 27.1,
+     "y": -1.0
+    },
+    {
+     "x": 39.13,
+     "y": -0.93
+    },
+    {
+     "x": 44.08,
+     "y": -0.58
+    },
+    {
+     "x": 27.21,
+     "y": -2.21
+    },
+    {
+     "x": 16.26,
+     "y": -0.46
+    },
+    {
+     "x": 17.58,
+     "y": -2.18
+    },
+    {
+     "x": 23.87,
+     "y": -0.77
+    },
+    {
+     "x": 23.94,
+     "y": -0.94
+    },
+    {
+     "x": 26.7,
+     "y": -0.3
+    },
+    {
+     "x": 17.61,
+     "y": -0.31
+    },
+    {
+     "x": 26.5,
+     "y": 0.1
+    },
+    {
+     "x": 42.28,
+     "y": 0.22
+    },
+    {
+     "x": 26.65,
+     "y": -0.25
+    },
+    {
+     "x": 26.47,
+     "y": -5.87
+    },
+    {
+     "x": 27.02,
+     "y": -1.92
+    },
+    {
+     "x": 43.63,
+     "y": 1.07
+    },
+    {
+     "x": 22.85,
+     "y": -1.55
+    },
+    {
+     "x": 17.76,
+     "y": -0.86
+    },
+    {
+     "x": 40.86,
+     "y": 1.04
+    },
+    {
+     "x": 27.66,
+     "y": 0.64
+    },
+    {
+     "x": 35.74,
+     "y": -0.14
+    },
+    {
+     "x": 24.03,
+     "y": 1.47
+    },
+    {
+     "x": 42.27,
+     "y": -0.07
+    },
+    {
+     "x": 35.16,
+     "y": 0.64
+    },
+    {
+     "x": 26.21,
+     "y": 0.29
+    },
+    {
+     "x": 17.83,
+     "y": -2.03
+    },
+    {
+     "x": 26.03,
+     "y": 0.47
+    },
+    {
+     "x": 40.7,
+     "y": 2.0
+    },
+    {
+     "x": 30.95,
+     "y": 1.35
+    },
+    {
+     "x": 31.05,
+     "y": -2.15
+    },
+    {
+     "x": 30.19,
+     "y": 0.11
+    },
+    {
+     "x": 20.35,
+     "y": 1.25
+    },
+    {
+     "x": 36.5,
+     "y": 0.9
+    },
+    {
+     "x": 22.33,
+     "y": 1.57
+    },
+    {
+     "x": 48.11,
+     "y": 1.29
+    },
+    {
+     "x": 31.17,
+     "y": -0.77
+    },
+    {
+     "x": 44.08,
+     "y": 1.32
+    },
+    {
+     "x": 35.43,
+     "y": 0.37
+    },
+    {
+     "x": 22.31,
+     "y": 0.59
+    },
+    {
+     "x": 36.6,
+     "y": 0.0
+    },
+    {
+     "x": 25.24,
+     "y": -0.84
+    },
+    {
+     "x": 31.05,
+     "y": -0.05
+    },
+    {
+     "x": 26.53,
+     "y": 0.47
+    },
+    {
+     "x": 14.59,
+     "y": 0.71
+    },
+    {
+     "x": 25.5,
+     "y": -1.5
+    },
+    {
+     "x": 24.54,
+     "y": 0.96
+    },
+    {
+     "x": 20.05,
+     "y": 2.25
+    },
+    {
+     "x": 24.99,
+     "y": 0.21
+    },
+    {
+     "x": 24.62,
+     "y": 1.38
+    },
+    {
+     "x": 44.81,
+     "y": -1.51
+    },
+    {
+     "x": 35.15,
+     "y": 1.75
+    },
+    {
+     "x": 30.42,
+     "y": -0.62
+    },
+    {
+     "x": 50.4,
+     "y": -0.0
+    },
+    {
+     "x": 39.3,
+     "y": 0.0
+    },
+    {
+     "x": 30.61,
+     "y": 1.09
+    },
+    {
+     "x": 30.92,
+     "y": 1.98
+    },
+    {
+     "x": 25.01,
+     "y": 0.69
+    },
+    {
+     "x": 32.96,
+     "y": 0.94
+    },
+    {
+     "x": 43.31,
+     "y": -1.01
+    },
+    {
+     "x": 54.96,
+     "y": -3.66
+    },
+    {
+     "x": 27.14,
+     "y": 0.56
+    },
+    {
+     "x": 25.52,
+     "y": -1.42
+    },
+    {
+     "x": 35.24,
+     "y": 0.66
+    },
+    {
+     "x": 32.5,
+     "y": -0.0
+    },
+    {
+     "x": 21.48,
+     "y": -0.78
+    },
+    {
+     "x": 28.91,
+     "y": 0.89
+    },
+    {
+     "x": 34.95,
+     "y": -0.45
+    },
+    {
+     "x": 13.63,
+     "y": -0.13
+    },
+    {
+     "x": 28.36,
+     "y": 0.64
+    },
+    {
+     "x": 26.51,
+     "y": 0.99
+    },
+    {
+     "x": 27.16,
+     "y": -1.66
+    },
+    {
+     "x": 42.72,
+     "y": 0.38
+    },
+    {
+     "x": 26.35,
+     "y": 2.15
+    },
+    {
+     "x": 26.24,
+     "y": -1.34
+    },
+    {
+     "x": 25.73,
+     "y": 1.07
+    },
+    {
+     "x": 22.08,
+     "y": 1.02
+    },
+    {
+     "x": 35.93,
+     "y": 0.67
+    },
+    {
+     "x": 28.61,
+     "y": 1.79
+    },
+    {
+     "x": 35.82,
+     "y": 1.88
+    },
+    {
+     "x": 26.34,
+     "y": -2.04
+    },
+    {
+     "x": 32.93,
+     "y": 1.37
+    },
+    {
+     "x": 28.26,
+     "y": 0.44
+    },
+    {
+     "x": 13.0,
+     "y": 1.7
+    },
+    {
+     "x": 15.77,
+     "y": -0.97
+    },
+    {
+     "x": 19.85,
+     "y": 1.95
+    },
+    {
+     "x": 27.67,
+     "y": 1.53
+    },
+    {
+     "x": 46.26,
+     "y": 0.84
+    },
+    {
+     "x": 31.12,
+     "y": 0.78
+    },
+    {
+     "x": 26.86,
+     "y": 1.94
+    },
+    {
+     "x": 28.42,
+     "y": 0.38
+    },
+    {
+     "x": 18.3,
+     "y": -0.0
+    },
+    {
+     "x": 25.11,
+     "y": 1.39
+    },
+    {
+     "x": 46.26,
+     "y": -1.16
+    },
+    {
+     "x": 25.0,
+     "y": 0.9
+    },
+    {
+     "x": 25.62,
+     "y": 1.88
+    },
+    {
+     "x": 15.17,
+     "y": -0.07
+    },
+    {
+     "x": 30.3,
+     "y": 2.2
+    },
+    {
+     "x": 26.63,
+     "y": 0.97
+    },
+    {
+     "x": 45.42,
+     "y": -1.82
+    },
+    {
+     "x": 32.43,
+     "y": 3.27
+    },
+    {
+     "x": 37.35,
+     "y": 0.15
+    },
+    {
+     "x": 21.64,
+     "y": -0.24
+    },
+    {
+     "x": 46.34,
+     "y": 0.36
+    },
+    {
+     "x": 36.5,
+     "y": -0.8
+    },
+    {
+     "x": 23.71,
+     "y": -0.71
+    },
+    {
+     "x": 48.72,
+     "y": 0.78
+    },
+    {
+     "x": 36.91,
+     "y": 1.69
+    },
+    {
+     "x": 49.77,
+     "y": -1.07
+    },
+    {
+     "x": 45.74,
+     "y": -0.24
+    },
+    {
+     "x": 43.24,
+     "y": 0.56
+    },
+    {
+     "x": 28.84,
+     "y": 0.46
+    },
+    {
+     "x": 40.51,
+     "y": 2.09
+    },
+    {
+     "x": 26.57,
+     "y": 0.83
+    },
+    {
+     "x": 39.4,
+     "y": 0.1
+    },
+    {
+     "x": 52.27,
+     "y": -2.67
+    },
+    {
+     "x": 26.55,
+     "y": -1.55
+    },
+    {
+     "x": 18.1,
+     "y": -3.6
+    },
+    {
+     "x": 27.45,
+     "y": 0.85
+    },
+    {
+     "x": 32.25,
+     "y": 0.45
+    },
+    {
+     "x": 40.8,
+     "y": 0.4
+    },
+    {
+     "x": 35.76,
+     "y": 3.24
+    },
+    {
+     "x": 27.22,
+     "y": 2.38
+    },
+    {
+     "x": 41.32,
+     "y": -1.22
+    },
+    {
+     "x": 36.89,
+     "y": 0.01
+    },
+    {
+     "x": 42.16,
+     "y": 3.34
+    },
+    {
+     "x": 19.48,
+     "y": -1.58
+    },
+    {
+     "x": 37.07,
+     "y": -0.17
+    },
+    {
+     "x": 26.14,
+     "y": 0.36
+    },
+    {
+     "x": 26.64,
+     "y": 1.26
+    },
+    {
+     "x": 24.18,
+     "y": -1.18
+    },
+    {
+     "x": 33.18,
+     "y": -0.68
+    },
+    {
+     "x": 20.11,
+     "y": -2.21
+    },
+    {
+     "x": 29.04,
+     "y": 0.86
+    },
+    {
+     "x": 29.65,
+     "y": 0.95
+    },
+    {
+     "x": 26.01,
+     "y": 0.09
+    },
+    {
+     "x": 33.0,
+     "y": -0.1
+    },
+    {
+     "x": 26.45,
+     "y": 0.05
+    },
+    {
+     "x": 23.98,
+     "y": -1.48
+    },
+    {
+     "x": 17.77,
+     "y": -1.97
+    },
+    {
+     "x": 19.73,
+     "y": -1.53
+    },
+    {
+     "x": 26.71,
+     "y": 0.59
+    },
+    {
+     "x": 32.01,
+     "y": 2.09
+    },
+    {
+     "x": 21.62,
+     "y": 1.78
+    },
+    {
+     "x": 36.82,
+     "y": -0.52
+    },
+    {
+     "x": 22.59,
+     "y": 1.01
+    },
+    {
+     "x": 26.66,
+     "y": 0.54
+    },
+    {
+     "x": 35.05,
+     "y": 0.65
+    },
+    {
+     "x": 31.04,
+     "y": 0.26
+    },
+    {
+     "x": 15.6,
+     "y": -0.6
+    },
+    {
+     "x": 33.7,
+     "y": 0.8
+    },
+    {
+     "x": 26.72,
+     "y": 0.28
+    },
+    {
+     "x": 34.33,
+     "y": 0.47
+    },
+    {
+     "x": 29.19,
+     "y": -0.09
+    },
+    {
+     "x": 25.41,
+     "y": 1.89
+    },
+    {
+     "x": 26.6,
+     "y": 0.8
+    },
+    {
+     "x": 27.64,
+     "y": 0.86
+    },
+    {
+     "x": 16.68,
+     "y": -1.68
+    },
+    {
+     "x": 16.23,
+     "y": -0.73
+    },
+    {
+     "x": 38.22,
+     "y": -0.62
+    },
+    {
+     "x": 33.57,
+     "y": -0.67
+    },
+    {
+     "x": 31.15,
+     "y": 0.85
+    },
+    {
+     "x": 15.18,
+     "y": 1.42
+    },
+    {
+     "x": 40.57,
+     "y": 0.93
+    },
+    {
+     "x": 28.66,
+     "y": -2.86
+    },
+    {
+     "x": 23.62,
+     "y": -1.32
+    },
+    {
+     "x": 30.02,
+     "y": 1.38
+    },
+    {
+     "x": 25.94,
+     "y": 0.96
+    },
+    {
+     "x": 18.35,
+     "y": -0.35
+    },
+    {
+     "x": 19.14,
+     "y": -2.94
+    },
+    {
+     "x": 46.09,
+     "y": -0.09
+    },
+    {
+     "x": 30.91,
+     "y": 1.19
+    },
+    {
+     "x": 26.32,
+     "y": 1.48
+    },
+    {
+     "x": 24.7,
+     "y": -1.0
+    },
+    {
+     "x": 26.91,
+     "y": 2.19
+    },
+    {
+     "x": 33.8,
+     "y": -0.2
+    },
+    {
+     "x": 43.13,
+     "y": 0.77
+    },
+    {
+     "x": 42.46,
+     "y": 1.64
+    },
+    {
+     "x": 29.33,
+     "y": 0.17
+    },
+    {
+     "x": 40.88,
+     "y": 0.52
+    },
+    {
+     "x": 25.37,
+     "y": 1.13
+    },
+    {
+     "x": 27.06,
+     "y": -0.06
+    },
+    {
+     "x": 45.04,
+     "y": -0.94
+    },
+    {
+     "x": 18.57,
+     "y": -3.97
+    },
+    {
+     "x": 16.09,
+     "y": -0.89
+    },
+    {
+     "x": 31.64,
+     "y": -0.04
+    },
+    {
+     "x": 13.79,
+     "y": 1.81
+    },
+    {
+     "x": 29.8,
+     "y": 1.8
+    },
+    {
+     "x": 44.29,
+     "y": 0.41
+    },
+    {
+     "x": 18.34,
+     "y": -2.54
+    },
+    {
+     "x": 38.0,
+     "y": 0.4
+    },
+    {
+     "x": 23.9,
+     "y": 0.2
+    },
+    {
+     "x": 28.39,
+     "y": 2.71
+    },
+    {
+     "x": 41.69,
+     "y": -0.09
+    },
+    {
+     "x": 28.7,
+     "y": 1.3
+    },
+    {
+     "x": 27.63,
+     "y": -0.73
+    },
+    {
+     "x": 27.63,
+     "y": 0.87
+    },
+    {
+     "x": 41.65,
+     "y": 0.85
+    },
+    {
+     "x": 37.84,
+     "y": -0.94
+    },
+    {
+     "x": 28.41,
+     "y": 1.29
+    },
+    {
+     "x": 27.43,
+     "y": -0.93
+    },
+    {
+     "x": 40.93,
+     "y": 0.17
+    },
+    {
+     "x": 21.11,
+     "y": 2.39
+    },
+    {
+     "x": 26.39,
+     "y": -0.19
+    },
+    {
+     "x": 28.27,
+     "y": 0.73
+    },
+    {
+     "x": 40.43,
+     "y": 1.67
+    },
+    {
+     "x": 24.31,
+     "y": 1.19
+    },
+    {
+     "x": 28.61,
+     "y": -1.51
+    },
+    {
+     "x": 22.44,
+     "y": -0.44
+    },
+    {
+     "x": 17.3,
+     "y": -0.5
+    },
+    {
+     "x": 28.58,
+     "y": -0.58
+    },
+    {
+     "x": 22.43,
+     "y": -2.73
+    },
+    {
+     "x": 43.08,
+     "y": -0.48
+    },
+    {
+     "x": 25.28,
+     "y": -2.98
+    },
+    {
+     "x": 27.37,
+     "y": -2.27
+    },
+    {
+     "x": 37.9,
+     "y": -0.5
+    },
+    {
+     "x": 25.89,
+     "y": -2.69
+    },
+    {
+     "x": 18.92,
+     "y": 0.38
+    },
+    {
+     "x": 28.23,
+     "y": -0.83
+    },
+    {
+     "x": 24.85,
+     "y": 0.25
+    },
+    {
+     "x": 25.91,
+     "y": -1.41
+    },
+    {
+     "x": 33.66,
+     "y": -0.26
+    },
+    {
+     "x": 47.37,
+     "y": -0.37
+    },
+    {
+     "x": 35.75,
+     "y": 2.05
+    },
+    {
+     "x": 31.24,
+     "y": -2.24
+    },
+    {
+     "x": 30.26,
+     "y": -2.16
+    },
+    {
+     "x": 28.22,
+     "y": 0.58
+    },
+    {
+     "x": 33.67,
+     "y": -0.17
+    },
+    {
+     "x": 42.08,
+     "y": -0.78
+    },
+    {
+     "x": 16.69,
+     "y": -1.09
+    },
+    {
+     "x": 25.38,
+     "y": -0.78
+    },
+    {
+     "x": 37.89,
+     "y": 2.51
+    },
+    {
+     "x": 23.83,
+     "y": -1.03
+    },
+    {
+     "x": 48.93,
+     "y": -1.23
+    },
+    {
+     "x": 29.26,
+     "y": -1.06
+    },
+    {
+     "x": 9.12,
+     "y": 4.28
+    },
+    {
+     "x": 24.98,
+     "y": -0.88
+    },
+    {
+     "x": 33.32,
+     "y": 1.98
+    },
+    {
+     "x": 49.42,
+     "y": -3.02
+    },
+    {
+     "x": 42.16,
+     "y": -1.36
+    },
+    {
+     "x": 11.97,
+     "y": 3.23
+    },
+    {
+     "x": 28.71,
+     "y": -1.31
+    },
+    {
+     "x": 26.28,
+     "y": 2.12
+    },
+    {
+     "x": 30.39,
+     "y": 0.41
+    },
+    {
+     "x": 43.03,
+     "y": 0.87
+    },
+    {
+     "x": 48.45,
+     "y": -0.25
+    },
+    {
+     "x": 24.76,
+     "y": -0.66
+    },
+    {
+     "x": 39.1,
+     "y": 2.7
+    },
+    {
+     "x": 36.59,
+     "y": 2.41
+    },
+    {
+     "x": 26.54,
+     "y": 0.96
+    },
+    {
+     "x": 24.62,
+     "y": 0.58
+    },
+    {
+     "x": 44.61,
+     "y": -0.31
+    },
+    {
+     "x": 26.83,
+     "y": 0.37
+    },
+    {
+     "x": 32.39,
+     "y": -0.19
+    },
+    {
+     "x": 42.66,
+     "y": -1.16
+    },
+    {
+     "x": 27.39,
+     "y": -3.19
+    },
+    {
+     "x": 18.2,
+     "y": -2.1
+    },
+    {
+     "x": 35.32,
+     "y": -3.22
+    },
+    {
+     "x": 25.55,
+     "y": 0.45
+    },
+    {
+     "x": 27.81,
+     "y": 2.09
+    },
+    {
+     "x": 34.72,
+     "y": -1.42
+    },
+    {
+     "x": 50.39,
+     "y": 1.21
+    },
+    {
+     "x": 26.46,
+     "y": -0.16
+    },
+    {
+     "x": 40.07,
+     "y": 0.13
+    },
+    {
+     "x": 24.94,
+     "y": -1.24
+    },
+    {
+     "x": 40.49,
+     "y": -1.39
+    },
+    {
+     "x": 31.53,
+     "y": 0.57
+    },
+    {
+     "x": 33.81,
+     "y": -0.51
+    },
+    {
+     "x": 32.2,
+     "y": 1.3
+    },
+    {
+     "x": 17.33,
+     "y": 0.17
+    },
+    {
+     "x": 34.62,
+     "y": -3.62
+    },
+    {
+     "x": 26.39,
+     "y": 0.61
+    },
+    {
+     "x": 43.74,
+     "y": 0.16
+    },
+    {
+     "x": 29.24,
+     "y": 1.56
+    },
+    {
+     "x": 30.65,
+     "y": -0.25
+    },
+    {
+     "x": 25.14,
+     "y": 1.06
+    },
+    {
+     "x": 25.5,
+     "y": 2.2
+    },
+    {
+     "x": 38.41,
+     "y": -0.61
+    },
+    {
+     "x": 30.96,
+     "y": -1.36
+    },
+    {
+     "x": 25.34,
+     "y": -0.84
+    },
+    {
+     "x": 25.38,
+     "y": -2.58
+    },
+    {
+     "x": 36.76,
+     "y": 0.24
+    },
+    {
+     "x": 27.84,
+     "y": 0.06
+    },
+    {
+     "x": 42.97,
+     "y": 1.03
+    },
+    {
+     "x": 17.25,
+     "y": -2.15
+    },
+    {
+     "x": 33.18,
+     "y": 0.22
+    }
+   ]
+  },
+  "hypotheses": {
+   "target": "pct_obesity",
+   "year": 2023,
+   "executed_at": "2026-09-28T21:38:08Z",
+   "hypotheses": [
+    {
+     "code": "H1",
+     "statement": "Menor latencia y mayor resolución espacial que la evaluación retrospectiva.",
+     "criterion": "Recomputación por tracto (O(n log n) con bisección) frente a percentil retrospectivo O(n² log n), y emisión a nivel de tracto frente a condensing a condado.",
+     "observed": "Latencia 0.0006 s frente a 0.0828 s de la línea base retrospectiva (×136.6 más rápida; IC 95 % de la diferencia [0.0797, 0.0896] s). Resolución: 1632 tracts frente a 2 condados (×816.0).",
+     "verdict": "ACEPTADA",
+     "detail": {
+      "applicable": true,
+      "repeats": 7,
+      "tracts": 1632,
+      "indicators": 27,
+      "population": 6969720,
+      "current_median_s": 0.000606,
+      "baseline_median_s": 0.082803,
+      "speedup": 136.6,
+      "current_p95_s": 0.001097,
+      "baseline_p95_s": 0.097061,
+      "delta_ci": [
+       0.0797,
+       0.0896
+      ],
+      "resolution": {
+       "units": 1632,
+       "unit_label": "census tracts",
+       "retrospective_units": 2,
+       "retrospective_label": "condados",
+       "gain_factor": 816.0
+      }
+     }
+    },
+    {
+     "code": "H2",
+     "statement": "El modelado de accesibilidad con decaimiento mejora la validez predictiva.",
+     "criterion": "Algún radio de decaimiento plausible (5–80 km) mejora la correlación de rangos del compuesto frente a la cobertura binaria, contra pct_obesity observado, con p de permutación < 0,05.",
+     "observed": "Validez |ρ| con decaimiento = 0.5058 frente a cobertura binaria = 0.6697 (Δ = -0.1639, IC 95 % [-0.2232, -0.1128]); p de permutación = 0.4763 con 2000 permutaciones; n = 1632 tracts. El compuesto sin capa de accesibilidad alcanza |ρ| = 0.8737. Barrido de radio 5–80 km: ningún radio supera a la cobertura binaria (mejor |ρ| = 0.6068 a 80 km, Δ = -0.0629, p = 0.4853). La red tiene 2 hospitales en áreas metropolitanas distintas; el término de accesibilidad cubre solo el 58.64 % de los tracts, de modo que el contraste entre variantes mueve poco la correlación. Se barre el radio de 5 a 80 km para que la conclusión no dependa de un parámetro arbitrario.",
+     "verdict": "RECHAZADA",
+     "verdict_reason": "El decaimiento NO mejora la validez: |ρ| = 0.5058 frente a 0.6697 de la cobertura binaria, y ningún radio de 5 a 80 km la supera. Peor aún, cualquier capa de accesibilidad degrada la validez respecto al compuesto sin ella (|ρ| = 0.8737): el término de accesibilidad es casi ortogonal al resultado de salud y solo diluye la correlación de rangos. Con esta red de 2 hospitales la hipótesis no tiene respaldo empírico y no debe sostenerse.",
+     "detail": {
+      "applicable": true,
+      "outcome": "pct_obesity",
+      "outcome_name": "pct_obesity",
+      "n": 1632,
+      "weight_accessibility": 0.3,
+      "radius_km": 15.0,
+      "distances_km": {
+       "min": 0.1,
+       "median": 596.08,
+       "max": 1197.69
+      },
+      "covered_share_pct": 58.64,
+      "rho": {
+       "sin_accesibilidad": 0.8737,
+       "cobertura_binaria": 0.6697,
+       "decaimiento": 0.5058
+      },
+      "delta_rho": -0.1639,
+      "delta_ci": [
+       -0.2232,
+       -0.1128
+      ],
+      "permutation_p": 0.4763,
+      "significant": false,
+      "radius_sweep": [
+       {
+        "radius_km": 5.0,
+        "rho": 0.5428,
+        "delta_rho": -0.1269,
+        "permutation_p": 0.4763,
+        "beats_binary": false
+       },
+       {
+        "radius_km": 10.0,
+        "rho": 0.4905,
+        "delta_rho": -0.1792,
+        "permutation_p": 0.4713,
+        "beats_binary": false
+       },
+       {
+        "radius_km": 20.0,
+        "rho": 0.5266,
+        "delta_rho": -0.1431,
+        "permutation_p": 0.4788,
+        "beats_binary": false
+       },
+       {
+        "radius_km": 40.0,
+        "rho": 0.5754,
+        "delta_rho": -0.0943,
+        "permutation_p": 0.4808,
+        "beats_binary": false
+       },
+       {
+        "radius_km": 80.0,
+        "rho": 0.6068,
+        "delta_rho": -0.0629,
+        "permutation_p": 0.4853,
+        "beats_binary": false
+       }
+      ],
+      "best_radius": {
+       "radius_km": 80.0,
+       "rho": 0.6068,
+       "delta_rho": -0.0629,
+       "permutation_p": 0.4853,
+       "beats_binary": false
+      },
+      "n_hospitals": 2,
+      "limitation": "La red tiene 2 hospitales en áreas metropolitanas distintas; el término de accesibilidad cubre solo el 58.64 % de los tracts, de modo que el contraste entre variantes mueve poco la correlación. Se barre el radio de 5 a 80 km para que la conclusión no dependa de un parámetro arbitrario.",
+      "ranking": [
+       [
+        "sin_accesibilidad",
+        0.8737
+       ],
+       [
+        "cobertura_binaria",
+        0.6697
+       ],
+       [
+        "decaimiento",
+        0.5058
+       ]
+      ]
+     }
+    },
+    {
+     "code": "H3",
+     "statement": "Recomputación < 5 s hasta 500 000 habitantes.",
+     "criterion": "Latencia por debajo de 5 s con 500 000 habitantes o más.",
+     "observed": "Mediana 0.2655 s (p95 0.3572 s) medida sobre 6 969 720 habitantes, es decir 13.9× la población objetivo: el criterio se cumple con el dato observado, sin necesidad de extrapolar.",
+     "verdict": "ACEPTADA",
+     "detail": {
+      "applicable": true,
+      "basis": "medido",
+      "median_s": 0.2655,
+      "p95_s": 0.3572,
+      "population": 6969720,
+      "target_s": 5.0,
+      "target_population": 500000,
+      "projected_s": null,
+      "coverage_factor": 13.9,
+      "meets": true
+     }
+    }
+   ],
+   "method_note": "Las tres hipótesis se evalúan con experimentos reproducibles sobre los datos de la base. H1 y H3 son afirmaciones de sistemas: se reportan distribuciones medidas e intervalos, no p-valores, porque un p-valor no es la estadística apropiada para un tiempo de ejecución. H2 es una afirmación de validez predictiva y sí admite un test de permutación. Las tres hipótesis del proyecto son las declaradas en la Fase I, no las de otra disciplina."
+  },
+  "sobol": {
+   "target": "pct_obesity",
+   "target_name": "Obesidad (%)",
+   "applicable": true,
+   "method": "Descomposición analítica de la varianza de salida del regresor Ridge desplegado. El modelo es lineal, de modo que no tiene término de interacción estructural y S1 = ST. Los determinantes SDOH están muy correlacionados, por lo que la suma de los términos de primer orden no iguala la varianza observada: se reporta la corrección de covarianza en lugar de índices que no suman 1. La columna «única» (c_i²/VIF_i) es la contribución robusta a la multicolinealidad y la que ordena las variables para decidir.",
+   "n_train": 1305,
+   "n_variables": 13,
+   "decomposition": {
+    "var_independent": 759.3349,
+    "var_correlation": -686.0587,
+    "var_observed": 73.2762,
+    "correlation_share": -9.3626
+   },
+   "collinearity": {
+    "condition_number": 48368.0,
+    "max_abs_rho": 0.9948,
+    "pairs": 78,
+    "pairs_above_0_7": 40,
+    "vif_max": 3001.71,
+    "vif_median": 85.6
+   },
+   "unexplained_share": 0.0392,
+   "var_model": 73.2762,
+   "var_resid": 2.9917,
+   "variables": [
+    {
+     "code": "pct_housing_insecurity",
+     "name": "Inseguridad de vivienda (%)",
+     "S1": 0.4553,
+     "ST": 0.4553,
+     "unique": 0.3291,
+     "coefficient": 18.593,
+     "vif": 564.35,
+     "top_partner": "Inseguridad alimentaria (%) (ρ=+0.99)"
+    },
+    {
+     "code": "pct_loneliness",
+     "name": "Soledad (%)",
+     "S1": 0.035,
+     "ST": 0.035,
+     "unique": 0.2635,
+     "coefficient": -5.1541,
+     "vif": 54.16,
+     "top_partner": "Falta de apoyo social (%) (ρ=+0.86)"
+    },
+    {
+     "code": "pct_no_transportation",
+     "name": "Falta de transporte confiable (%)",
+     "S1": 0.2059,
+     "ST": 0.2059,
+     "unique": 0.0814,
+     "coefficient": -12.5053,
+     "vif": 1031.72,
+     "top_partner": "Recibe ayuda alimentaria (SNAP) (%) (ρ=+0.99)"
+    },
+    {
+     "code": "pct_cholesterol_screening",
+     "name": "Cribado de colesterol (%)",
+     "S1": 0.0135,
+     "ST": 0.0135,
+     "unique": 0.0805,
+     "coefficient": -3.1987,
+     "vif": 68.29,
+     "top_partner": "Sin seguro médico (%) (ρ=-0.73)"
+    },
+    {
+     "code": "pct_binge_drinking",
+     "name": "Consumo excesivo de alcohol (%)",
+     "S1": 0.0074,
+     "ST": 0.0074,
+     "unique": 0.0746,
+     "coefficient": -2.3758,
+     "vif": 40.66,
+     "top_partner": "Inactividad física (%) (ρ=-0.74)"
+    },
+    {
+     "code": "pct_lack_social_support",
+     "name": "Falta de apoyo social (%)",
+     "S1": 0.0133,
+     "ST": 0.0133,
+     "unique": 0.0632,
+     "coefficient": 3.1722,
+     "vif": 85.6,
+     "top_partner": "Inseguridad de vivienda (%) (ρ=+0.93)"
+    },
+    {
+     "code": "pct_inactivity",
+     "name": "Inactividad física (%)",
+     "S1": 0.0155,
+     "ST": 0.0155,
+     "unique": 0.0321,
+     "coefficient": -3.4327,
+     "vif": 197.48,
+     "top_partner": "Inseguridad alimentaria (%) (ρ=+0.97)"
+    },
+    {
+     "code": "pct_food_insecurity",
+     "name": "Inseguridad alimentaria (%)",
+     "S1": 0.161,
+     "ST": 0.161,
+     "unique": 0.0219,
+     "coefficient": -11.0557,
+     "vif": 3001.71,
+     "top_partner": "Inseguridad de vivienda (%) (ρ=+0.99)"
+    },
+    {
+     "code": "pct_smoking",
+     "name": "Tabaquismo (%)",
+     "S1": 0.0027,
+     "ST": 0.0027,
+     "unique": 0.0209,
+     "coefficient": 1.4428,
+     "vif": 53.61,
+     "top_partner": "Recibe ayuda alimentaria (SNAP) (%) (ρ=+0.96)"
+    },
+    {
+     "code": "pct_food_stamps",
+     "name": "Recibe ayuda alimentaria (SNAP) (%)",
+     "S1": 0.0621,
+     "ST": 0.0621,
+     "unique": 0.0174,
+     "coefficient": 6.8655,
+     "vif": 1451.49,
+     "top_partner": "Amenaza de corte de servicios (%) (ρ=+0.99)"
+    },
+    {
+     "code": "pct_utility_shutoff",
+     "name": "Amenaza de corte de servicios (%)",
+     "S1": 0.0277,
+     "ST": 0.0277,
+     "unique": 0.0109,
+     "coefficient": 4.5842,
+     "vif": 1040.02,
+     "top_partner": "Recibe ayuda alimentaria (SNAP) (%) (ρ=+0.99)"
+    },
+    {
+     "code": "pct_no_health_insurance",
+     "name": "Sin seguro médico (%)",
+     "S1": 0.0004,
+     "ST": 0.0004,
+     "unique": 0.0025,
+     "coefficient": 0.5246,
+     "vif": 60.02,
+     "top_partner": "Inactividad física (%) (ρ=+0.80)"
+    },
+    {
+     "code": "pct_routine_checkup",
+     "name": "Chequeo médico anual (%)",
+     "S1": 0.0003,
+     "ST": 0.0003,
+     "unique": 0.0021,
+     "coefficient": 0.4793,
+     "vif": 58.47,
+     "top_partner": "Consumo excesivo de alcohol (%) (ρ=-0.62)"
+    }
+   ],
+   "permutation_importance": [
+    {
+     "code": "pct_utility_shutoff",
+     "name": "Amenaza de corte de servicios (%)",
+     "importance": 0.4975
+    },
+    {
+     "code": "pct_loneliness",
+     "name": "Soledad (%)",
+     "importance": 0.205
+    },
+    {
+     "code": "pct_smoking",
+     "name": "Tabaquismo (%)",
+     "importance": 0.0386
+    },
+    {
+     "code": "pct_binge_drinking",
+     "name": "Consumo excesivo de alcohol (%)",
+     "importance": 0.0354
+    },
+    {
+     "code": "pct_no_health_insurance",
+     "name": "Sin seguro médico (%)",
+     "importance": 0.0272
+    },
+    {
+     "code": "pct_food_stamps",
+     "name": "Recibe ayuda alimentaria (SNAP) (%)",
+     "importance": 0.0243
+    },
+    {
+     "code": "pct_lack_social_support",
+     "name": "Falta de apoyo social (%)",
+     "importance": 0.023
+    },
+    {
+     "code": "pct_cholesterol_screening",
+     "name": "Cribado de colesterol (%)",
+     "importance": 0.0169
+    },
+    {
+     "code": "pct_inactivity",
+     "name": "Inactividad física (%)",
+     "importance": 0.0131
+    },
+    {
+     "code": "pct_housing_insecurity",
+     "name": "Inseguridad de vivienda (%)",
+     "importance": 0.0124
+    },
+    {
+     "code": "pct_routine_checkup",
+     "name": "Chequeo médico anual (%)",
+     "importance": 0.0111
+    },
+    {
+     "code": "pct_food_insecurity",
+     "name": "Inseguridad alimentaria (%)",
+     "importance": 0.0056
+    },
+    {
+     "code": "pct_no_transportation",
+     "name": "Falta de transporte confiable (%)",
+     "importance": 0.0031
+    }
+   ]
+  },
+  "available": true
+ }
+}

@@ -53,6 +53,8 @@ export interface EquityIndex {
   id: number;
   tract_id: number;
   tract_geoid?: string;
+  tract_name?: string;
+  population?: number;
   year: number;
   index_type: string;
   value: number;
@@ -104,6 +106,7 @@ export interface CrispPhase {
   objectives: string[];
   question: string;
   ready: boolean;
+  todo?: string | null;
 }
 
 export interface CrispPhaseOverview {

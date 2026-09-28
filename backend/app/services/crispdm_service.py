@@ -8,6 +8,7 @@ metodología sea auditable y no meramente declarativa.
 Referencias: Chapman et al. (2000); Wirth & Hipp (2000); Schröer et al. (2021).
 """
 
+import json
 import os
 import platform
 import random
@@ -37,7 +38,7 @@ from app.models.sdoh import (
     SDOHIndicator,
 )
 from app.models.user import AuditLog, Permission, Role, User
-from app.services import equity_service
+from app.services import equity_service, ml_service
 
 # --------------------------------------------------------------------------- #
 # Metadatos de las fases
@@ -111,6 +112,19 @@ PHASES: List[Dict[str, Any]] = [
 
 PHASE_KEYS = [p["key"] for p in PHASES]
 
+#: Último banco de pruebas de la Fase V, persistido para que sobreviva a recargas.
+EVALUATION_PATH = os.path.join(ml_service.ARTIFACT_DIR, "crispdm_evaluation.json")
+
+
+def _last_evaluation() -> Optional[Dict[str, Any]]:
+    if not os.path.exists(EVALUATION_PATH):
+        return None
+    try:
+        with open(EVALUATION_PATH, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
+
 
 def _default_year(db: Session) -> int:
     year = db.query(func.max(SDOHIndicator.year)).scalar()
@@ -131,18 +145,32 @@ def phase_overview(db: Session) -> Dict[str, Any]:
     )
     alerts = db.query(func.count(Alert.id)).scalar() or 0
     audits = db.query(func.count(AuditLog.id)).scalar() or 0
+    ml = ml_service.status()
 
-    status = {
-        "business-understanding": bool(db.query(Role).first()),
-        "data-understanding": tracts > 0 and catalog > 0,
-        "data-preparation": values > 0,
-        "modeling": computed > 0,
-        "evaluation": computed > 0,
-        "deployment": audits > 0 or alerts > 0,
+    evaluated = _last_evaluation() is not None
+    # Cada fase: (lista, qué falta para completarla).
+    checks = {
+        "business-understanding": (bool(db.query(Role).first()), "Crear roles y usuarios (arranque del backend)."),
+        "data-understanding": (tracts > 0 and catalog > 0, "Cargar datos: make seed-etl."),
+        "data-preparation": (values > 0, "Cargar valores SDOH: make seed-etl."),
+        "modeling": (
+            computed > 0 and ml["trained"],
+            "Ejecutar pipeline (índice compuesto) y entrenar los 4 modelos ML.",
+        ),
+        "evaluation": (
+            evaluated and ml["trained"],
+            "Ejecutar el banco de pruebas de la Fase V y entrenar los modelos ML.",
+        ),
+        "deployment": (
+            ml["trained"] and (audits > 0 or alerts > 0),
+            "Desplegar el modelo ML (entrenarlo) y operar la plataforma.",
+        ),
     }
+    status = {k: v[0] for k, v in checks.items()}
     phases = []
     for phase in PHASES:
-        phases.append({**phase, "ready": status.get(phase["key"], False)})
+        ready, todo = checks[phase["key"]]
+        phases.append({**phase, "ready": ready, "todo": None if ready else todo})
     return {
         "year": year,
         "phases": phases,
@@ -155,6 +183,9 @@ def phase_overview(db: Session) -> Dict[str, Any]:
             "computed_indexes": computed,
             "alerts": alerts,
             "audit_events": audits,
+            "ml_trained": ml["trained"],
+            "ml_best_model": ml.get("best_model_name"),
+            "evaluated": evaluated,
         },
     }
 
@@ -523,7 +554,9 @@ def modeling(
         "rationale": (
             "Se elige frente a PCA o aprendizaje supervisado por interpretabilidad: en "
             "decisiones con impacto distributivo, la contribución de cada dominio debe "
-            "poder explicarse y auditarse."
+            "poder explicarse y auditarse. Como complemento, un modelo supervisado "
+            "(el mejor de 4 clasificadores) predice resultados de salud reales a partir "
+            "de los determinantes sociales."
         ),
         "formula": {
             "composite": "E_t = Σ_k w_k · s_{k,t}",
@@ -563,6 +596,7 @@ def modeling(
                 "detail": "LLM con contexto recuperado de la base; prohibido fabricar estadísticas.",
                 "rules": None,
             },
+            _ml_companion(),
             {
                 "name": "Representación 3D del gemelo",
                 "detail": "Color y altura de vóxel por nivel de riesgo del tracto.",
@@ -575,6 +609,33 @@ def modeling(
             "by_method": by_method,
         },
         "complexity": "O(n · k) sobre n tractos y k indicadores; percentil por bisección.",
+    }
+
+
+def _ml_companion() -> Dict[str, Any]:
+    ml = ml_service.status()
+    if not ml["trained"]:
+        detail = "4 clasificadores (LR, RF, GB, MLP) sin entrenar todavía."
+    else:
+        best = ml["models"][0]
+        detail = (
+            f"4 clasificadores comparados; desplegado {ml['best_model_name']} "
+            f"(F1 CV {best['cv_f1_mean']}) para predecir {ml['target']['name']}."
+        )
+    return {"name": "Modelo predictivo supervisado", "detail": detail, "rules": None}
+
+
+def _ml_service_row() -> Dict[str, Any]:
+    ml = ml_service.status()
+    return {
+        "name": "Modelo ML",
+        "detail": (
+            f"{ml['best_model_name']} · best_model.joblib · POST /api/ml/predict"
+            if ml["trained"]
+            else "Sin modelo desplegado (entrenar en Modelos ML)"
+        ),
+        "runtime": "scikit-learn · joblib",
+        "status": "running" if ml["trained"] else "not trained",
     }
 
 
@@ -649,6 +710,12 @@ def evaluation_summary(db: Session, year: Optional[int] = None) -> Dict[str, Any
                 "target": "ρ ≥ 0,90",
             },
             {
+                "dimension": "Predicción (ML)",
+                "metric": "F1-macro y ROC-AUC de 4 clasificadores (CV k=5 + test 20 %)",
+                "hypothesis": "—",
+                "target": "Mejor modelo desplegado",
+            },
+            {
                 "dimension": "Utilidad",
                 "metric": "Alertas accionables sobre tractos críticos",
                 "hypothesis": "H1",
@@ -659,6 +726,7 @@ def evaluation_summary(db: Session, year: Optional[int] = None) -> Dict[str, Any
         "data_quality": quality,
         "open_alerts": alerts_open,
         "indexes_computed": sum(by_risk.values()),
+        "last_run": _last_evaluation(),
         "note": (
             "La evaluación es formativa: mide viabilidad computacional y comportamiento "
             "de escala sobre el conjunto disponible, no valida epidemiológicamente los "
@@ -758,7 +826,7 @@ def run_evaluation(
         median * (POPULATION_TARGET / population) if population else None
     )
 
-    return {
+    result = {
         "phase": "evaluation",
         "year": year,
         "executed_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
@@ -803,10 +871,14 @@ def run_evaluation(
         "limitations": [
             "Evaluación formativa sobre el conjunto disponible; no valida "
             "epidemiológicamente los índices.",
-            "La validación externa requiere sustituir el conjunto demostrativo por "
-            "descargas reales de CDC PLACES y ACS.",
+            "CDC PLACES son estimaciones de área pequeña basadas en modelos; la "
+            "validación externa requiere contrastar con registros clínicos.",
         ],
     }
+    os.makedirs(os.path.dirname(EVALUATION_PATH), exist_ok=True)
+    with open(EVALUATION_PATH, "w", encoding="utf-8") as fh:
+        json.dump(result, fh, ensure_ascii=False, indent=2)
+    return result
 
 
 # --------------------------------------------------------------------------- #
@@ -888,6 +960,7 @@ def deployment(db: Session, limit: int = 10) -> Dict[str, Any]:
                 "runtime": driver,
                 "status": "connected" if db_version else "unknown",
             },
+            _ml_service_row(),
             {
                 "name": "Frontend",
                 "detail": "React 18 · TypeScript · Vite · Three.js / R3F",
@@ -934,8 +1007,9 @@ def run_pipeline(
     year: Optional[int] = None,
     weights: Optional[Dict[str, float]] = None,
     repeats: int = 5,
+    train_ml: bool = True,
 ) -> Dict[str, Any]:
-    """Ejecuta preparación → modelado → evaluación y persiste los índices."""
+    """Ejecuta preparación → modelado (índice + ML) → evaluación → despliegue."""
     year = year or _default_year(db)
     steps = []
 
@@ -960,6 +1034,23 @@ def run_pipeline(
         }
     )
 
+    ml_metrics = None
+    if train_ml:
+        t0 = time.perf_counter()
+        current = ml_service.status()
+        target = (current.get("target") or {}).get("code") or ml_service.DEFAULT_TARGET
+        try:
+            ml_metrics = ml_service.train(db, target=target)
+            summary = (
+                f"4 modelos entrenados · mejor {ml_metrics['best_model_name']} "
+                f"(F1 CV {ml_metrics['models'][0]['cv_f1_mean']})"
+            )
+        except ValueError as e:
+            summary = f"ML no entrenado: {e}"
+        steps.append(
+            {"phase": "modeling", "seconds": round(time.perf_counter() - t0, 4), "summary": summary}
+        )
+
     t0 = time.perf_counter()
     evaluation = run_evaluation(db, year, repeats=repeats)
     steps.append(
@@ -970,9 +1061,20 @@ def run_pipeline(
         }
     )
 
+    if ml_metrics:
+        steps.append(
+            {
+                "phase": "deployment",
+                "seconds": 0.0,
+                "summary": f"{ml_metrics['best_model_name']} desplegado en best_model.joblib "
+                "· POST /api/ml/predict",
+            }
+        )
+
     return {
         "year": year,
         "created_indexes": created,
+        "ml_best_model": ml_metrics["best_model_name"] if ml_metrics else None,
         "steps": steps,
         "evaluation": evaluation,
         "total_seconds": round(sum(s["seconds"] for s in steps), 4),

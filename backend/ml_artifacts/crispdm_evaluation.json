@@ -1,0 +1,56 @@
+{
+  "phase": "evaluation",
+  "year": 2023,
+  "executed_at": "2026-09-28T21:37:27Z",
+  "scale": {
+    "tracts": 1632,
+    "indicators": 27,
+    "population": 6969720
+  },
+  "latency": {
+    "repeats": 30,
+    "median_seconds": 0.2655,
+    "p95_seconds": 0.3572,
+    "min_seconds": 0.1436,
+    "max_seconds": 2.3053,
+    "seconds_per_100k_inhabitants": 0.0038,
+    "projected_at_target_population": 0.019,
+    "target_seconds": 5.0,
+    "target_population": 500000,
+    "meets_h3": true
+  },
+  "risk_distribution": {
+    "moderate": 408,
+    "high": 245,
+    "low": 815,
+    "critical": 164
+  },
+  "sensitivity": {
+    "runs": 20,
+    "perturbation": 0.25,
+    "spearman_mean": 0.9998,
+    "spearman_min": 0.9991,
+    "risk_level_stability_pct": 98.88
+  },
+  "data_quality": {
+    "expected_observations": 44064,
+    "observed": 39168,
+    "completeness": 88.89,
+    "uniqueness_constraint": "uq_tract_catalog_year (tract_id, catalog_id, year)",
+    "checks": [
+      "Completitud: registros sin GEOID, medida o valor son descartados en la ingesta.",
+      "Consistencia: unicidad de la terna tracto-indicador-año.",
+      "Plausibilidad: intervalos low_ci / high_ci y sample_size de la fuente.",
+      "Direccionalidad: atributo higher_is_better del catálogo."
+    ]
+  },
+  "process_review": [
+    "El compuesto se calcula en O(n · k) con percentil por bisección: la distribución global se precomputa una sola vez por ejecución.",
+    "La normalización se indexa por tract_id, no por el valor del indicador.",
+    "La recomputación es idempotente (restricción uq_equity_tract_year_type)."
+  ],
+  "limitations": [
+    "Evaluación formativa sobre el conjunto disponible; no valida epidemiológicamente los índices.",
+    "CDC PLACES son estimaciones de área pequeña basadas en modelos; la validación externa requiere contrastar con registros clínicos."
+  ]
+}

@@ -14,6 +14,7 @@ import {
 import {
   Brain,
   CheckCircle2,
+  Cpu,
   ClipboardCheck,
   Database,
   Gauge,
@@ -26,6 +27,7 @@ import {
 import api from "../api/client";
 import { errorMessage } from "../api/errors";
 import StatCard from "../components/StatCard";
+import MlEvaluation from "../components/MlEvaluation";
 import type { CrispPhase, CrispPhaseOverview } from "../types";
 
 const PHASE_META: Record<
@@ -82,6 +84,70 @@ function Bullets({ items }: { items: string[] }) {
   );
 }
 
+/** Resumen del modelo ML desplegado, compartido por las fases IV, V y VI. */
+function MlSummary({ phase }: { phase: "modeling" | "evaluation" | "deployment" }) {
+  const { t } = useTranslation();
+  const [ml, setMl] = useState<any>(null);
+
+  useEffect(() => {
+    api.get("/ml/status").then((r) => setMl(r.data)).catch(() => setMl(null));
+  }, []);
+
+  if (!ml) return null;
+  const best = (ml.models ?? []).find((m: any) => m.selected);
+
+  return (
+    <Section title={t("crispdm.ml.title")}>
+      {!ml.trained || !best ? (
+        <p style={{ color: "var(--text-muted)", marginTop: 0 }}>{t("crispdm.ml.none")}</p>
+      ) : phase === "modeling" ? (
+        <Bullets
+          items={(ml.models ?? []).map(
+            (m: any) => `${m.name} — ${m.role}${m.selected ? ` ✓ ${t("ml.deployed")}` : ""}`
+          )}
+        />
+      ) : phase === "evaluation" ? (
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr><th>{t("ml.model")}</th><th>F1 CV</th><th>F1 test</th><th>ROC-AUC</th><th>{t("common.status")}</th></tr>
+            </thead>
+            <tbody>
+              {ml.models.map((m: any) => (
+                <tr key={m.key}>
+                  <td><b>{m.name}</b></td>
+                  <td style={{ fontFamily: "var(--font-mono)" }}>{num(m.cv_f1_mean, 4)}</td>
+                  <td style={{ fontFamily: "var(--font-mono)" }}>{num(m.test_f1_macro, 4)}</td>
+                  <td style={{ fontFamily: "var(--font-mono)" }}>{num(m.test_roc_auc, 4)}</td>
+                  <td><span className={`badge ${m.selected ? "green" : "gray"}`}>{m.selected ? t("ml.deployed") : t("ml.candidate")}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <KeyValue
+          items={[
+            [t("ml.deployedModel"), ml.best_model_name],
+            [t("ml.target"), ml.target?.name],
+            ["F1 CV", num(best.cv_f1_mean, 4)],
+            ["Endpoint", "POST /api/ml/predict"],
+          ]}
+        />
+      )}
+      {ml.trained && (
+        <p style={{ color: "var(--text-dim)", fontSize: 12.5, marginBottom: 0 }}>
+          {ml.selection_metric} · n={ml.n_samples} · {ml.target?.name}
+        </p>
+      )}
+      <Link to="/modelos-ml" className="btn" style={{ marginTop: 12, display: "inline-flex", textDecoration: "none" }}>
+        <Cpu size={16} />
+        <span>{t("crispdm.ml.open")}</span>
+      </Link>
+    </Section>
+  );
+}
+
 export default function CrispDm() {
   const { t } = useTranslation();
   const { phase } = useParams<{ phase?: string }>();
@@ -92,6 +158,10 @@ export default function CrispDm() {
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [year, setYear] = useState<number | "">("");
+  const [pipelineResult, setPipelineResult] = useState<any>(null);
+  const [mlEval, setMlEval] = useState<any>(null);
+  const [mlEvalTarget, setMlEvalTarget] = useState<string>("");
+  const [mlEvalRunning, setMlEvalRunning] = useState(false);
 
   const activeKey = phase && PHASE_META[phase] ? phase : null;
   const meta = activeKey ? PHASE_META[activeKey] : null;
@@ -166,8 +236,10 @@ export default function CrispDm() {
   const runPipeline = async () => {
     setRunning(true);
     setError(null);
+    setPipelineResult(null);
     try {
-      await api.post(`/crispdm/pipeline/run${year === "" ? "" : `?year=${year}`}`);
+      const r = await api.post(`/crispdm/pipeline/run${year === "" ? "" : `?year=${year}`}`, null, { timeout: 600_000 });
+      setPipelineResult(r.data);
       loadOverview();
       loadPhase();
     } catch (e: any) {
@@ -190,6 +262,33 @@ export default function CrispDm() {
       setRunning(false);
     }
   };
+
+  // Fase V: la evaluación ML persistida se carga aparte del banco de pruebas.
+  const loadMlEval = useCallback(() => {
+    const q = mlEvalTarget ? `?target=${mlEvalTarget}` : "";
+    api.get(`/crispdm/evaluation/ml${q}`).then((r) => setMlEval(r.data)).catch(() => setMlEval(null));
+  }, [mlEvalTarget]);
+
+  useEffect(() => {
+    if (activeKey === "evaluation") loadMlEval();
+  }, [activeKey, loadMlEval]);
+
+  const runMlEval = async () => {
+    setMlEvalRunning(true);
+    setError(null);
+    try {
+      const q = mlEvalTarget ? `?target=${mlEvalTarget}` : "";
+      const r = await api.post(`/crispdm/evaluation/ml/run${q}`, null, { timeout: 600_000 });
+      setMlEval(r.data);
+    } catch (e: any) {
+      setError(errorMessage(e, t("crispdm.mlEval.error")));
+    } finally {
+      setMlEvalRunning(false);
+    }
+  };
+
+  // Fase V: el último banco de pruebas persistido se muestra aunque se recargue la página.
+  const bench = phaseData?.latency ? phaseData : phaseData?.last_run ?? null;
 
   const current: CrispPhase | undefined = useMemo(
     () => overview?.phases.find((p) => p.key === activeKey),
@@ -237,10 +336,31 @@ export default function CrispDm() {
             />
           </div>
           {activeKey === "evaluation" && (
-            <button className="btn" onClick={runEvaluation} disabled={running}>
-              <Gauge size={16} />
-              <span>{running ? t("crispdm.running") : t("crispdm.runBenchmark")}</span>
-            </button>
+            <>
+              <select
+                className="input"
+                style={{ width: 190 }}
+                value={mlEvalTarget}
+                onChange={(e) => setMlEvalTarget(e.target.value)}
+                aria-label="ML target"
+              >
+                <option value="">
+                  {t("crispdm.mlEval.defaultTarget")}
+                  {mlEval?.target ? ` — ${t(`ml.targets.${mlEval.target}`, mlEval.target)}` : ""}
+                </option>
+                {(mlEval?.targets ?? []).map((tc: string) => (
+                  <option key={tc} value={tc}>{t(`ml.targets.${tc}`, tc.replace("pct_", ""))}</option>
+                ))}
+              </select>
+              <button className="btn" onClick={runMlEval} disabled={mlEvalRunning || running}>
+                <Brain size={16} />
+                <span>{mlEvalRunning ? t("crispdm.mlEval.running") : t("crispdm.mlEval.run")}</span>
+              </button>
+              <button className="btn" onClick={runEvaluation} disabled={running}>
+                <Gauge size={16} />
+                <span>{running ? t("crispdm.running") : t("crispdm.runBenchmark")}</span>
+              </button>
+            </>
           )}
           <button className="btn" onClick={runPipeline} disabled={running}>
             <PlayCircle size={16} />
@@ -295,6 +415,33 @@ export default function CrispDm() {
 
       {error && <div className="card" style={{ marginBottom: 22 }}><span className="error-text">{error}</span></div>}
       {loading && <div className="empty-state">{t("common.loading")}</div>}
+      {running && (
+        <div className="card" style={{ marginBottom: 22 }}>
+          <span style={{ color: "var(--text-muted)" }}>{t("crispdm.pipelineHint")}</span>
+        </div>
+      )}
+      {pipelineResult && (
+        <Section title={`${t("crispdm.pipelineDone")} · ${num(pipelineResult.total_seconds, 1)} s`}>
+          <div className="table-responsive">
+            <table className="table">
+              <thead><tr><th>{t("crispdm.phase")}</th><th>{t("common.description")}</th><th>{t("ml.time")}</th></tr></thead>
+              <tbody>
+                {pipelineResult.steps.map((st: any, i: number) => (
+                  <tr key={i}>
+                    <td>
+                      <Link to={`/crisp-dm/${st.phase}`} style={{ color: "inherit", fontWeight: 600, textDecoration: "none" }}>
+                        {overview?.phases.find((p) => p.key === st.phase)?.roman}. {overview?.phases.find((p) => p.key === st.phase)?.name ?? st.phase}
+                      </Link>
+                    </td>
+                    <td style={{ color: "var(--text-muted)" }}>{st.summary}</td>
+                    <td style={{ fontFamily: "var(--font-mono)" }}>{num(st.seconds, 2)} s</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
 
       {/* Vista general */}
       {!activeKey && overview && (
@@ -332,6 +479,9 @@ export default function CrispDm() {
                             {p.ready ? t("crispdm.ready") : t("crispdm.pending")}
                           </span>
                         </Link>
+                        {p.todo && (
+                          <div style={{ fontSize: 11.5, color: "var(--text-dim)", marginTop: 4 }}>{p.todo}</div>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -384,9 +534,19 @@ export default function CrispDm() {
               </table>
             </div>
           </Section>
-          <Section title={t("crispdm.constraints")}>
-            <Bullets items={phaseData.constraints ?? []} />
-          </Section>
+          <div className="grid grid-2">
+            <Section title={t("crispdm.constraints")}>
+              <Bullets items={phaseData.constraints ?? []} />
+            </Section>
+            <Section title={t("crispdm.inventory")}>
+              <KeyValue
+                items={Object.entries(phaseData.inventory ?? {}).map(([k, v]) => [
+                  t(`crispdm.inv.${k}`, k),
+                  String(v),
+                ])}
+              />
+            </Section>
+          </div>
         </>
       )}
 
@@ -436,6 +596,14 @@ export default function CrispDm() {
           <div className="grid grid-2">
             <Section title={t("crispdm.sources")}>
               <KeyValue items={(phaseData.sources ?? []).map((s: any) => [s.source, `${s.indicators}`])} />
+              <div style={{ marginTop: 14 }}>
+                <KeyValue
+                  items={[
+                    [t("crispdm.unitOfAnalysis"), phaseData.unit_of_analysis ?? "—"],
+                    ...(phaseData.years ?? []).map((y: any) => [`${t("common.year")} ${y.year}`, `${num(y.values, 0)} ${t("crispdm.values").toLowerCase()}`] as [string, string]),
+                  ]}
+                />
+              </div>
             </Section>
             <Section title={t("crispdm.qualityChecks")}>
               <Bullets items={phaseData.quality?.checks ?? []} />
@@ -461,6 +629,32 @@ export default function CrispDm() {
               <Bullets items={phaseData.transformations ?? []} />
             </Section>
           </div>
+          {(phaseData.sample ?? []).length > 0 && (
+            <Section title={t("crispdm.sample")}>
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr><th>GEOID</th><th>{t("crispdm.indicators")}</th><th>{t("crispdm.meanScore")}</th><th>min</th><th>max</th></tr>
+                  </thead>
+                  <tbody>
+                    {phaseData.sample.map((r: any) => {
+                      const vals = Object.values(r.scores ?? {}) as number[];
+                      const mean = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+                      return (
+                        <tr key={r.tract_id}>
+                          <td style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>{r.geoid}</td>
+                          <td>{vals.length}</td>
+                          <td style={{ fontFamily: "var(--font-mono)" }}>{num(mean, 4)}</td>
+                          <td style={{ fontFamily: "var(--font-mono)" }}>{num(vals.length ? Math.min(...vals) : null, 4)}</td>
+                          <td style={{ fontFamily: "var(--font-mono)" }}>{num(vals.length ? Math.max(...vals) : null, 4)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </Section>
+          )}
           <Section title={t("crispdm.normalizedIndicators")}>
             <div className="table-responsive" style={{ maxHeight: 400, overflowY: "auto" }}>
               <table className="table">
@@ -537,6 +731,21 @@ export default function CrispDm() {
               </table>
             </div>
           </Section>
+          {phaseData.stored_indexes && (
+            <Section title={`${t("crispdm.storedIndexes")} · ${phaseData.stored_indexes.total}`}>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {["low", "moderate", "high", "critical"].map((k) => (
+                  <span key={k} className={`badge ${k}`}>
+                    {t(`ml.levels.${k}`)} · {phaseData.stored_indexes.by_risk?.[k] ?? 0}
+                  </span>
+                ))}
+              </div>
+              <p style={{ color: "var(--text-dim)", fontSize: 12.5, marginBottom: 0 }}>
+                {(phaseData.stored_indexes.by_method ?? []).map((m: any) => `${m.method}: ${m.count}`).join(" · ")}
+              </p>
+            </Section>
+          )}
+          <MlSummary phase="modeling" />
           <Section title={t("crispdm.companionModels")}>
             <Bullets items={(phaseData.companion_models ?? []).map((m: any) => `${m.name} — ${m.detail}${m.rules != null ? ` (${m.rules})` : ""}`)} />
           </Section>
@@ -546,13 +755,18 @@ export default function CrispDm() {
       {/* Fase V */}
       {activeKey === "evaluation" && phaseData && (
         <>
-          {phaseData.latency ? (
-            <div className="grid grid-4" style={{ marginBottom: 22 }}>
-              <StatCard label={t("crispdm.medianLatency")} value={`${num(phaseData.latency.median_seconds, 4)} s`} subtext={`p95 ${num(phaseData.latency.p95_seconds, 4)} s`} icon={<Gauge size={22} style={{ color: "#fb923c" }} />} />
-              <StatCard label={t("crispdm.projected")} value={phaseData.latency.projected_at_target_population != null ? `${num(phaseData.latency.projected_at_target_population, 3)} s` : "—"} subtext={`${num(phaseData.latency.target_population, 0)} hab.`} icon={<Target size={22} style={{ color: "#60a5fa" }} />} />
-              <StatCard label="H3" value={phaseData.latency.meets_h3 ? t("crispdm.met") : t("crispdm.notMet")} subtext={`< ${phaseData.latency.target_seconds} s`} icon={phaseData.latency.meets_h3 ? <CheckCircle2 size={22} style={{ color: "#10b981" }} /> : <XCircle size={22} style={{ color: "#ef4444" }} />} />
-              <StatCard label={t("crispdm.stability")} value={phaseData.sensitivity?.risk_level_stability_pct != null ? `${num(phaseData.sensitivity.risk_level_stability_pct)} %` : "—"} subtext={`ρ ${num(phaseData.sensitivity?.spearman_mean, 4)}`} icon={<ClipboardCheck size={22} style={{ color: "#a78bfa" }} />} />
+          {bench ? (
+            <>
+            <div className="grid grid-4" style={{ marginBottom: 10 }}>
+              <StatCard label={t("crispdm.medianLatency")} value={`${num(bench.latency.median_seconds, 4)} s`} subtext={`p95 ${num(bench.latency.p95_seconds, 4)} s`} icon={<Gauge size={22} style={{ color: "#fb923c" }} />} />
+              <StatCard label={t("crispdm.projected")} value={bench.latency.projected_at_target_population != null ? `${num(bench.latency.projected_at_target_population, 3)} s` : "—"} subtext={`${num(bench.latency.target_population, 0)} hab.`} icon={<Target size={22} style={{ color: "#60a5fa" }} />} />
+              <StatCard label="H3" value={bench.latency.meets_h3 ? t("crispdm.met") : t("crispdm.notMet")} subtext={`< ${bench.latency.target_seconds} s`} icon={bench.latency.meets_h3 ? <CheckCircle2 size={22} style={{ color: "#10b981" }} /> : <XCircle size={22} style={{ color: "#ef4444" }} />} />
+              <StatCard label={t("crispdm.stability")} value={bench.sensitivity?.risk_level_stability_pct != null ? `${num(bench.sensitivity.risk_level_stability_pct)} %` : "—"} subtext={`ρ ${num(bench.sensitivity?.spearman_mean, 4)}`} icon={<ClipboardCheck size={22} style={{ color: "#a78bfa" }} />} />
             </div>
+            <p style={{ color: "var(--text-dim)", fontSize: 12.5, margin: "0 0 22px" }}>
+              {t("crispdm.lastRun")}: {bench.executed_at?.replace("T", " ").replace("Z", "")} UTC · {bench.scale?.tracts} {t("crispdm.tracts")} · {bench.sensitivity?.runs} × ±{num((bench.sensitivity?.perturbation ?? 0) * 100, 0)} %
+            </p>
+            </>
           ) : (
             <div className="card" style={{ marginBottom: 22 }}>
               <p style={{ margin: 0, color: "var(--text-muted)" }}>{t("crispdm.benchmarkHint")}</p>
@@ -599,6 +813,10 @@ export default function CrispDm() {
             </Section>
           )}
 
+          <MlSummary phase="evaluation" />
+
+          <MlEvaluation data={mlEval} />
+
           {phaseData.process_review && phaseData.criteria && (
             <Section title={t("crispdm.processReview")}>
               <Bullets items={phaseData.process_review} />
@@ -637,6 +855,28 @@ export default function CrispDm() {
                 </tbody>
               </table>
             </div>
+          </Section>
+          <MlSummary phase="deployment" />
+          <Section title={t("crispdm.recentReports")}>
+            {(phaseData.reports?.recent ?? []).length === 0 ? (
+              <div className="empty-state">{t("crispdm.noReports")}</div>
+            ) : (
+              <div className="table-responsive" style={{ maxHeight: 300, overflowY: "auto" }}>
+                <table className="table">
+                  <thead><tr><th>{t("crispdm.file")}</th><th>{t("crispdm.format")}</th><th>KB</th><th>{t("common.date")}</th></tr></thead>
+                  <tbody>
+                    {phaseData.reports.recent.map((r: any) => (
+                      <tr key={r.file}>
+                        <td style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>{r.file}</td>
+                        <td><span className="badge blue">{r.format}</span></td>
+                        <td style={{ fontFamily: "var(--font-mono)" }}>{num(r.size_kb, 1)}</td>
+                        <td style={{ fontFamily: "var(--font-mono)", fontSize: 11.5 }}>{r.modified?.replace("T", " ").replace("Z", "")}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </Section>
           <div className="grid grid-2">
             <Section title={t("crispdm.feedbackLoop")}>

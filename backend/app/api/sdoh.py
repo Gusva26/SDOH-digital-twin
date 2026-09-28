@@ -5,7 +5,11 @@ from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, require_permission
 from app.core.database import get_db
-from app.models.geo import CensusTract
+from app.models.geo import (
+    CensusTract,
+    CatchmentMembership,
+    HospitalCatchment,
+)
 from app.models.sdoh import Alert, AlertRule, EquityIndex, IndicatorCatalog, SDOHIndicator
 from app.models.user import User
 from app.schemas.sdoh import (
@@ -151,9 +155,11 @@ def get_equity(
     index_type: Optional[str] = "composite_equity",
     year: Optional[int] = None,
     risk_level: Optional[str] = None,
+    hospital_id: Optional[int] = None,
     db: Session = Depends(get_db),
     _: User = Depends(get_current_user),
 ):
+    """Equity indexes, optionally restricted to a hospital's catchment area."""
     q = db.query(EquityIndex)
     if index_type:
         q = q.filter(EquityIndex.index_type == index_type)
@@ -161,13 +167,34 @@ def get_equity(
         q = q.filter(EquityIndex.year == year)
     if risk_level:
         q = q.filter(EquityIndex.risk_level == risk_level)
+    if hospital_id:
+        tract_ids = (
+            db.query(CatchmentMembership.tract_id)
+            .join(
+                HospitalCatchment,
+                CatchmentMembership.catchment_id == HospitalCatchment.id,
+            )
+            .filter(HospitalCatchment.hospital_id == hospital_id)
+            .distinct()
+        )
+        q = q.filter(EquityIndex.tract_id.in_(tract_ids))
     rows = q.all()
+    tracts = {
+        t.id: t
+        for t in db.query(CensusTract)
+        .filter(CensusTract.id.in_([r.tract_id for r in rows]))
+        .all()
+    }
     return [
         {
             "id": r.id,
             "tract_id": r.tract_id,
             "tract_geoid": (
-                db.query(CensusTract.geoid).filter(CensusTract.id == r.tract_id).scalar()
+                tracts[r.tract_id].geoid if r.tract_id in tracts else None
+            ),
+            "tract_name": tracts[r.tract_id].name if r.tract_id in tracts else None,
+            "population": (
+                tracts[r.tract_id].total_population if r.tract_id in tracts else None
             ),
             "year": r.year,
             "index_type": r.index_type,

@@ -1,4 +1,4 @@
-.PHONY: up down build logs backend frontend seed seed-etl seed-public migrate seed-all psql clean
+.PHONY: up down build logs backend frontend seed seed-etl seed-public migrate seed-all train psql clean streamlit streamlit-logs
 
 up:
 	docker compose up -d
@@ -30,8 +30,18 @@ seed-public:
 migrate:
 	docker compose exec backend python -m app.scripts.migrate
 
+train:
+	docker compose exec backend python -m app.scripts.train_models
+
 psql:
 	docker compose exec db psql -U sdohtwin
 
 clean:
 	docker compose down -v
+
+streamlit:
+	docker compose up -d --build streamlit
+	@echo "Motor CRISP-DM en http://localhost:8501"
+
+streamlit-logs:
+	docker compose logs -f streamlit

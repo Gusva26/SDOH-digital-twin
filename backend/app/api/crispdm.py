@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from app.api.deps import get_current_user, require_permission
 from app.core.database import get_db
 from app.models.user import User
-from app.services import crispdm_service
+from app.services import crispdm_service, ml_evaluation
 from app.services.audit_service import audit
 
 router = APIRouter(prefix="/crispdm", tags=["CRISP-DM"])
@@ -102,6 +102,65 @@ def run_evaluation(
     return result
 
 
+def _with_target_index(payload: dict) -> dict:
+    """Añade el índice de objetivos para que el selector de la UI se alimente solo."""
+    from app.services import ml_service
+
+    payload["available_targets"] = ml_service.trained_targets()
+    payload["targets"] = [
+        t for t in ml_service.TARGETS if t in payload["available_targets"]
+    ]
+    payload["evaluated_targets"] = sorted(
+        code for code in ml_service.TARGETS if ml_evaluation.load(code) is not None
+    )
+    return payload
+
+
+@router.get("/evaluation/ml")
+def ml_evaluation_read(
+    target: Optional[str] = Query(None),
+    _: User = Depends(require_permission("sdoh:read")),
+):
+    """Fase V: lee la última evaluación ML persistida, o un resumen si no se ha ejecutado."""
+    try:
+        payload = ml_evaluation.load(target) or {
+            "available": False,
+            "target": target,
+            "executed_at": None,
+        }
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    return _with_target_index(payload)
+
+
+@router.post("/evaluation/ml/run")
+def ml_evaluation_run(
+    target: Optional[str] = Query(None),
+    year: Optional[int] = Query(None),
+    db: Session = Depends(get_db),
+    user: User = Depends(require_permission("sdoh:compute")),
+):
+    """Fase V: ejecuta las cuatro evaluaciones ML reales y persiste el resultado.
+
+    Selección del modelo con prueba de separabilidad, parity plot y residuales,
+    hipótesis H1/H2/H3 y descomposición de varianza. Tarda alrededor de 30 s.
+    """
+    try:
+        result = ml_evaluation.run_full(target, year)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    verdicts = {h["code"]: h["verdict"] for h in result["hypotheses"]["hypotheses"]}
+    audit(
+        db,
+        user,
+        "EVALUATE",
+        "crispdm",
+        None,
+        f"ml target={result['target']} " + " ".join(f"{k}={v}" for k, v in verdicts.items()),
+    )
+    return _with_target_index(result)
+
+
 @router.get("/deployment")
 def deployment(
     limit: int = Query(10, ge=1, le=50),
@@ -110,18 +169,19 @@ def deployment(
 ):
     """Fase VI: servicios, gobierno, reportes, monitoreo y bitácora de auditoría."""
     return crispdm_service.deployment(db, limit)
-
-
 @router.post("/pipeline/run")
 def run_pipeline(
     year: Optional[int] = Query(None),
     repeats: int = Query(5, ge=1, le=30),
+    train_ml: bool = Query(True),
     weights: Optional[dict] = Body(None),
     db: Session = Depends(get_db),
     user: User = Depends(require_permission("sdoh:compute")),
 ):
-    """Ejecuta encadenadas las fases III → IV → V y persiste los índices."""
-    result = crispdm_service.run_pipeline(db, year=year, weights=weights, repeats=repeats)
+    """Ejecuta encadenadas las fases III → IV (índice + ML) → V → VI."""
+    result = crispdm_service.run_pipeline(
+        db, year=year, weights=weights, repeats=repeats, train_ml=train_ml
+    )
     audit(
         db,
         user,

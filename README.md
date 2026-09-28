@@ -18,6 +18,7 @@ Aplicación full-stack de gemelos digitales 3D para monitorear determinantes soc
 | **Reportes** | Generación de reportes en **PDF, Word (.docx), Excel (.xlsx) y CSV**. |
 | **Usuarios, Roles y Perfiles** | Autenticación JWT, roles con permisos granulares (admin, clínico, analista, salud pública, visor), perfiles y auditoría. |
 | **Metodología CRISP-DM** | Las 6 fases del proceso (comprensión del negocio, comprensión de los datos, preparación, modelado, evaluación y despliegue) navegables desde el sidebar, cada una consultando el estado real del sistema. Incluye banco de pruebas de latencia y sensibilidad de pesos. Ver [`docs/CRISP-DM.md`](docs/CRISP-DM.md). |
+| **Modelos predictivos (ML)** | Entrena y compara 4 clasificadores (Regresión Logística, Random Forest, Gradient Boosting, Red Neuronal MLP) con los datos reales de CDC PLACES para predecir el nivel de riesgo de un resultado de salud por census tract a partir de sus determinantes sociales. El mejor (F1-macro en validación cruzada k=5) se guarda en `backend/ml_artifacts/best_model.joblib` y se sirve en `/api/ml/*`; la app lo consume en el Dashboard 3D (modo *Predicción ML*), en la página *Modelos ML* y en las fases IV–VI de CRISP-DM. *Ejecutar pipeline* en CRISP-DM recorre III → IV (índice + ML) → V → VI. Entrenar: `make train` o el botón de la página. |
 
 ---
 

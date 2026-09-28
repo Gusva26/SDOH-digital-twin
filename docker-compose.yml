@@ -59,5 +59,29 @@ services:
       - /app/node_modules
     command: npm run dev -- --host 0.0.0.0
 
+  streamlit:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sdohtwin_streamlit
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-sdohtwin}:${POSTGRES_PASSWORD:-sdohtwin}@db:5432/${POSTGRES_DB:-sdohtwin}
+      PYTHONPATH: /app
+      LANGFLOW_FLOW_FILE: /langflow/sdoh_assistant.json
+    depends_on:
+      db:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./backend:/app
+      - ./langflow:/langflow:ro
+    command: streamlit run streamlit_app/crispdm_app.py --server.port 8501 --server.address 0.0.0.0 --server.headless true --browser.gatherUsageStats false
+
 volumes:
   postgres_data:

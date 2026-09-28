@@ -6,6 +6,7 @@ import {
   AlertTriangle,
   Brain,
   ClipboardCheck,
+  Cpu,
   Database,
   FileText,
   Hospital,
@@ -174,6 +175,24 @@ export default function Layout() {
               </span>
             </NavLink>
           ))}
+          <NavLink
+            to="/modelos-ml"
+            onClick={() => setMobileOpen(false)}
+            className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+          >
+            <Cpu size={18} />
+            <span>{t("crispdm.nav.mlModels")}</span>
+            <span
+              style={{
+                marginLeft: "auto",
+                fontSize: 10.5,
+                fontFamily: "var(--font-mono)",
+                color: "var(--text-dim)",
+              }}
+            >
+              ML
+            </span>
+          </NavLink>
         </nav>
 
         <div className="sidebar-footer">

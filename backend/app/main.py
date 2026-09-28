@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth, ai, crispdm, geo, hospitals, reports, sdoh, users
+from app.api import auth, ai, crispdm, geo, hospitals, ml, reports, sdoh, users
 from app.core.config import settings
 
 # Register models so metadata is complete
@@ -157,6 +157,7 @@ app.include_router(sdoh.router, prefix=API_PREFIX)
 app.include_router(reports.router, prefix=API_PREFIX)
 app.include_router(ai.router, prefix=API_PREFIX)
 app.include_router(crispdm.router, prefix=API_PREFIX)
+app.include_router(ml.router, prefix=API_PREFIX)
 
 
 @app.get("/")

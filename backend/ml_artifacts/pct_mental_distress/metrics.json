@@ -1,0 +1,475 @@
+{
+  "target_info": "adultos con malestar mental frecuente (14+ días al mes)",
+  "target_stats": {
+    "min": 9.6,
+    "median": 15.3,
+    "max": 27.2,
+    "quantiles": [
+      9.6,
+      10.2,
+      10.608,
+      11.012,
+      11.4,
+      11.6,
+      11.724,
+      11.9,
+      11.9,
+      12.1,
+      12.2,
+      12.4,
+      12.5,
+      12.6,
+      12.7,
+      12.8,
+      12.9,
+      13.0,
+      13.0,
+      13.1,
+      13.2,
+      13.2,
+      13.3,
+      13.4,
+      13.5,
+      13.6,
+      13.6,
+      13.7,
+      13.8,
+      13.8,
+      13.9,
+      14.0,
+      14.1,
+      14.2,
+      14.2,
+      14.3,
+      14.3,
+      14.4,
+      14.5,
+      14.5,
+      14.6,
+      14.6,
+      14.7,
+      14.8,
+      14.9,
+      15.0,
+      15.0,
+      15.1,
+      15.2,
+      15.2,
+      15.3,
+      15.3,
+      15.4,
+      15.4,
+      15.5,
+      15.6,
+      15.7,
+      15.7,
+      15.8,
+      15.836,
+      15.9,
+      16.0,
+      16.0,
+      16.1,
+      16.2,
+      16.3,
+      16.4,
+      16.5,
+      16.6,
+      16.7,
+      16.8,
+      16.9,
+      17.0,
+      17.0,
+      17.1,
+      17.2,
+      17.4,
+      17.508,
+      17.7,
+      17.8,
+      17.9,
+      18.0,
+      18.1,
+      18.232,
+      18.5,
+      18.54,
+      18.7,
+      19.0,
+      19.2,
+      19.4,
+      19.6,
+      19.9,
+      20.2,
+      20.5,
+      20.7,
+      21.08,
+      21.484,
+      22.2,
+      22.884,
+      23.4,
+      27.2
+    ]
+  },
+  "regressor": {
+    "name": "Regresión Ridge (estimación del %)",
+    "r2_test": 0.984,
+    "mae_test": 0.253,
+    "level_agreement_test": 0.9052,
+    "bias_by_level": {
+      "low": 0.073,
+      "moderate": -0.074,
+      "high": 0.007,
+      "critical": -0.034
+    },
+    "clf_vs_reg_level_agreement": 0.9388
+  },
+  "trained_at": "2026-09-28T21:05:41Z",
+  "source": "CDC PLACES (cwsq-ngmh) · valores por census tract cargados por el ETL",
+  "year": 2023,
+  "study_area": {
+    "label": "el área de estudio",
+    "counties": [
+      {
+        "name": "Cook County",
+        "state": "Illinois",
+        "tracts": 1328
+      },
+      {
+        "name": "New York County",
+        "state": "New York",
+        "tracts": 304
+      }
+    ],
+    "tracts": 1632
+  },
+  "level_source": "estimator",
+  "target": {
+    "code": "pct_mental_distress",
+    "name": "Malestar mental frecuente (%)"
+  },
+  "classes": [
+    "low",
+    "moderate",
+    "high",
+    "critical"
+  ],
+  "class_cuts": {
+    "moderate": 13.6,
+    "high": 15.3,
+    "critical": 17.2
+  },
+  "features": [
+    {
+      "code": "pct_no_health_insurance",
+      "name": "Sin seguro médico (%)"
+    },
+    {
+      "code": "pct_food_insecurity",
+      "name": "Inseguridad alimentaria (%)"
+    },
+    {
+      "code": "pct_food_stamps",
+      "name": "Recibe ayuda alimentaria (SNAP) (%)"
+    },
+    {
+      "code": "pct_housing_insecurity",
+      "name": "Inseguridad de vivienda (%)"
+    },
+    {
+      "code": "pct_utility_shutoff",
+      "name": "Amenaza de corte de servicios (%)"
+    },
+    {
+      "code": "pct_no_transportation",
+      "name": "Falta de transporte confiable (%)"
+    },
+    {
+      "code": "pct_lack_social_support",
+      "name": "Falta de apoyo social (%)"
+    },
+    {
+      "code": "pct_loneliness",
+      "name": "Soledad (%)"
+    },
+    {
+      "code": "pct_routine_checkup",
+      "name": "Chequeo médico anual (%)"
+    },
+    {
+      "code": "pct_cholesterol_screening",
+      "name": "Cribado de colesterol (%)"
+    },
+    {
+      "code": "pct_smoking",
+      "name": "Tabaquismo (%)"
+    },
+    {
+      "code": "pct_inactivity",
+      "name": "Inactividad física (%)"
+    },
+    {
+      "code": "pct_binge_drinking",
+      "name": "Consumo excesivo de alcohol (%)"
+    }
+  ],
+  "feature_medians": {
+    "pct_no_health_insurance": 9.7,
+    "pct_food_insecurity": 17.6,
+    "pct_food_stamps": 13.9,
+    "pct_housing_insecurity": 14.5,
+    "pct_utility_shutoff": 7.9,
+    "pct_no_transportation": 8.6,
+    "pct_lack_social_support": 26.9,
+    "pct_loneliness": 35.7,
+    "pct_routine_checkup": 77.9,
+    "pct_cholesterol_screening": 87.6,
+    "pct_smoking": 10.7,
+    "pct_inactivity": 22.3,
+    "pct_binge_drinking": 19.0
+  },
+  "n_samples": 1632,
+  "n_train": 1305,
+  "n_test": 327,
+  "cv_folds": 5,
+  "selection_metric": "F1-macro (validación cruzada estratificada)",
+  "best_model": "logistic_regression",
+  "best_model_name": "Regresión Logística",
+  "models": [
+    {
+      "key": "logistic_regression",
+      "name": "Regresión Logística",
+      "role": "Línea base lineal e interpretable",
+      "best_params": {
+        "C": 10.0
+      },
+      "cv_f1_mean": 0.9096,
+      "cv_f1_std": 0.0247,
+      "test_accuracy": 0.9174,
+      "test_f1_macro": 0.9165,
+      "test_roc_auc": 0.9901,
+      "confusion_matrix": [
+        [
+          84,
+          2,
+          0,
+          0
+        ],
+        [
+          5,
+          69,
+          7,
+          0
+        ],
+        [
+          0,
+          4,
+          72,
+          2
+        ],
+        [
+          0,
+          0,
+          7,
+          75
+        ]
+      ],
+      "train_seconds": 0.42,
+      "selected": true
+    },
+    {
+      "key": "gradient_boosting",
+      "name": "Gradient Boosting",
+      "role": "Boosting de árboles (tipo XGBoost), fuerte en datos tabulares",
+      "best_params": {
+        "learning_rate": 0.05,
+        "max_depth": 6
+      },
+      "cv_f1_mean": 0.8731,
+      "cv_f1_std": 0.0174,
+      "test_accuracy": 0.8746,
+      "test_f1_macro": 0.8742,
+      "test_roc_auc": 0.9799,
+      "confusion_matrix": [
+        [
+          80,
+          6,
+          0,
+          0
+        ],
+        [
+          6,
+          64,
+          11,
+          0
+        ],
+        [
+          0,
+          7,
+          69,
+          2
+        ],
+        [
+          0,
+          0,
+          9,
+          73
+        ]
+      ],
+      "train_seconds": 13.45,
+      "selected": false
+    },
+    {
+      "key": "random_forest",
+      "name": "Random Forest",
+      "role": "Ensamble de árboles (bagging), robusto a no linealidades",
+      "best_params": {
+        "max_depth": null,
+        "min_samples_leaf": 1
+      },
+      "cv_f1_mean": 0.8586,
+      "cv_f1_std": 0.0238,
+      "test_accuracy": 0.8685,
+      "test_f1_macro": 0.869,
+      "test_roc_auc": 0.9765,
+      "confusion_matrix": [
+        [
+          78,
+          8,
+          0,
+          0
+        ],
+        [
+          4,
+          67,
+          10,
+          0
+        ],
+        [
+          0,
+          8,
+          68,
+          2
+        ],
+        [
+          0,
+          0,
+          11,
+          71
+        ]
+      ],
+      "train_seconds": 10.8,
+      "selected": false
+    },
+    {
+      "key": "mlp",
+      "name": "Red Neuronal (MLP)",
+      "role": "Perceptrón multicapa, enfoque de deep learning",
+      "best_params": {
+        "alpha": 0.01,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ]
+      },
+      "cv_f1_mean": 0.7836,
+      "cv_f1_std": 0.0792,
+      "test_accuracy": 0.9021,
+      "test_f1_macro": 0.9016,
+      "test_roc_auc": 0.9796,
+      "confusion_matrix": [
+        [
+          81,
+          5,
+          0,
+          0
+        ],
+        [
+          7,
+          70,
+          4,
+          0
+        ],
+        [
+          0,
+          8,
+          68,
+          2
+        ],
+        [
+          0,
+          0,
+          6,
+          76
+        ]
+      ],
+      "train_seconds": 2.33,
+      "selected": false
+    }
+  ],
+  "feature_importance": [
+    {
+      "code": "pct_smoking",
+      "name": "Tabaquismo (%)",
+      "importance": 0.5607
+    },
+    {
+      "code": "pct_housing_insecurity",
+      "name": "Inseguridad de vivienda (%)",
+      "importance": 0.3097
+    },
+    {
+      "code": "pct_loneliness",
+      "name": "Soledad (%)",
+      "importance": 0.2883
+    },
+    {
+      "code": "pct_utility_shutoff",
+      "name": "Amenaza de corte de servicios (%)",
+      "importance": 0.2599
+    },
+    {
+      "code": "pct_inactivity",
+      "name": "Inactividad física (%)",
+      "importance": 0.2458
+    },
+    {
+      "code": "pct_cholesterol_screening",
+      "name": "Cribado de colesterol (%)",
+      "importance": 0.2222
+    },
+    {
+      "code": "pct_lack_social_support",
+      "name": "Falta de apoyo social (%)",
+      "importance": 0.1827
+    },
+    {
+      "code": "pct_routine_checkup",
+      "name": "Chequeo médico anual (%)",
+      "importance": 0.1593
+    },
+    {
+      "code": "pct_no_transportation",
+      "name": "Falta de transporte confiable (%)",
+      "importance": 0.0995
+    },
+    {
+      "code": "pct_binge_drinking",
+      "name": "Consumo excesivo de alcohol (%)",
+      "importance": 0.0962
+    },
+    {
+      "code": "pct_food_insecurity",
+      "name": "Inseguridad alimentaria (%)",
+      "importance": 0.08
+    },
+    {
+      "code": "pct_no_health_insurance",
+      "name": "Sin seguro médico (%)",
+      "importance": 0.0697
+    },
+    {
+      "code": "pct_food_stamps",
+      "name": "Recibe ayuda alimentaria (SNAP) (%)",
+      "importance": 0.0393
+    }
+  ],
+  "total_seconds": 27.7
+}

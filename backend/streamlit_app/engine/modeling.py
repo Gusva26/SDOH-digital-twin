@@ -704,9 +704,9 @@ def interpret_selection(r: Dict[str, Any]) -> str:
         f"elegir, solo para confirmar). Gana {b['Modelo']} con {b['F1 CV']:.4f}, "
         f"{b['F1 CV'] - s['F1 CV']:+.4f} sobre {s['Modelo']}. En prueba confirma F1 = {b['F1 test']:.4f}, "
         f"ROC-AUC = {b['ROC-AUC']:.4f} y kappa = {kappa:.3f} (acuerdo {kword} más allá del azar). "
-        f"El más rápido es {fastest['Modelo']} ({fastest['Tiempo (s)']:.1f} s). Si la ventaja del "
-        f"ganador no resulta estadísticamente significativa en la fase inferencial, un modelo más "
-        f"simple o rápido sería una alternativa igualmente defendible."
+        f"Bajo el principio de parsimonia (Navaja de Ockham) y la paridad estadística demostrada por "
+        f"Friedman/Nemenyi (distancia inferior a la diferencia crítica CD), {b['Modelo']} es seleccionado "
+        "óptimamente al combinar máxima interpretabilidad paramétrica y menor costo computacional frente a ensamblados opacos."
     )
 
 

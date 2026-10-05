@@ -12,8 +12,8 @@ if not cols:
     st.stop()
 df = ds.df
 
-t1, t2, t3, t4, t5 = st.tabs(
-    ["Tendencia central y forma", "Distribución por variable", "Atípicos", "Normalidad", "Correlación"]
+t1, t2, t3, t4, t5, t6 = st.tabs(
+    ["Tendencia central y forma", "Distribución por variable", "Atípicos", "Normalidad", "Correlación", "Distribución espacial y calor"]
 )
 
 with t1:
@@ -71,3 +71,35 @@ with t5:
     corr = eda.correlation(df, cols)
     ui.render("eda_corr", ui.S_DATA, "Matriz de correlación de Spearman", eda.HOW_CORRELATION,
               eda.interpret_correlation(corr, ds.names, tgt), fig=eda.fig_correlation(corr, ds.names), order=18)
+
+with t6:
+    st.subheader("🗺️ Distribución espacial y autocorrelación de Moran")
+    var_map = st.selectbox("Variable para el mapa térmico", cols, format_func=ds.label, key="var_map")
+    if "lon" in df.columns and "lat" in df.columns and df["lon"].notna().any():
+        m = eda.moran_i(df, var_map)
+        ui.render(f"eda_spatial_{var_map}", ui.S_DATA, f"Distribución espacial de «{ds.label(var_map)}»",
+                  eda.HOW_SPATIAL, eda.interpret_moran(m, ds.label(var_map)),
+                  fig=eda.fig_spatial_distribution(df, var_map, ds.label(var_map)),
+                  table=pd.DataFrame([{
+                      "Variable": ds.label(var_map),
+                      "I de Moran": m["I"],
+                      "E[I]": m["E_I"],
+                      "Z-score": m["z"],
+                      "p-valor": m["p"],
+                      "Tracts analizados": m["n"],
+                  }]), order=19)
+    else:
+        st.info("Coordenadas espaciales no disponibles en el dataset actual.")
+
+    st.divider()
+    st.subheader("📈 Asociación bivariada: Determinante vs. Objetivo")
+    c_bx, c_by = st.columns(2)
+    with c_bx:
+        bx = st.selectbox("Determinante social (Eje X)", ds.features, format_func=ds.label, key="bx")
+    with c_by:
+        by = st.selectbox("Resultado de salud (Eje Y)", ds.targets, format_func=ds.label, key="by")
+    ui.render(f"eda_biv_{bx}_{by}", ui.S_DATA, f"Asociación bivariada: «{ds.label(bx)}» vs. «{ds.label(by)}»",
+              eda.HOW_BIVARIATE,
+              f"Dispersión y ajuste lineal entre «{ds.label(bx)}» y «{ds.label(by)}» para los census tracts estudiados.",
+              fig=eda.fig_bivariate_scatter(df, bx, by, ds.names), order=20)
+

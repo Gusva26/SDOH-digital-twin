@@ -71,9 +71,19 @@ def load_from_db(year: Optional[int] = None) -> Dataset:
         counties = {g[-5:]: n for g, n in db.query(County.geoid, County.name).all()}
         n_values = db.query(func.count(SDOHIndicator.id)).scalar() or 0
         n_tracts = db.query(func.count(CensusTract.id)).scalar() or 0
+        pts = pd.DataFrame(
+            db.query(
+                CensusTract.geoid,
+                func.st_x(CensusTract.center),
+                func.st_y(CensusTract.center),
+            ).all(),
+            columns=["geoid", "lon", "lat"],
+        )
     finally:
         db.close()
     df = df.copy()
+    if not pts.empty and "lon" not in df.columns:
+        df = df.merge(pts, on="geoid", how="left")
     df["county"] = df["geoid"].str[:5].map(lambda f: counties.get(f, f))
     return Dataset(
         df=df,

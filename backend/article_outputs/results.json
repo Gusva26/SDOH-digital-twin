@@ -666,10 +666,18 @@
     "¿Normal? (α=0,05)": "No"
    }
   ],
+  "moran": {
+   "I": 0.8831,
+   "E_I": -0.0006,
+   "z": 79.825,
+   "p": 0.0,
+   "n": 1632
+  },
   "interp_describe": "Se describen 14 variables. 7 presentan asimetría positiva relevante (media > mediana) y 3 son leptocúrticas, lo que anticipa valores atípicos y falta de normalidad. La mayor desigualdad entre tracts está en «Recibe ayuda alimentaria (SNAP) (%)» (CV = 79.4 %) y la menor en «Cribado de colesterol (%)» (CV = 3.9 %). Cuando media y mediana divergen, conviene resumir con mediana/RIC y usar pruebas no paramétricas en la fase inferencial.",
   "interp_outliers": "En total se marcan 257 valores atípicos por Tukey (249 por arriba y 8 por abajo) y 189 por z-robusto. La variable con más atípicos es «Sin seguro médico (%)» (57 tracts, 3.5 %). 3 variables no tienen atípicos. Los atípicos por arriba son tracts con carga social o sanitaria excepcional: no son errores de medición (CDC ya publica estimaciones suavizadas) sino los casos de mayor prioridad, por eso no se eliminan. Para que no dominen el ajuste se usan medianas en la imputación, escalado estándar dentro del pipeline y modelos de árboles robustos a extremos.",
   "interp_normality": "14 de 14 variables rechazan la normalidad en al menos una de las tres pruebas (α = 0,05). Con n ≈ 1632 tracts las pruebas detectan desviaciones pequeñas; por eso se complementan con el tamaño de la asimetría/curtosis y el gráfico Q-Q. Conclusión metodológica: los supuestos de las pruebas paramétricas clásicas (t, ANOVA, Pearson) no se sostienen, y la fase inferencial usa alternativas robustas: Spearman, Kruskal-Wallis, Friedman/Nemenyi, Wilcoxon, McNemar exacto, bootstrap y permutaciones.",
   "interp_corr": "De 91 pares, 57 tienen |ρ| ≥ 0,7 (asociación fuerte). El más fuerte es «Inseguridad alimentaria (%)» con «Falta de transporte confiable (%)» (ρ = +0.99). Esta multicolinealidad significa que los determinantes sociales se acumulan en los mismos tracts; los modelos de árboles la toleran, pero la importancia de cada variable debe leerse como compartida con sus correlacionadas. Con el objetivo, las asociaciones más fuertes son: «Amenaza de corte de servicios (%)» (ρ = +0.88), «Tabaquismo (%)» (ρ = +0.88), «Recibe ayuda alimentaria (SNAP) (%)» (ρ = +0.87).",
+  "interp_moran": "«Obesidad (%)»: I de Moran = 0.883 (E[I] = -0.0006, z = 79.83, p = 0). Evidencia fuerte autocorrelación espacial positiva (agrupamiento o clustering en el territorio): los vecindarios con alta prevalencia tienden a estar contiguos a otros vecindarios con alta prevalencia. Esto justifica cuantitativamente el diseño de un Gemelo Digital Geoespacial, pues los determinantes sociales no se distribuyen al azar en el espacio.",
   "missing_cells": 0
  },
  "prep": {
@@ -707,12 +715,12 @@
     "Rol": "Línea base lineal e interpretable",
     "Configs. probadas": 5,
     "Mejores hiperparámetros": "C=100.0",
-    "F1 train": 0.9451,
+    "F1 train": 0.9455,
     "F1 CV": 0.9278,
-    "F1 test": 0.9357,
-    "Accuracy test": 0.9358,
-    "ROC-AUC test": 0.995,
-    "Tiempo (s)": 15.0092,
+    "F1 test": 0.9297,
+    "Accuracy test": 0.9297,
+    "ROC-AUC test": 0.9949,
+    "Tiempo (s)": 5.4561,
     "Estado": "Seleccionado"
    },
    {
@@ -725,7 +733,7 @@
     "F1 test": 0.9261,
     "Accuracy test": 0.9266,
     "ROC-AUC test": 0.9921,
-    "Tiempo (s)": 26.5457,
+    "Tiempo (s)": 4.5055,
     "Estado": "Candidato"
    },
    {
@@ -738,7 +746,7 @@
     "F1 test": 0.9167,
     "Accuracy test": 0.9174,
     "ROC-AUC test": 0.989,
-    "Tiempo (s)": 10.9191,
+    "Tiempo (s)": 2.8339,
     "Estado": "Candidato"
    },
    {
@@ -751,7 +759,7 @@
     "F1 test": 0.9018,
     "Accuracy test": 0.9021,
     "ROC-AUC test": 0.9892,
-    "Tiempo (s)": 3.5919,
+    "Tiempo (s)": 1.4491,
     "Estado": "Candidato"
    },
    {
@@ -764,7 +772,7 @@
     "F1 test": 0.2327,
     "Accuracy test": 0.2355,
     "ROC-AUC test": 0.4902,
-    "Tiempo (s)": 0.2061,
+    "Tiempo (s)": 0.1666,
     "Estado": "Referencia"
    }
   ],
@@ -773,13 +781,13 @@
     "Puesto": 1,
     "Modelo": "Regresión Logística",
     "F1 CV": 0.9278,
-    "± desv.": 0.0181,
-    "F1 test": 0.9357,
-    "Accuracy balanceada": 0.9357,
-    "Kappa de Cohen": 0.9144,
-    "ROC-AUC": 0.995,
-    "Sobreajuste (train−CV)": 0.0173,
-    "Tiempo (s)": 15.0092
+    "± desv.": 0.0192,
+    "F1 test": 0.9297,
+    "Accuracy balanceada": 0.9297,
+    "Kappa de Cohen": 0.9062,
+    "ROC-AUC": 0.9949,
+    "Sobreajuste (train−CV)": 0.0177,
+    "Tiempo (s)": 5.4561
    },
    {
     "Puesto": 2,
@@ -791,7 +799,7 @@
     "Kappa de Cohen": 0.9021,
     "ROC-AUC": 0.9921,
     "Sobreajuste (train−CV)": 0.0849,
-    "Tiempo (s)": 26.5457
+    "Tiempo (s)": 4.5055
    },
    {
     "Puesto": 3,
@@ -803,7 +811,7 @@
     "Kappa de Cohen": 0.8899,
     "ROC-AUC": 0.989,
     "Sobreajuste (train−CV)": 0.0948,
-    "Tiempo (s)": 10.9191
+    "Tiempo (s)": 2.8339
    },
    {
     "Puesto": 4,
@@ -815,7 +823,7 @@
     "Kappa de Cohen": 0.8695,
     "ROC-AUC": 0.9892,
     "Sobreajuste (train−CV)": 0.0209,
-    "Tiempo (s)": 3.5919
+    "Tiempo (s)": 1.4491
    }
   ],
   "cv": [
@@ -823,12 +831,12 @@
     "Modelo": "Regresión Logística",
     "Folds": 10,
     "F1 medio": 0.9278,
-    "Desv.": 0.0181,
-    "IC95% inf.": 0.9149,
-    "IC95% sup.": 0.9408,
+    "Desv.": 0.0192,
+    "IC95% inf.": 0.9141,
+    "IC95% sup.": 0.9415,
     "Mín": 0.9085,
-    "Máx": 0.958,
-    "CV del F1 %": 1.9528
+    "Máx": 0.9618,
+    "CV del F1 %": 2.0652
    },
    {
     "Modelo": "Gradient Boosting",
@@ -904,19 +912,19 @@
     {
      "Configuración": "C=100.0",
      "F1 CV (media)": 0.9278,
-     "F1 CV (desv.)": 0.0172,
-     "F1 train (media)": 0.9451,
+     "F1 CV (desv.)": 0.0182,
+     "F1 train (media)": 0.9455,
      "Accuracy CV": 0.928,
-     "Tiempo ajuste (s)": 0.3202,
+     "Tiempo ajuste (s)": 0.1744,
      "Ranking": 1
     },
     {
      "Configuración": "C=10.0",
-     "F1 CV (media)": 0.9097,
+     "F1 CV (media)": 0.9093,
      "F1 CV (desv.)": 0.0182,
-     "F1 train (media)": 0.9246,
-     "Accuracy CV": 0.9096,
-     "Tiempo ajuste (s)": 0.2183,
+     "F1 train (media)": 0.9243,
+     "Accuracy CV": 0.9092,
+     "Tiempo ajuste (s)": 0.093,
      "Ranking": 2
     },
     {
@@ -925,7 +933,7 @@
      "F1 CV (desv.)": 0.0222,
      "F1 train (media)": 0.8704,
      "Accuracy CV": 0.8559,
-     "Tiempo ajuste (s)": 0.0951,
+     "Tiempo ajuste (s)": 0.0609,
      "Ranking": 3
     },
     {
@@ -934,7 +942,7 @@
      "F1 CV (desv.)": 0.0265,
      "F1 train (media)": 0.8048,
      "Accuracy CV": 0.7912,
-     "Tiempo ajuste (s)": 0.0875,
+     "Tiempo ajuste (s)": 0.0405,
      "Ranking": 4
     },
     {
@@ -943,7 +951,7 @@
      "F1 CV (desv.)": 0.0232,
      "F1 train (media)": 0.7651,
      "Accuracy CV": 0.7563,
-     "Tiempo ajuste (s)": 0.065,
+     "Tiempo ajuste (s)": 0.0389,
      "Ranking": 5
     }
    ],
@@ -954,7 +962,7 @@
      "F1 CV (desv.)": 0.0146,
      "F1 train (media)": 1.0,
      "Accuracy CV": 0.9153,
-     "Tiempo ajuste (s)": 2.3592,
+     "Tiempo ajuste (s)": 0.8752,
      "Ranking": 1
     },
     {
@@ -963,7 +971,7 @@
      "F1 CV (desv.)": 0.0142,
      "F1 train (media)": 1.0,
      "Accuracy CV": 0.9138,
-     "Tiempo ajuste (s)": 2.7886,
+     "Tiempo ajuste (s)": 1.0426,
      "Ranking": 2
     },
     {
@@ -972,7 +980,7 @@
      "F1 CV (desv.)": 0.0168,
      "F1 train (media)": 1.0,
      "Accuracy CV": 0.9115,
-     "Tiempo ajuste (s)": 3.1992,
+     "Tiempo ajuste (s)": 1.5882,
      "Ranking": 3
     },
     {
@@ -981,7 +989,7 @@
      "F1 CV (desv.)": 0.0169,
      "F1 train (media)": 1.0,
      "Accuracy CV": 0.9107,
-     "Tiempo ajuste (s)": 3.8766,
+     "Tiempo ajuste (s)": 1.4593,
      "Ranking": 4
     }
    ],
@@ -992,7 +1000,7 @@
      "F1 CV (desv.)": 0.0156,
      "F1 train (media)": 1.0,
      "Accuracy CV": 0.9057,
-     "Tiempo ajuste (s)": 1.6488,
+     "Tiempo ajuste (s)": 0.7539,
      "Ranking": 1
     },
     {
@@ -1001,7 +1009,7 @@
      "F1 CV (desv.)": 0.0126,
      "F1 train (media)": 0.9977,
      "Accuracy CV": 0.905,
-     "Tiempo ajuste (s)": 1.4637,
+     "Tiempo ajuste (s)": 0.6913,
      "Ranking": 2
     },
     {
@@ -1010,7 +1018,7 @@
      "F1 CV (desv.)": 0.0144,
      "F1 train (media)": 0.9648,
      "Accuracy CV": 0.8969,
-     "Tiempo ajuste (s)": 1.7796,
+     "Tiempo ajuste (s)": 0.6721,
      "Ranking": 3
     },
     {
@@ -1019,7 +1027,7 @@
      "F1 CV (desv.)": 0.012,
      "F1 train (media)": 0.9625,
      "Accuracy CV": 0.8935,
-     "Tiempo ajuste (s)": 1.3588,
+     "Tiempo ajuste (s)": 0.5164,
      "Ranking": 4
     }
    ],
@@ -1030,7 +1038,7 @@
      "F1 CV (desv.)": 0.0529,
      "F1 train (media)": 0.8614,
      "Accuracy CV": 0.8414,
-     "Tiempo ajuste (s)": 0.6023,
+     "Tiempo ajuste (s)": 0.3349,
      "Ranking": 1
     },
     {
@@ -1039,7 +1047,7 @@
      "F1 CV (desv.)": 0.0511,
      "F1 train (media)": 0.8496,
      "Accuracy CV": 0.8318,
-     "Tiempo ajuste (s)": 0.6688,
+     "Tiempo ajuste (s)": 0.4063,
      "Ranking": 2
     },
     {
@@ -1048,7 +1056,7 @@
      "F1 CV (desv.)": 0.0872,
      "F1 train (media)": 0.7585,
      "Accuracy CV": 0.7517,
-     "Tiempo ajuste (s)": 0.268,
+     "Tiempo ajuste (s)": 0.1841,
      "Ranking": 3
     },
     {
@@ -1057,7 +1065,7 @@
      "F1 CV (desv.)": 0.0872,
      "F1 train (media)": 0.7585,
      "Accuracy CV": 0.7517,
-     "Tiempo ajuste (s)": 0.4075,
+     "Tiempo ajuste (s)": 0.1852,
      "Ranking": 3
     }
    ]
@@ -1065,44 +1073,44 @@
   "class_report": [
    {
     "Nivel": "Bajo",
-    "Precisión": 0.9494,
-    "Sensibilidad (recall)": 0.9146,
-    "F1": 0.9317,
+    "Precisión": 0.9487,
+    "Sensibilidad (recall)": 0.9024,
+    "F1": 0.925,
     "Soporte": 82
    },
    {
     "Nivel": "Moderado",
-    "Precisión": 0.881,
+    "Precisión": 0.8706,
     "Sensibilidad (recall)": 0.9024,
-    "F1": 0.8916,
+    "F1": 0.8862,
     "Soporte": 82
    },
    {
     "Nivel": "Alto",
-    "Precisión": 0.9494,
+    "Precisión": 0.9375,
     "Sensibilidad (recall)": 0.9259,
-    "F1": 0.9375,
+    "F1": 0.9317,
     "Soporte": 81
    },
    {
     "Nivel": "Crítico",
-    "Precisión": 0.9647,
-    "Sensibilidad (recall)": 1.0,
-    "F1": 0.982,
+    "Precisión": 0.9643,
+    "Sensibilidad (recall)": 0.9878,
+    "F1": 0.9759,
     "Soporte": 82
    },
    {
     "Nivel": "Promedio macro",
-    "Precisión": 0.9361,
-    "Sensibilidad (recall)": 0.9357,
-    "F1": 0.9357,
+    "Precisión": 0.9303,
+    "Sensibilidad (recall)": 0.9297,
+    "F1": 0.9297,
     "Soporte": 327
    }
   ],
   "confusion": [
    [
-    75,
-    7,
+    74,
+    8,
     0,
     0
    ],
@@ -1121,100 +1129,100 @@
    [
     0,
     0,
-    0,
-    82
+    1,
+    81
    ]
   ],
   "importance": [
    {
     "Código": "pct_housing_insecurity",
-    "Importancia": 0.5818647494196677,
-    "Desv.": 0.020024377567586054,
+    "Importancia": 0.5761578655281286,
+    "Desv.": 0.02061393144006817,
     "Variable": "Inseguridad de vivienda (%)"
    },
    {
     "Código": "pct_utility_shutoff",
-    "Importancia": 0.5474722658101847,
-    "Desv.": 0.03170386983689528,
+    "Importancia": 0.541762280833918,
+    "Desv.": 0.029157043867029105,
     "Variable": "Amenaza de corte de servicios (%)"
    },
    {
     "Código": "pct_food_insecurity",
-    "Importancia": 0.5086039447854332,
-    "Desv.": 0.0308756208817977,
+    "Importancia": 0.5033252742231453,
+    "Desv.": 0.032963419055151544,
     "Variable": "Inseguridad alimentaria (%)"
    },
    {
     "Código": "pct_smoking",
-    "Importancia": 0.37704209987191717,
-    "Desv.": 0.03395750348151965,
+    "Importancia": 0.3717812642008263,
+    "Desv.": 0.03461255607263364,
     "Variable": "Tabaquismo (%)"
    },
    {
-    "Código": "pct_inactivity",
-    "Importancia": 0.376408910251269,
-    "Desv.": 0.024739531180259934,
-    "Variable": "Inactividad física (%)"
-   },
-   {
     "Código": "pct_no_health_insurance",
-    "Importancia": 0.37400554372508854,
-    "Desv.": 0.020970759860038466,
+    "Importancia": 0.3694982288474903,
+    "Desv.": 0.019899879468734036,
     "Variable": "Sin seguro médico (%)"
    },
    {
+    "Código": "pct_inactivity",
+    "Importancia": 0.36516723475921475,
+    "Desv.": 0.023745496715096695,
+    "Variable": "Inactividad física (%)"
+   },
+   {
     "Código": "pct_food_stamps",
-    "Importancia": 0.3300430368729506,
-    "Desv.": 0.021999565238658533,
+    "Importancia": 0.32386965936597967,
+    "Desv.": 0.020916716763666625,
     "Variable": "Recibe ayuda alimentaria (SNAP) (%)"
    },
    {
-    "Código": "pct_no_transportation",
-    "Importancia": 0.25041607655225046,
-    "Desv.": 0.02464640365290056,
-    "Variable": "Falta de transporte confiable (%)"
-   },
-   {
     "Código": "pct_loneliness",
-    "Importancia": 0.24761179964621166,
-    "Desv.": 0.01685324002666788,
+    "Importancia": 0.24765474984342303,
+    "Desv.": 0.019180125599474334,
     "Variable": "Soledad (%)"
    },
    {
+    "Código": "pct_no_transportation",
+    "Importancia": 0.24581801749639604,
+    "Desv.": 0.02511470218775435,
+    "Variable": "Falta de transporte confiable (%)"
+   },
+   {
     "Código": "pct_binge_drinking",
-    "Importancia": 0.22300101755811513,
-    "Desv.": 0.020498115598664844,
+    "Importancia": 0.21476600235694673,
+    "Desv.": 0.02361889797041954,
     "Variable": "Consumo excesivo de alcohol (%)"
    },
    {
     "Código": "pct_cholesterol_screening",
-    "Importancia": 0.12775614492367107,
-    "Desv.": 0.014426253566620998,
+    "Importancia": 0.12414259290028222,
+    "Desv.": 0.01848727851621696,
     "Variable": "Cribado de colesterol (%)"
    },
    {
     "Código": "pct_lack_social_support",
-    "Importancia": 0.08312817523665195,
-    "Desv.": 0.01773401256019498,
+    "Importancia": 0.06961777132155103,
+    "Desv.": 0.014753104150272188,
     "Variable": "Falta de apoyo social (%)"
    },
    {
     "Código": "pct_routine_checkup",
-    "Importancia": 0.06594643929818664,
-    "Desv.": 0.014904619878200444,
+    "Importancia": 0.06570871923037885,
+    "Desv.": 0.015652144556547065,
     "Variable": "Chequeo médico anual (%)"
    }
   ],
   "interp": {
-   "training": "Se entrenaron 4 algoritmos más una línea base al azar, probando en total 17 configuraciones de hiperparámetros con 10 particiones de validación cruzada cada una (57 s). El mejor, Regresión Logística, alcanza F1-macro 0.928 en CV y 0.936 en prueba, frente a 0.253 del azar: el modelo aprende una señal real de los determinantes sociales (3.7× la línea base). El peor candidato es Red Neuronal (MLP) (0.841). La brecha train–CV del mejor es 0.017: sin sobreajuste apreciable.",
-   "cv": "El mejor modelo (Regresión Logística) obtiene F1 = 0.9278 con IC 95 % [0.9149, 0.9408] sobre 10 folds; su F1 oscila entre 0.908 y 0.958. Su intervalo se solapa con el del segundo (Gradient Boosting), por lo que la diferencia puede no ser real: se contrasta formalmente en «Pruebas inferenciales». El modelo más estable entre particiones es Gradient Boosting (desv. 0.0154). Una desviación baja indica que el desempeño no depende de qué tracts caen en cada fold.",
-   "learning": "Con 156 tracts el F1 de validación es 0.866 y con 1044 llega a 0.929; el último incremento de datos aporta +0.001. La curva se ha estabilizado: más datos del mismo tipo aportarían poco. La distancia final train–validación es 0.016 (varianza contenida).",
-   "confusion": "De 327 tracts de prueba, 306 (94%) se clasifican en su nivel exacto y 21 (6%) en un nivel vecino; solo 0 (0%) fallan por dos o más niveles. Los errores se concentran junto a la diagonal porque los niveles son cuartiles de una variable continua: confundir Alto con Crítico es un error de frontera, no de concepto. La clase mejor reconocida es Crítico (sensibilidad 100%) y la peor Moderado (90%); las clases intermedias suelen ser las más difíciles al tener vecinos por ambos lados. Para priorizar intervenciones importa el nivel Crítico: sensibilidad 100% y precisión 96%.",
-   "roc": "AUC macro = 0.995. Por nivel: Crítico 1.000, Alto 0.994, Bajo 0.998, Moderado 0.989. Un AUC de 0,9 significa que, tomando al azar un tract de ese nivel y otro que no lo es, el modelo asigna mayor probabilidad al correcto el 90 % de las veces. El nivel Moderado es el más difícil de separar del resto.",
-   "importance": "Las variables que más sostienen las predicciones son: «Inseguridad de vivienda (%)» (−0.582 de F1 si se desordena), «Amenaza de corte de servicios (%)» (−0.547 de F1 si se desordena), «Inseguridad alimentaria (%)» (−0.509 de F1 si se desordena). 0 variables tienen una importancia indistinguible de cero (su efecto no supera su propia variabilidad). Al estar los determinantes correlacionados, una variable puede parecer poco importante porque otra correlacionada aporta la misma información; la importancia es predictiva, no causal.",
-   "selection": "Criterio declarado: mayor F1-macro medio en validación cruzada (el test no se usa para elegir, solo para confirmar). Gana Regresión Logística con 0.9278, +0.0127 sobre Gradient Boosting. En prueba confirma F1 = 0.9357, ROC-AUC = 0.9950 y kappa = 0.914 (acuerdo casi perfecto más allá del azar). El más rápido es Red Neuronal (MLP) (3.6 s). Si la ventaja del ganador no resulta estadísticamente significativa en la fase inferencial, un modelo más simple o rápido sería una alternativa igualmente defendible.",
+   "training": "Se entrenaron 4 algoritmos más una línea base al azar, probando en total 17 configuraciones de hiperparámetros con 10 particiones de validación cruzada cada una (15 s). El mejor, Regresión Logística, alcanza F1-macro 0.928 en CV y 0.930 en prueba, frente a 0.253 del azar: el modelo aprende una señal real de los determinantes sociales (3.7× la línea base). El peor candidato es Red Neuronal (MLP) (0.841). La brecha train–CV del mejor es 0.018: sin sobreajuste apreciable.",
+   "cv": "El mejor modelo (Regresión Logística) obtiene F1 = 0.9278 con IC 95 % [0.9141, 0.9415] sobre 10 folds; su F1 oscila entre 0.908 y 0.962. Su intervalo se solapa con el del segundo (Gradient Boosting), por lo que la diferencia puede no ser real: se contrasta formalmente en «Pruebas inferenciales». El modelo más estable entre particiones es Gradient Boosting (desv. 0.0154). Una desviación baja indica que el desempeño no depende de qué tracts caen en cada fold.",
+   "learning": "Con 156 tracts el F1 de validación es 0.867 y con 1044 llega a 0.929; el último incremento de datos aporta +0.002. La curva se ha estabilizado: más datos del mismo tipo aportarían poco. La distancia final train–validación es 0.017 (varianza contenida).",
+   "confusion": "De 327 tracts de prueba, 304 (93%) se clasifican en su nivel exacto y 23 (7%) en un nivel vecino; solo 0 (0%) fallan por dos o más niveles. Los errores se concentran junto a la diagonal porque los niveles son cuartiles de una variable continua: confundir Alto con Crítico es un error de frontera, no de concepto. La clase mejor reconocida es Crítico (sensibilidad 99%) y la peor Bajo (90%); las clases intermedias suelen ser las más difíciles al tener vecinos por ambos lados. Para priorizar intervenciones importa el nivel Crítico: sensibilidad 99% y precisión 96%.",
+   "roc": "AUC macro = 0.995. Por nivel: Crítico 1.000, Alto 0.995, Bajo 0.997, Moderado 0.988. Un AUC de 0,9 significa que, tomando al azar un tract de ese nivel y otro que no lo es, el modelo asigna mayor probabilidad al correcto el 90 % de las veces. El nivel Moderado es el más difícil de separar del resto.",
+   "importance": "Las variables que más sostienen las predicciones son: «Inseguridad de vivienda (%)» (−0.576 de F1 si se desordena), «Amenaza de corte de servicios (%)» (−0.542 de F1 si se desordena), «Inseguridad alimentaria (%)» (−0.503 de F1 si se desordena). 0 variables tienen una importancia indistinguible de cero (su efecto no supera su propia variabilidad). Al estar los determinantes correlacionados, una variable puede parecer poco importante porque otra correlacionada aporta la misma información; la importancia es predictiva, no causal.",
+   "selection": "Criterio declarado: mayor F1-macro medio en validación cruzada (el test no se usa para elegir, solo para confirmar). Gana Regresión Logística con 0.9278, +0.0127 sobre Gradient Boosting. En prueba confirma F1 = 0.9297, ROC-AUC = 0.9949 y kappa = 0.906 (acuerdo casi perfecto más allá del azar). Bajo el principio de parsimonia (Navaja de Ockham) y la paridad estadística demostrada por Friedman/Nemenyi (distancia inferior a la diferencia crítica CD), Regresión Logística es seleccionado óptimamente al combinar máxima interpretabilidad paramétrica y menor costo computacional frente a ensamblados opacos.",
    "hp": {
-    "Regresión Logística": "Regresión Logística: se probaron 5 configuraciones; la ganadora es «C=100.0» con F1 CV = 0.9278 ± 0.0172. La diferencia entre la mejor y la peor configuración es 0.1712, mayor que la variabilidad entre folds: la sintonía de hiperparámetros sí mejora el modelo. Significado: C: inverso de la regularización L2 (C pequeño = modelo más simple).",
+    "Regresión Logística": "Regresión Logística: se probaron 5 configuraciones; la ganadora es «C=100.0» con F1 CV = 0.9278 ± 0.0182. La diferencia entre la mejor y la peor configuración es 0.1712, mayor que la variabilidad entre folds: la sintonía de hiperparámetros sí mejora el modelo. Significado: C: inverso de la regularización L2 (C pequeño = modelo más simple).",
     "Gradient Boosting": "Gradient Boosting: se probaron 4 configuraciones; la ganadora es «learning_rate=0.1, max_depth=6» con F1 CV = 0.9151 ± 0.0146. La diferencia entre la mejor y la peor configuración es 0.0047, menor que la variabilidad entre folds: el modelo es poco sensible a estos hiperparámetros y la elección concreta apenas importa. Significado: learning_rate: tamaño del paso del boosting (bajo = aprendizaje más gradual); max_depth: profundidad máxima de cada árbol (None = sin límite).",
     "Random Forest": "Random Forest: se probaron 4 configuraciones; la ganadora es «max_depth=None, min_samples_leaf=1» con F1 CV = 0.9052 ± 0.0156. La diferencia entre la mejor y la peor configuración es 0.0125, menor que la variabilidad entre folds: el modelo es poco sensible a estos hiperparámetros y la elección concreta apenas importa. Significado: max_depth: profundidad máxima de cada árbol (None = sin límite); min_samples_leaf: mínimo de tracts por hoja (más alto = árboles más suaves).",
     "Red Neuronal (MLP)": "Red Neuronal (MLP): se probaron 4 configuraciones; la ganadora es «alpha=0.01, hidden_layer_sizes=(64, 32)» con F1 CV = 0.8406 ± 0.0529. La diferencia entre la mejor y la peor configuración es 0.0912, mayor que la variabilidad entre folds: la sintonía de hiperparámetros sí mejora el modelo. Significado: alpha: penalización L2 de los pesos de la red; hidden_layer_sizes: neuronas por capa oculta."
@@ -1247,29 +1255,29 @@
     [
      0.9464831555616855,
      0.9504926127810431,
-     0.9394150595011344,
+     0.9375311110464228,
      0.9435309755226629,
-     0.9450761825072428
+     0.9469211488726714
     ],
     [
      0.9322963150729049,
-     0.9494517054976165,
-     0.9352818877297068,
+     0.9479891880276021,
+     0.9338240434134216,
      0.9537597093187702,
      0.9511176857330703
     ],
     [
      0.9408994459254668,
-     0.947078707750784,
+     0.945975928067347,
      0.9436496895194066,
-     0.9536939807043987,
-     0.9574756735984867
+     0.9525023873241154,
+     0.9586280850557023
     ],
     [
-     0.9386806907269114,
-     0.9416272414802327,
-     0.9464888086543661,
-     0.9462987113654844,
+     0.9377298625164057,
+     0.9425777534378937,
+     0.9474210225983821,
+     0.947282584768024,
      0.954059804934819
     ]
    ],
@@ -1277,13 +1285,13 @@
     [
      0.9119176684017799,
      0.8807794066620402,
-     0.8501115661025451,
+     0.8536293627647205,
      0.8419174659836799,
      0.8474547073879358
     ],
     [
      0.9346492732442535,
-     0.9038681470698671,
+     0.9078221371838286,
      0.8916156794601375,
      0.8731063629862461,
      0.8874622203755169
@@ -1303,22 +1311,22 @@
      0.9202544792570491
     ],
     [
-     0.9541604005426072,
+     0.9503637322772786,
      0.9111539859631462,
      0.9379921545106897,
-     0.9121479451109162,
-     0.9243491273156741
+     0.9080316180123317,
+     0.924345687768286
     ],
     [
      0.9578650948436143,
-     0.9148690981057394,
+     0.9111924022200882,
      0.9379921545106897,
      0.908465099157047,
      0.92789427589197
     ]
    ]
   },
-  "seconds": 57.16355534000104
+  "seconds": 14.838232809000147
  },
  "inference": {
   "friedman": {
@@ -1379,8 +1387,8 @@
     "Modelo B": "Gradient Boosting",
     "Δ F1 medio (A−B)": 0.0127,
     "Wilcoxon p": 0.002,
-    "t Nadeau-Bengio": 2.1257,
-    "p corregida N-B": 0.0625,
+    "t Nadeau-Bengio": 1.9983,
+    "p corregida N-B": 0.0768,
     "r rango-biserial": 1.0,
     "Wilcoxon p (Holm)": 0.0137,
     "N-B p (Holm)": 0.2294,
@@ -1391,11 +1399,11 @@
     "Modelo B": "Random Forest",
     "Δ F1 medio (A−B)": 0.0227,
     "Wilcoxon p": 0.002,
-    "t Nadeau-Bengio": 2.9996,
-    "p corregida N-B": 0.015,
+    "t Nadeau-Bengio": 2.7707,
+    "p corregida N-B": 0.0217,
     "r rango-biserial": 1.0,
     "Wilcoxon p (Holm)": 0.0137,
-    "N-B p (Holm)": 0.0898,
+    "N-B p (Holm)": 0.1304,
     "¿Diferencia significativa?": "Solo una prueba"
    },
    {
@@ -1403,11 +1411,11 @@
     "Modelo B": "Red Neuronal (MLP)",
     "Δ F1 medio (A−B)": 0.0873,
     "Wilcoxon p": 0.002,
-    "t Nadeau-Bengio": 2.3969,
-    "p corregida N-B": 0.0401,
+    "t Nadeau-Bengio": 2.3606,
+    "p corregida N-B": 0.0426,
     "r rango-biserial": 1.0,
     "Wilcoxon p (Holm)": 0.0137,
-    "N-B p (Holm)": 0.2005,
+    "N-B p (Holm)": 0.2128,
     "¿Diferencia significativa?": "Solo una prueba"
    },
    {
@@ -1451,7 +1459,7 @@
     "Modelo B": "Línea base (azar estratificado)",
     "Δ F1 medio (A−B)": 0.6751,
     "Wilcoxon p": 0.002,
-    "t Nadeau-Bengio": 37.8675,
+    "t Nadeau-Bengio": 37.5319,
     "p corregida N-B": 0.0,
     "r rango-biserial": 1.0,
     "Wilcoxon p (Holm)": 0.0137,
@@ -1462,21 +1470,21 @@
   "mcnemar": {
    "a": "Regresión Logística",
    "b": "Gradient Boosting",
-   "n11": 294,
-   "n10": 12,
-   "n01": 9,
-   "n00": 12,
-   "p_exact": 0.6636238098144531,
-   "chi2": 0.19047619047619047,
-   "p_chi2": 0.6625205835400574
+   "n11": 293,
+   "n10": 11,
+   "n01": 10,
+   "n00": 13,
+   "p_exact": 1.0,
+   "chi2": 0.0,
+   "p_chi2": 1.0
   },
   "bootstrap": [
    {
     "Modelo": "Regresión Logística",
-    "F1 test": 0.9357,
-    "IC95% inf.": 0.9084,
-    "IC95% sup.": 0.9609,
-    "Amplitud IC": 0.0524
+    "F1 test": 0.9297,
+    "IC95% inf.": 0.9017,
+    "IC95% sup.": 0.9565,
+    "Amplitud IC": 0.0548
    },
    {
     "Modelo": "Gradient Boosting",
@@ -1510,17 +1518,17 @@
   "bootstrap_diff": {
    "a": "Regresión Logística",
    "b": "Gradient Boosting",
-   "mean": 0.009325622888402002,
-   "lo": -0.018560851095593738,
-   "hi": 0.03685474184508124,
-   "p_le0": 0.26
+   "mean": 0.003384918563297977,
+   "lo": -0.023597405698498282,
+   "hi": 0.031132024183426563,
+   "p_le0": 0.401
   },
   "permutation": {
-   "score": 0.9294171445018122,
+   "score": 0.9286818053246819,
    "p": 0.004975124378109453,
    "n": 200,
-   "perm_mean": 0.2458484240119678,
-   "perm_max": 0.2891719431723073
+   "perm_mean": 0.24594999131546885,
+   "perm_max": 0.2866494663648036
   },
   "spearman": [
    {
@@ -1864,9 +1872,9 @@
    "friedman": "Friedman χ² = 26.76 con 3 g.l., p = < 0,001 sobre 10 folds. Se rechaza H0: al menos un modelo rinde distinto. El tamaño del efecto (W de Kendall = 0.892) es grande, es decir, la ordenación de modelos es muy consistente entre folds. Con la diferencia crítica de Nemenyi (CD = 1.483 rangos) no se distinguen del mejor: Gradient Boosting; ese grupo es estadísticamente equivalente.",
    "cd": "Regresión Logística ocupa el mejor rango medio (1.00). Dentro de la banda (equivalentes al mejor): Gradient Boosting. Fuera de la banda (significativamente peores): Random Forest, Red Neuronal (MLP). Si varios modelos comparten banda, la elección entre ellos puede basarse en criterios secundarios como interpretabilidad o coste computacional.",
    "pairwise": "Se contrastan 7 pares con dos pruebas y corrección de Holm por comparaciones múltiples. Regresión Logística supera de forma robusta (ambas pruebas) a: Línea base (azar estratificado). Frente a Gradient Boosting, Random Forest, Red Neuronal (MLP) la diferencia no es concluyente: la t corregida de Nadeau-Bengio es más conservadora que Wilcoxon porque tiene en cuenta que los folds comparten datos de entrenamiento. El r rango-biserial (−1 a 1) indica en qué proporción de folds gana A: |r| > 0,5 es un efecto grande.",
-   "mcnemar": "Sobre los mismos tracts de prueba, Regresión Logística acierta donde Gradient Boosting falla en 12 casos y al revés en 9. Solo esas celdas discordantes informan de la diferencia. McNemar exacto: p = 0.6636 (χ² con corrección de continuidad = 0.19, p = 0.6625). No es significativa: ambos modelos cometen una cantidad de errores compatible con el azar sobre este conjunto de prueba.",
-   "bootstrap": "El F1 de prueba del mejor modelo (Regresión Logística) es 0.9357 con IC 95 % bootstrap [0.9084, 0.9609]: esa es la incertidumbre por haber evaluado sobre una muestra finita de tracts. La diferencia pareada Regresión Logística − Gradient Boosting vale +0.0093 con IC 95 % [-0.0186, +0.0369]; el intervalo incluye el 0 (en el 26% de las réplicas el segundo iguala o supera al primero), así que la ventaja no está garantizada.",
-   "permutation": "Al desordenar al azar los niveles de riesgo 200 veces, Regresión Logística obtiene de media F1 = 0.246 (máximo 0.289), mientras que con las etiquetas reales logra 0.929. p = 0.0050 (el mínimo alcanzable es 1/201 = 0.0050): el modelo capta una relación real entre determinantes sociales y resultado de salud, no un artefacto del azar.",
+   "mcnemar": "Sobre los mismos tracts de prueba, Regresión Logística acierta donde Gradient Boosting falla en 11 casos y al revés en 10. Solo esas celdas discordantes informan de la diferencia. McNemar exacto: p = 1.0000 (χ² con corrección de continuidad = 0.00, p = 1.0000). No es significativa: ambos modelos cometen una cantidad de errores compatible con el azar sobre este conjunto de prueba.",
+   "bootstrap": "El F1 de prueba del mejor modelo (Regresión Logística) es 0.9297 con IC 95 % bootstrap [0.9017, 0.9565]: esa es la incertidumbre por haber evaluado sobre una muestra finita de tracts. La diferencia pareada Regresión Logística − Gradient Boosting vale +0.0034 con IC 95 % [-0.0236, +0.0311]; el intervalo incluye el 0 (en el 40% de las réplicas el segundo iguala o supera al primero), así que la ventaja no está garantizada.",
+   "permutation": "Al desordenar al azar los niveles de riesgo 200 veces, Regresión Logística obtiene de media F1 = 0.246 (máximo 0.287), mientras que con las etiquetas reales logra 0.929. p = 0.0050 (el mínimo alcanzable es 1/201 = 0.0050): el modelo capta una relación real entre determinantes sociales y resultado de salud, no un artefacto del azar.",
    "spearman": "13 de 13 determinantes se asocian significativamente con «Obesidad (%)» tras Holm. Asociados a MAYOR prevalencia: «Amenaza de corte de servicios (%)» (ρ = +0.88), «Tabaquismo (%)» (ρ = +0.88), «Recibe ayuda alimentaria (SNAP) (%)» (ρ = +0.87). Asociados a MENOR prevalencia (factores protectores): «Consumo excesivo de alcohol (%)» (ρ = -0.71), «Cribado de colesterol (%)» (ρ = -0.46). Los intervalos estrechos reflejan el tamaño muestral; con n grande incluso ρ pequeñas son significativas, por eso se interpreta la fuerza (|ρ|) y no solo el p-valor. Son asociaciones ecológicas entre tracts, no efectos causales individuales.",
    "kruskal": "13 de 13 determinantes difieren significativamente entre los cuatro niveles de riesgo. 11 con efecto grande (ε² ≥ 0,26). El más discriminante es «Amenaza de corte de servicios (%)» (ε² = 0.752): su mediana pasa de 4.0 % en tracts de riesgo Bajo a 19.7 % en los Críticos. Estas variables son las que permiten al modelo separar los niveles, y coinciden en buena medida con la importancia por permutación.",
    "counties": "Kruskal-Wallis H = 521.82, p = < 0,001, ε² = 0.320 con 2 condados. La prevalencia de «Obesidad (%)» difiere entre condados: la mediana más alta es la de Cook County (30.4 %) y la más baja la de New York County (16.8 %). Por eso los niveles de riesgo son relativos al área de estudio completa y un modelo entrenado aquí debe recalibrarse antes de aplicarse a otro territorio."
@@ -1880,7 +1888,7 @@
    "cv": 0.9769692821715502,
    "sd": 0.016050678083192976,
    "test_f1": 0.9846417898114611,
-   "auc": 0.9995853644147323,
+   "auc": 0.99957271259287,
    "kappa": 0.9796121952740195,
    "baseline": 0.24328295630004299
   },
@@ -1891,7 +1899,7 @@
    "cv": 0.9470772748658434,
    "sd": 0.00511490524803284,
    "test_f1": 0.9286122364989123,
-   "auc": 0.9940854706543603,
+   "auc": 0.9940978151141666,
    "kappa": 0.9061095575751523,
    "baseline": 0.24434517195403868
   },
@@ -1899,11 +1907,11 @@
    "code": "pct_obesity",
    "name": "Obesidad (%)",
    "best": "Regresión Logística",
-   "cv": 0.9278255036632561,
-   "sd": 0.018118337534699783,
-   "test_f1": 0.9356948029593735,
-   "auc": 0.9949980745083339,
-   "kappa": 0.9143701523804774
+   "cv": 0.927834173361679,
+   "sd": 0.019161883004202084,
+   "test_f1": 0.9297020445003877,
+   "auc": 0.9949242298545434,
+   "kappa": 0.9062160982604901
   },
   {
    "code": "pct_high_bp",
@@ -1912,7 +1920,7 @@
    "cv": 0.9331710253689229,
    "sd": 0.017539707556447882,
    "test_f1": 0.9450403238972148,
-   "auc": 0.9942169781541517,
+   "auc": 0.9941169022207941,
    "kappa": 0.9266157989228008,
    "baseline": 0.2536861442470736
   },
@@ -1920,21 +1928,21 @@
    "code": "pct_chd",
    "name": "Enfermedad coronaria (%)",
    "best": "Regresión Logística",
-   "cv": 0.9061589941142472,
-   "sd": 0.014605603133231568,
-   "test_f1": 0.9199369169382937,
-   "auc": 0.9892928954125337,
-   "kappa": 0.893929186316341,
+   "cv": 0.9054160342411066,
+   "sd": 0.015624852069183875,
+   "test_f1": 0.916850026087113,
+   "auc": 0.9892567013549476,
+   "kappa": 0.8898454167758356,
    "baseline": 0.2284103222408536
   },
   {
    "code": "pct_depression",
    "name": "Depresión (%)",
    "best": "Regresión Logística",
-   "cv": 0.8509373825566365,
-   "sd": 0.02754232104436731,
+   "cv": 0.8516942629075978,
+   "sd": 0.029008959299203975,
    "test_f1": 0.8627304006325642,
-   "auc": 0.9725368712877216,
+   "auc": 0.9723995426095828,
    "kappa": 0.8204843479020325,
    "baseline": 0.2339503271232537
   },
@@ -1942,10 +1950,10 @@
    "code": "pct_mental_distress",
    "name": "Malestar mental frecuente (%)",
    "best": "Regresión Logística",
-   "cv": 0.9251444822662032,
-   "sd": 0.02560996273900796,
+   "cv": 0.9266938566780851,
+   "sd": 0.023119070414120917,
    "test_f1": 0.9321762762486681,
-   "auc": 0.9925706977469246,
+   "auc": 0.9926200735773096,
    "kappa": 0.9102645661041051,
    "baseline": 0.2492727887710493
   }
@@ -1953,7 +1961,7 @@
  "bench": {
   "phase": "evaluation",
   "year": 2023,
-  "executed_at": "2026-09-28T21:37:27Z",
+  "executed_at": "2026-10-01T15:00:45Z",
   "scale": {
    "tracts": 1632,
    "indicators": 27,
@@ -1961,12 +1969,12 @@
   },
   "latency": {
    "repeats": 30,
-   "median_seconds": 0.2655,
-   "p95_seconds": 0.3572,
-   "min_seconds": 0.1436,
-   "max_seconds": 2.3053,
-   "seconds_per_100k_inhabitants": 0.0038,
-   "projected_at_target_population": 0.019,
+   "median_seconds": 0.1646,
+   "p95_seconds": 0.2416,
+   "min_seconds": 0.0884,
+   "max_seconds": 0.2585,
+   "seconds_per_100k_inhabitants": 0.0024,
+   "projected_at_target_population": 0.0118,
    "target_seconds": 5.0,
    "target_population": 500000,
    "meets_h3": true
@@ -2008,17 +2016,28 @@
  },
  "hypotheses": {
   "target": "pct_obesity",
-  "executed_at": "2026-09-28T21:37:27Z",
+  "executed_at": "2026-10-01T15:00:45Z",
   "model_selection": {
    "target": "pct_obesity",
    "target_name": "Obesidad (%)",
-   "deployed": "Gradient Boosting",
+   "deployed": "Regresión Logística",
    "selection_metric": "F1-macro (validación cruzada estratificada)",
    "cv_folds": 5,
    "n_samples": 1632,
    "n_train": 1305,
    "n_test": 327,
    "candidates": [
+    {
+     "name": "Regresión Logística",
+     "role": "Línea base lineal e interpretable",
+     "cv_f1_mean": 0.9287,
+     "cv_f1_std": 0.0182,
+     "test_f1_macro": 0.9297,
+     "test_accuracy": 0.9297,
+     "test_roc_auc": 0.9949,
+     "train_seconds": 0.77,
+     "selected": true
+    },
     {
      "name": "Gradient Boosting",
      "role": "Boosting de árboles (tipo XGBoost), fuerte en datos tabulares",
@@ -2027,18 +2046,7 @@
      "test_f1_macro": 0.9228,
      "test_accuracy": 0.9235,
      "test_roc_auc": 0.9908,
-     "train_seconds": 12.81,
-     "selected": true
-    },
-    {
-     "name": "Regresión Logística",
-     "role": "Línea base lineal e interpretable",
-     "cv_f1_mean": 0.9083,
-     "cv_f1_std": 0.013,
-     "test_f1_macro": 0.9238,
-     "test_accuracy": 0.9235,
-     "test_roc_auc": 0.9926,
-     "train_seconds": 0.51,
+     "train_seconds": 10.1,
      "selected": false
     },
     {
@@ -2049,7 +2057,7 @@
      "test_f1_macro": 0.9105,
      "test_accuracy": 0.9113,
      "test_roc_auc": 0.9889,
-     "train_seconds": 10.03,
+     "train_seconds": 7.43,
      "selected": false
     },
     {
@@ -2060,7 +2068,7 @@
      "test_f1_macro": 0.9018,
      "test_accuracy": 0.9021,
      "test_roc_auc": 0.9892,
-     "train_seconds": 2.94,
+     "train_seconds": 2.47,
      "selected": false
     }
    ],
@@ -2068,23 +2076,23 @@
     "applicable": true,
     "folds": 5,
     "winner_scores": [
-     0.931,
-     0.9115,
-     0.9304,
-     0.8733,
-     0.9008
+     0.9579,
+     0.9112,
+     0.938,
+     0.9085,
+     0.9279
     ],
     "runner_scores": [
-     0.8939,
-     0.8387,
-     0.8546,
-     0.8502,
-     0.8447
+     0.927,
+     0.9117,
+     0.9383,
+     0.9001,
+     0.9041
     ],
-    "mean_diff": 0.053,
-    "wilcoxon_stat": 15.0,
-    "p_value": 0.0312,
-    "separable": true
+    "mean_diff": 0.0124,
+    "wilcoxon_stat": 12.0,
+    "p_value": 0.1562,
+    "separable": false
    },
    "regressor": {
     "name": "Regresión Ridge (estimación del %)",
@@ -2097,9 +2105,9 @@
      "high": -0.329,
      "critical": -0.059
     },
-    "clf_vs_reg_level_agreement": 0.8685
+    "clf_vs_reg_level_agreement": 0.8807
    },
-   "verdict": "Gradient Boosting supera a Regresión Logística de forma estadísticamente significativa en 5 folds de CV pareada (Δ F1-macro = +0.0530, p = 0.0312 < 0,05). Es el modelo definitivo para producción."
+   "verdict": "Regresión Logística y Gradient Boosting NO son separables con esta muestra: Δ F1-macro = +0.0124, p = 0.1562 ≥ 0,05. Regresión Logística se despliega por el criterio declarado, pero la ventaja frente al segundo clasificado no está estadísticamente establecida; no debe presentarse como superioridad demostrada."
   },
   "parity": {
    "target": "pct_obesity",
@@ -4712,13 +4720,13 @@
   "hypotheses": {
    "target": "pct_obesity",
    "year": 2023,
-   "executed_at": "2026-09-28T21:38:08Z",
+   "executed_at": "2026-10-01T15:00:55Z",
    "hypotheses": [
     {
      "code": "H1",
      "statement": "Menor latencia y mayor resolución espacial que la evaluación retrospectiva.",
      "criterion": "Recomputación por tracto (O(n log n) con bisección) frente a percentil retrospectivo O(n² log n), y emisión a nivel de tracto frente a condensing a condado.",
-     "observed": "Latencia 0.0006 s frente a 0.0828 s de la línea base retrospectiva (×136.6 más rápida; IC 95 % de la diferencia [0.0797, 0.0896] s). Resolución: 1632 tracts frente a 2 condados (×816.0).",
+     "observed": "Latencia 0.0005 s frente a 0.0680 s de la línea base retrospectiva (×147.1 más rápida; IC 95 % de la diferencia [0.0674, 0.0692] s). Resolución: 1632 tracts frente a 2 condados (×816.0).",
      "verdict": "ACEPTADA",
      "detail": {
       "applicable": true,
@@ -4726,14 +4734,14 @@
       "tracts": 1632,
       "indicators": 27,
       "population": 6969720,
-      "current_median_s": 0.000606,
-      "baseline_median_s": 0.082803,
-      "speedup": 136.6,
-      "current_p95_s": 0.001097,
-      "baseline_p95_s": 0.097061,
+      "current_median_s": 0.000462,
+      "baseline_median_s": 0.068042,
+      "speedup": 147.1,
+      "current_p95_s": 0.000476,
+      "baseline_p95_s": 0.070565,
       "delta_ci": [
-       0.0797,
-       0.0896
+       0.0674,
+       0.0692
       ],
       "resolution": {
        "units": 1632,
@@ -4748,9 +4756,9 @@
      "code": "H2",
      "statement": "El modelado de accesibilidad con decaimiento mejora la validez predictiva.",
      "criterion": "Algún radio de decaimiento plausible (5–80 km) mejora la correlación de rangos del compuesto frente a la cobertura binaria, contra pct_obesity observado, con p de permutación < 0,05.",
-     "observed": "Validez |ρ| con decaimiento = 0.5058 frente a cobertura binaria = 0.6697 (Δ = -0.1639, IC 95 % [-0.2232, -0.1128]); p de permutación = 0.4763 con 2000 permutaciones; n = 1632 tracts. El compuesto sin capa de accesibilidad alcanza |ρ| = 0.8737. Barrido de radio 5–80 km: ningún radio supera a la cobertura binaria (mejor |ρ| = 0.6068 a 80 km, Δ = -0.0629, p = 0.4853). La red tiene 2 hospitales en áreas metropolitanas distintas; el término de accesibilidad cubre solo el 58.64 % de los tracts, de modo que el contraste entre variantes mueve poco la correlación. Se barre el radio de 5 a 80 km para que la conclusión no dependa de un parámetro arbitrario.",
+     "observed": "Validez |ρ| con decaimiento = 0.5054 frente a cobertura binaria = 0.6697 (Δ = -0.1643, IC 95 % [-0.2233, -0.1129]); p de permutación = 0.4753 con 2000 permutaciones; n = 1632 tracts. El compuesto sin capa de accesibilidad alcanza |ρ| = 0.8737. Barrido de radio 5–80 km: ningún radio supera a la cobertura binaria (mejor |ρ| = 0.6066 a 80 km, Δ = -0.0631, p = 0.4858). La red tiene 2 hospitales en áreas metropolitanas distintas; el término de accesibilidad cubre solo el 58.64 % de los tracts, de modo que el contraste entre variantes mueve poco la correlación. Se barre el radio de 5 a 80 km para que la conclusión no dependa de un parámetro arbitrario.",
      "verdict": "RECHAZADA",
-     "verdict_reason": "El decaimiento NO mejora la validez: |ρ| = 0.5058 frente a 0.6697 de la cobertura binaria, y ningún radio de 5 a 80 km la supera. Peor aún, cualquier capa de accesibilidad degrada la validez respecto al compuesto sin ella (|ρ| = 0.8737): el término de accesibilidad es casi ortogonal al resultado de salud y solo diluye la correlación de rangos. Con esta red de 2 hospitales la hipótesis no tiene respaldo empírico y no debe sostenerse.",
+     "verdict_reason": "El decaimiento NO mejora la validez: |ρ| = 0.5054 frente a 0.6697 de la cobertura binaria, y ningún radio de 5 a 80 km la supera. Peor aún, cualquier capa de accesibilidad degrada la validez respecto al compuesto sin ella (|ρ| = 0.8737): el término de accesibilidad es casi ortogonal al resultado de salud y solo diluye la correlación de rangos. Con esta red de 2 hospitales la hipótesis no tiene respaldo empírico y no debe sostenerse.",
      "detail": {
       "applicable": true,
       "outcome": "pct_obesity",
@@ -4760,41 +4768,41 @@
       "radius_km": 15.0,
       "distances_km": {
        "min": 0.1,
-       "median": 596.08,
-       "max": 1197.69
+       "median": 596.04,
+       "max": 1197.94
       },
       "covered_share_pct": 58.64,
       "rho": {
        "sin_accesibilidad": 0.8737,
        "cobertura_binaria": 0.6697,
-       "decaimiento": 0.5058
+       "decaimiento": 0.5054
       },
-      "delta_rho": -0.1639,
+      "delta_rho": -0.1643,
       "delta_ci": [
-       -0.2232,
-       -0.1128
+       -0.2233,
+       -0.1129
       ],
-      "permutation_p": 0.4763,
+      "permutation_p": 0.4753,
       "significant": false,
       "radius_sweep": [
        {
         "radius_km": 5.0,
-        "rho": 0.5428,
-        "delta_rho": -0.1269,
+        "rho": 0.542,
+        "delta_rho": -0.1277,
         "permutation_p": 0.4763,
         "beats_binary": false
        },
        {
         "radius_km": 10.0,
-        "rho": 0.4905,
-        "delta_rho": -0.1792,
-        "permutation_p": 0.4713,
+        "rho": 0.49,
+        "delta_rho": -0.1797,
+        "permutation_p": 0.4718,
         "beats_binary": false
        },
        {
         "radius_km": 20.0,
-        "rho": 0.5266,
-        "delta_rho": -0.1431,
+        "rho": 0.5263,
+        "delta_rho": -0.1434,
         "permutation_p": 0.4788,
         "beats_binary": false
        },
@@ -4802,22 +4810,22 @@
         "radius_km": 40.0,
         "rho": 0.5754,
         "delta_rho": -0.0943,
-        "permutation_p": 0.4808,
+        "permutation_p": 0.4823,
         "beats_binary": false
        },
        {
         "radius_km": 80.0,
-        "rho": 0.6068,
-        "delta_rho": -0.0629,
-        "permutation_p": 0.4853,
+        "rho": 0.6066,
+        "delta_rho": -0.0631,
+        "permutation_p": 0.4858,
         "beats_binary": false
        }
       ],
       "best_radius": {
        "radius_km": 80.0,
-       "rho": 0.6068,
-       "delta_rho": -0.0629,
-       "permutation_p": 0.4853,
+       "rho": 0.6066,
+       "delta_rho": -0.0631,
+       "permutation_p": 0.4858,
        "beats_binary": false
       },
       "n_hospitals": 2,
@@ -4833,7 +4841,7 @@
        ],
        [
         "decaimiento",
-        0.5058
+        0.5054
        ]
       ]
      }
@@ -4842,13 +4850,13 @@
      "code": "H3",
      "statement": "Recomputación < 5 s hasta 500 000 habitantes.",
      "criterion": "Latencia por debajo de 5 s con 500 000 habitantes o más.",
-     "observed": "Mediana 0.2655 s (p95 0.3572 s) medida sobre 6 969 720 habitantes, es decir 13.9× la población objetivo: el criterio se cumple con el dato observado, sin necesidad de extrapolar.",
+     "observed": "Mediana 0.1646 s (p95 0.2416 s) medida sobre 6 969 720 habitantes, es decir 13.9× la población objetivo: el criterio se cumple con el dato observado, sin necesidad de extrapolar.",
      "verdict": "ACEPTADA",
      "detail": {
       "applicable": true,
       "basis": "medido",
-      "median_s": 0.2655,
-      "p95_s": 0.3572,
+      "median_s": 0.1646,
+      "p95_s": 0.2416,
       "population": 6969720,
       "target_s": 5.0,
       "target_population": 500000,
@@ -5018,69 +5026,69 @@
    ],
    "permutation_importance": [
     {
-     "code": "pct_utility_shutoff",
-     "name": "Amenaza de corte de servicios (%)",
-     "importance": 0.4975
-    },
-    {
-     "code": "pct_loneliness",
-     "name": "Soledad (%)",
-     "importance": 0.205
-    },
-    {
-     "code": "pct_smoking",
-     "name": "Tabaquismo (%)",
-     "importance": 0.0386
-    },
-    {
-     "code": "pct_binge_drinking",
-     "name": "Consumo excesivo de alcohol (%)",
-     "importance": 0.0354
-    },
-    {
-     "code": "pct_no_health_insurance",
-     "name": "Sin seguro médico (%)",
-     "importance": 0.0272
-    },
-    {
-     "code": "pct_food_stamps",
-     "name": "Recibe ayuda alimentaria (SNAP) (%)",
-     "importance": 0.0243
-    },
-    {
-     "code": "pct_lack_social_support",
-     "name": "Falta de apoyo social (%)",
-     "importance": 0.023
-    },
-    {
-     "code": "pct_cholesterol_screening",
-     "name": "Cribado de colesterol (%)",
-     "importance": 0.0169
-    },
-    {
-     "code": "pct_inactivity",
-     "name": "Inactividad física (%)",
-     "importance": 0.0131
-    },
-    {
      "code": "pct_housing_insecurity",
      "name": "Inseguridad de vivienda (%)",
-     "importance": 0.0124
+     "importance": 0.5851
     },
     {
-     "code": "pct_routine_checkup",
-     "name": "Chequeo médico anual (%)",
-     "importance": 0.0111
+     "code": "pct_utility_shutoff",
+     "name": "Amenaza de corte de servicios (%)",
+     "importance": 0.559
     },
     {
      "code": "pct_food_insecurity",
      "name": "Inseguridad alimentaria (%)",
-     "importance": 0.0056
+     "importance": 0.5056
+    },
+    {
+     "code": "pct_smoking",
+     "name": "Tabaquismo (%)",
+     "importance": 0.385
+    },
+    {
+     "code": "pct_no_health_insurance",
+     "name": "Sin seguro médico (%)",
+     "importance": 0.3797
+    },
+    {
+     "code": "pct_inactivity",
+     "name": "Inactividad física (%)",
+     "importance": 0.3739
+    },
+    {
+     "code": "pct_food_stamps",
+     "name": "Recibe ayuda alimentaria (SNAP) (%)",
+     "importance": 0.3306
     },
     {
      "code": "pct_no_transportation",
      "name": "Falta de transporte confiable (%)",
-     "importance": 0.0031
+     "importance": 0.2576
+    },
+    {
+     "code": "pct_loneliness",
+     "name": "Soledad (%)",
+     "importance": 0.2464
+    },
+    {
+     "code": "pct_binge_drinking",
+     "name": "Consumo excesivo de alcohol (%)",
+     "importance": 0.212
+    },
+    {
+     "code": "pct_cholesterol_screening",
+     "name": "Cribado de colesterol (%)",
+     "importance": 0.1197
+    },
+    {
+     "code": "pct_routine_checkup",
+     "name": "Chequeo médico anual (%)",
+     "importance": 0.071
+    },
+    {
+     "code": "pct_lack_social_support",
+     "name": "Falta de apoyo social (%)",
+     "importance": 0.0647
     }
    ]
   },

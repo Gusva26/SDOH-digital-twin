@@ -459,3 +459,137 @@ HOW_CORRELATION = (
     "asociación positiva (suben juntas), azul = negativa; |ρ| ≥ 0,7 fuerte, 0,4–0,7 moderada, "
     "< 0,4 débil. Correlación no implica causalidad."
 )
+
+
+# --------------------------------------------------------------------------- #
+# Dimensión espacial y autocorrelación (Moran's I)
+# --------------------------------------------------------------------------- #
+
+
+def moran_i(df: pd.DataFrame, col: str, k: int = 5) -> Dict[str, float]:
+    """Calcula el índice I de Moran de autocorrelación espacial global (k-vecinos más cercanos)."""
+    if "lon" not in df.columns or "lat" not in df.columns:
+        return {"I": 0.0, "E_I": 0.0, "z": 0.0, "p": 1.0, "n": 0}
+    sub = df[["lon", "lat", col]].dropna()
+    n = len(sub)
+    if n < 15:
+        return {"I": 0.0, "E_I": 0.0, "z": 0.0, "p": 1.0, "n": n}
+
+    coords = sub[["lon", "lat"]].values
+    vals = sub[col].values.astype(float)
+    z = vals - vals.mean()
+    s2 = np.sum(z**2)
+    if s2 == 0:
+        return {"I": 0.0, "E_I": 0.0, "z": 0.0, "p": 1.0, "n": n}
+
+    from scipy.spatial import cKDTree
+    tree = cKDTree(coords)
+    _, idxs = tree.query(coords, k=min(k + 1, n))
+
+    numerator = 0.0
+    for i in range(n):
+        neighbors = idxs[i, 1:]
+        numerator += z[i] * np.sum(z[neighbors]) / len(neighbors)
+
+    I = float(numerator / s2)
+    E_I = -1.0 / (n - 1)
+    var_I = 1.0 / (k * n)
+    se = np.sqrt(var_I) if var_I > 0 else 1.0
+    z_score = float((I - E_I) / se)
+    p_val = float(2 * (1 - stats.norm.cdf(abs(z_score))))
+
+    return {
+        "I": round(I, 4),
+        "E_I": round(E_I, 4),
+        "z": round(z_score, 3),
+        "p": float(f"{p_val:.3g}"),
+        "n": n,
+    }
+
+
+def interpret_moran(m: Dict[str, float], name: str) -> str:
+    i_val, z_val, p_val = m["I"], m["z"], m["p"]
+    if p_val < 0.05 and i_val > 0:
+        clus = "fuerte autocorrelación espacial positiva (agrupamiento o clustering en el territorio)"
+        concl = ("los vecindarios con alta prevalencia tienden a estar contiguos a otros vecindarios con alta "
+                 "prevalencia. Esto justifica cuantitativamente el diseño de un Gemelo Digital Geoespacial, "
+                 "pues los determinantes sociales no se distribuyen al azar en el espacio.")
+    elif p_val < 0.05 and i_val < 0:
+        clus = "autocorrelación espacial negativa (dispersión en damero)"
+        concl = "los valores altos y bajos se alternan entre tracts vecinos."
+    else:
+        clus = "ausencia de autocorrelación espacial (distribución espacial aleatoria)"
+        concl = "no se aprecia dependencia geográfica significativa al nivel del área analizada."
+    return f"«{name}»: I de Moran = {i_val:.3f} (E[I] = {m['E_I']:.4f}, z = {z_val:.2f}, p = {p_val:.3g}). Evidencia {clus}: {concl}"
+
+
+def fig_spatial_distribution(df: pd.DataFrame, col: str, name: str):
+    """Mapa dual de Cook County (Chicago) y New York County (Manhattan)."""
+    sub = df.dropna(subset=[col, "lon", "lat"])
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.6), gridspec_kw={"width_ratios": [1.1, 1]})
+    vmin, vmax = float(sub[col].quantile(0.02)), float(sub[col].quantile(0.98))
+    cmap = "YlOrRd"
+
+    cook = sub[sub["county"] == "Cook County"]
+    if not cook.empty:
+        axes[0].scatter(cook["lon"], cook["lat"], c=cook[col], cmap=cmap, s=9,
+                        vmin=vmin, vmax=vmax, alpha=0.85)
+    axes[0].set_title(f"Cook County, IL · {short(name, 28)}", color=INK)
+    axes[0].set_xlabel("Longitud")
+    axes[0].set_ylabel("Latitud")
+    axes[0].set_aspect("equal", adjustable="datalim")
+    axes[0].tick_params(labelsize=7)
+
+    ny = sub[sub["county"] == "New York County"]
+    if not ny.empty:
+        axes[1].scatter(ny["lon"], ny["lat"], c=ny[col], cmap=cmap, s=18,
+                        vmin=vmin, vmax=vmax, alpha=0.85)
+    axes[1].set_title(f"New York County, NY · {short(name, 28)}", color=INK)
+    axes[1].set_xlabel("Longitud")
+    axes[1].set_ylabel("Latitud")
+    axes[1].set_aspect("equal", adjustable="datalim")
+    axes[1].tick_params(labelsize=7)
+
+    fig.subplots_adjust(right=0.88)
+    cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=vmin, vmax=vmax))
+    fig.colorbar(sm, cax=cbar_ax, label=f"{short(name, 25)} (%)")
+    return fig
+
+
+def fig_bivariate_scatter(df: pd.DataFrame, x_col: str, y_col: str, names: Dict[str, str]):
+    """Diagrama de dispersión bivariado X vs Y con recta de ajuste y puntos por condado."""
+    sub = df.dropna(subset=[x_col, y_col])
+    fig, ax = plt.subplots(figsize=(6.5, 4.2))
+
+    for county, color, m in (("Cook County", "#2563eb", "o"), ("New York County", "#ea580c", "s")):
+        c_sub = sub[sub["county"] == county]
+        if not c_sub.empty:
+            ax.scatter(c_sub[x_col], c_sub[y_col], s=12, color=color, alpha=0.55, marker=m, label=county)
+
+    xs = sub[x_col].values.astype(float)
+    ys = sub[y_col].values.astype(float)
+    slope, inter, r_val, p_val, _ = stats.linregress(xs, ys)
+    grid_x = np.linspace(xs.min(), xs.max(), 100)
+    ax.plot(grid_x, slope * grid_x + inter, color=INK, linewidth=1.8,
+            label=f"Ajuste lineal (R² = {r_val**2:.2f}, p < {p_val:.2g})")
+
+    ax.set_xlabel(names.get(x_col, x_col) + " (%)")
+    ax.set_ylabel(names.get(y_col, y_col) + " (%)")
+    ax.set_title(f"Asociación: {short(names.get(x_col, x_col), 24)} vs. {short(names.get(y_col, y_col), 24)}", color=INK)
+    ax.legend(fontsize=8, frameon=True, loc="best")
+    return fig
+
+
+HOW_SPATIAL = (
+    "Mapa térmico / cloroplético sobre los centros de cada census tract en Cook County (Chicago) "
+    "y New York County (Manhattan). Colores más cálidos (rojo/ámbar) representan mayores concentraciones. "
+    "El I de Moran cuantifica si los valores altos tienden a agruparse en clústeres espaciales contiguos."
+)
+
+HOW_BIVARIATE = (
+    "Diagrama de dispersión bivariado entre un determinante social (eje X) y el resultado sanitario (eje Y), "
+    "diferenciando tracts de Cook County (azul) y New York County (naranja). La recta muestra la tendencia "
+    "promedio global y su coeficiente de determinación R²."
+)
+

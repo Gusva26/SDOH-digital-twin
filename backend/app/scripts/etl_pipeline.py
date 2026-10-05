@@ -44,6 +44,7 @@ from shapely.geometry.polygon import orient
 from shapely.ops import unary_union
 from shapely import wkb
 
+from sqlalchemy import func
 from app.core.database import SessionLocal
 from app.models.geo import (
     CatchmentMembership,
@@ -187,12 +188,17 @@ def _center_to_point(center) -> Optional[Point]:
     """Convert a stored geometry / WKBElement to a shapely Point."""
     try:
         from geoalchemy2.shape import to_shape
-
         shape = to_shape(center)
-        return Point(shape)
+        if isinstance(shape, Point):
+            return shape
+        return Point(shape.x, shape.y)
     except Exception:
         try:
-            return wkb.loads(bytes.fromhex(str(center.data)))
+            from shapely import wkb
+            if hasattr(center, "data"):
+                data = bytes.fromhex(str(center.data)) if isinstance(center.data, str) else bytes(center.data)
+                return wkb.loads(data)
+            return None
         except Exception:
             return None
 
@@ -258,20 +264,45 @@ def _multipolygon_from_rings(rings) -> Optional[MultiPolygon]:
     for ring in rings or []:
         if not ring or len(ring) < 4:
             continue
-        poly = Polygon(ring)
-        if not poly.is_valid:
-            poly = poly.buffer(0)
-        if poly.is_empty or poly.area <= 0:
+        try:
+            poly = Polygon(ring)
+            if not poly.is_valid:
+                poly = poly.buffer(0)
+            if poly.is_empty or poly.area <= 0:
+                continue
+            pieces.append(poly)
+        except Exception:
             continue
-        pieces.append(poly)
     if not pieces:
         return None
-    merged = unary_union(pieces)
-    if merged.geom_type == "Polygon":
-        merged = MultiPolygon([merged])
-    if merged.geom_type != "MultiPolygon":
+    try:
+        merged = unary_union(pieces)
+    except Exception:
         return None
-    return MultiPolygon([orient(p, sign=1.0) for p in merged.geoms])
+
+    if merged.geom_type == "Polygon":
+        polys = [merged]
+    elif merged.geom_type == "MultiPolygon":
+        polys = list(merged.geoms)
+    elif merged.geom_type == "GeometryCollection":
+        polys = [g for g in merged.geoms if g.geom_type == "Polygon"]
+    else:
+        return None
+
+    if not polys:
+        return None
+
+    try:
+        oriented = [orient(p, sign=1.0) for p in polys if not p.is_empty and p.area > 0]
+        if not oriented:
+            return None
+        from shapely import multipolygons
+        return multipolygons(oriented)
+    except Exception:
+        try:
+            return MultiPolygon(oriented)
+        except Exception:
+            return None
 
 
 _WKB_CACHE: Dict[str, object] = {}
@@ -546,22 +577,21 @@ def create_hospitals_and_catchments(db, radius_km: float = 15) -> int:
         )
         db.add(catchment)
         db.flush()
-        for tract in db.query(CensusTract).all():
-            if tract.center is None:
+        for tract_id, lon, lat in (
+            db.query(CensusTract.id, func.st_x(CensusTract.center), func.st_y(CensusTract.center))
+            .filter(CensusTract.center.isnot(None))
+            .all()
+        ):
+            if lon is None or lat is None:
                 continue
-            pt = _center_to_point(tract.center)
-            if pt is None:
-                continue
-            if _haversine_km(
-                hospital.latitude, hospital.longitude, pt.y, pt.x
-            ) <= radius_km:
+            if _haversine_km(hospital.latitude, hospital.longitude, lat, lon) <= radius_km:
                 db.add(
                     CatchmentMembership(
-                        catchment_id=catchment.id, tract_id=tract.id
+                        catchment_id=catchment.id, tract_id=tract_id
                     )
                 )
                 memberships += 1
-    db.commit()
+        db.commit()
     return memberships
 
 

@@ -20,9 +20,25 @@ from sqlalchemy import func  # noqa: E402
 
 from app.core.database import SessionLocal  # noqa: E402
 from app.models.geo import CensusTract  # noqa: E402
-from app.services import crispdm_service, ml_evaluation  # noqa: E402
+from app.services import crispdm_service, ml_evaluation, ml_service  # noqa: E402
 from engine import data, eda, inference as inf, modeling  # noqa: E402
 from engine.style import BLUE, GREEN, INK, LEVEL_COLORS, LEVEL_ES, MUTED, RED, plt, short  # noqa: E402
+
+import warnings
+warnings.filterwarnings("ignore")
+
+try:
+    from multiprocessing import resource_tracker
+    if hasattr(resource_tracker, "ResourceTracker") and hasattr(resource_tracker.ResourceTracker, "_stop"):
+        _orig_stop = resource_tracker.ResourceTracker._stop
+        def _quiet_stop(self):
+            try:
+                _orig_stop(self)
+            except Exception:
+                pass
+        resource_tracker.ResourceTracker._stop = _quiet_stop
+except Exception:
+    pass
 
 OUT = os.path.join(os.path.dirname(HERE), "article_outputs")
 os.makedirs(OUT, exist_ok=True)
@@ -31,7 +47,10 @@ DPI = 300
 
 
 def save(fig, name):
-    fig.tight_layout()
+    try:
+        fig.tight_layout()
+    except Exception:
+        pass
     fig.savefig(os.path.join(OUT, name), dpi=DPI, bbox_inches="tight")
     plt.close(fig)
 
@@ -52,6 +71,16 @@ t0 = time.time()
 R = {}
 ds = data.load_from_db()
 df = ds.df
+if "lon" not in df.columns:
+    db = SessionLocal()
+    try:
+        pts = pd.DataFrame(
+            db.query(CensusTract.geoid, func.st_x(CensusTract.center), func.st_y(CensusTract.center)).all(),
+            columns=["geoid", "lon", "lat"]
+        )
+        df = df.merge(pts, on="geoid", how="left")
+    finally:
+        db.close()
 R["dataset"] = {"tracts": len(df), "counties": df["county"].value_counts().to_dict(),
                 "features": ds.features, "names": {c: ds.label(c) for c in ds.features + ds.targets}}
 print("dataset", len(df))
@@ -62,10 +91,13 @@ desc = eda.describe(df, cols, ds.names)
 out = eda.outliers(df, cols, ds.names)
 norm = eda.normality(df, cols, ds.names)
 corr = eda.correlation(df, cols)
+moran = eda.moran_i(df, TARGET) if "lon" in df.columns else {"I": 0.0, "E_I": 0.0, "z": 0.0, "p": 1.0, "n": 0}
 R["eda"] = {"describe": desc, "outliers": out, "normality": norm,
+            "moran": moran,
             "interp_describe": eda.interpret_describe(desc), "interp_outliers": eda.interpret_outliers(out),
             "interp_normality": eda.interpret_normality(norm, len(df)),
             "interp_corr": eda.interpret_correlation(corr, ds.names, TARGET),
+            "interp_moran": eda.interpret_moran(moran, ds.label(TARGET)),
             "missing_cells": int(df[cols].isna().sum().sum())}
 
 # ---------------------------------------------------------------- Modelado
@@ -131,6 +163,9 @@ R["generalization"] = gen
 # ---------------------------------------------------------------- H1–H3 y banco de latencia
 db = SessionLocal()
 try:
+    if not ml_service.load_bundle(TARGET):
+        print(f"Entrenando y guardando modelo activo para {TARGET}...")
+        ml_service.train(db, TARGET)
     R["bench"] = crispdm_service.run_evaluation(db, repeats=30)
 finally:
     db.close()
@@ -169,37 +204,65 @@ ax.text(9.95, 3.6, "retroalimentación:\nalertas, escenarios,\nreportes", fontsi
 ax.text(5, 6.35, "Arquitectura SP-5 implementada", fontsize=12, fontweight="bold", ha="center", color=INK)
 save(fig, "fig1_arquitectura.png")
 
-# Figura 2: EDA (a) distribución del objetivo (b) Spearman
-fig, axes = plt.subplots(1, 2, figsize=(12, 5), gridspec_kw={"width_ratios": [1, 1.25]})
+# Figura 2: EDA (a) distribución del objetivo (b) mapa Cook (c) mapa Manhattan (d) Spearman
+fig = plt.figure(figsize=(15.5, 4.6))
+gs = fig.add_gridspec(1, 4, width_ratios=[1.0, 0.9, 0.75, 1.25], wspace=0.32)
+ax_hist = fig.add_subplot(gs[0])
+ax_cook = fig.add_subplot(gs[1])
+ax_ny = fig.add_subplot(gs[2])
+ax_corr = fig.add_subplot(gs[3])
+
 s = df[TARGET].dropna()
-axes[0].hist(s, bins=40, color="#bfdbfe", edgecolor="white", density=True)
+ax_hist.hist(s, bins=40, color="#bfdbfe", edgecolor="white", density=True)
 from scipy import stats as _st  # noqa: E402
 xs = np.linspace(s.min(), s.max(), 300)
-axes[0].plot(xs, _st.gaussian_kde(s)(xs), color=BLUE, lw=1.6, label="KDE")
+ax_hist.plot(xs, _st.gaussian_kde(s)(xs), color=BLUE, lw=1.6, label="KDE")
 row = desc.set_index("Código").loc[TARGET]
-axes[0].axvline(row["Media"], color=RED, lw=1.8, label=f"Media {row['Media']:.2f}")
-axes[0].axvline(row["Mediana"], color=GREEN, lw=1.8, ls="--", label=f"Mediana {row['Mediana']:.2f}")
-axes[0].axvline(row["Moda"], color="#f59e0b", lw=1.8, ls=":", label=f"Moda {row['Moda']:.1f}")
+ax_hist.axvline(row["Media"], color=RED, lw=1.8, label=f"Media {row['Media']:.2f}")
+ax_hist.axvline(row["Mediana"], color=GREEN, lw=1.8, ls="--", label=f"Mediana {row['Mediana']:.2f}")
+ax_hist.axvline(row["Moda"], color="#f59e0b", lw=1.8, ls=":", label=f"Moda {row['Moda']:.1f}")
 for c in p["cuts"]:
-    axes[0].axvline(c, color=MUTED, lw=0.8, ls="-.")
-axes[0].set_xlabel("Obesidad en adultos (%)")
-axes[0].set_ylabel("Densidad")
-axes[0].legend(fontsize=8, frameon=False)
-axes[0].set_title("(a) Distribución del resultado y cortes Q1–Q3", color=INK)
+    ax_hist.axvline(c, color=MUTED, lw=0.8, ls="-.")
+ax_hist.set_xlabel("Obesidad en adultos (%)")
+ax_hist.set_ylabel("Densidad")
+ax_hist.legend(fontsize=7.5, frameon=False)
+ax_hist.set_title("(a) Distribución y cortes Q1–Q3", color=INK)
+
+vmin, vmax = float(s.quantile(0.02)), float(s.quantile(0.98))
+cmap = "YlOrRd"
+if "lon" in df.columns:
+    sub_c = df[df["county"] == "Cook County"].dropna(subset=["lon", "lat", TARGET])
+    if not sub_c.empty:
+        ax_cook.scatter(sub_c["lon"], sub_c["lat"], c=sub_c[TARGET], cmap=cmap, s=7, vmin=vmin, vmax=vmax, alpha=0.85)
+    sub_ny = df[df["county"] == "New York County"].dropna(subset=["lon", "lat", TARGET])
+    if not sub_ny.empty:
+        ax_ny.scatter(sub_ny["lon"], sub_ny["lat"], c=sub_ny[TARGET], cmap=cmap, s=15, vmin=vmin, vmax=vmax, alpha=0.85)
+
+ax_cook.set_aspect("equal", adjustable="datalim")
+ax_cook.set_title("(b) Cook County, IL", color=INK)
+ax_cook.set_xlabel("Longitud")
+ax_cook.set_ylabel("Latitud")
+ax_cook.tick_params(labelsize=6.8)
+
+ax_ny.set_aspect("equal", adjustable="datalim")
+ax_ny.set_title("(c) New York, NY", color=INK)
+ax_ny.set_xlabel("Longitud")
+ax_ny.tick_params(labelsize=6.8)
+
 n = len(corr)
-im = axes[1].imshow(corr.values, cmap="RdBu_r", vmin=-1, vmax=1)
-lab = [short(names.get(c, c), 20) for c in corr.columns]
-axes[1].set_xticks(range(n))
-axes[1].set_xticklabels(lab, rotation=65, ha="right", fontsize=7)
-axes[1].set_yticks(range(n))
-axes[1].set_yticklabels(lab, fontsize=7)
-axes[1].grid(False)
+im = ax_corr.imshow(corr.values, cmap="RdBu_r", vmin=-1, vmax=1)
+lab = [short(names.get(c, c), 18) for c in corr.columns]
+ax_corr.set_xticks(range(n))
+ax_corr.set_xticklabels(lab, rotation=65, ha="right", fontsize=6.8)
+ax_corr.set_yticks(range(n))
+ax_corr.set_yticklabels(lab, fontsize=6.8)
+ax_corr.grid(False)
 for i in range(n):
     for j in range(n):
-        axes[1].text(j, i, f"{corr.values[i, j]:.2f}", ha="center", va="center", fontsize=5,
+        ax_corr.text(j, i, f"{corr.values[i, j]:.2f}", ha="center", va="center", fontsize=4.8,
                      color="white" if abs(corr.values[i, j]) > 0.6 else INK)
-fig.colorbar(im, ax=axes[1], fraction=0.04, label="ρ de Spearman")
-axes[1].set_title("(b) Correlación de Spearman entre variables", color=INK)
+fig.colorbar(im, ax=ax_corr, fraction=0.04, label="ρ de Spearman")
+ax_corr.set_title("(d) Correlación de Spearman", color=INK)
 save(fig, "fig2_eda.png")
 
 # Figura 3: (a) CV por fold (b) diferencia crítica
@@ -295,7 +358,9 @@ try:
                        columns=["geoid", "lon", "lat"])
 finally:
     db.close()
-full = p["data"].merge(pts, on="geoid", how="left")
+full = p["data"].copy()
+if "lon" not in full.columns:
+    full = full.merge(pts, on="geoid", how="left")
 full["pred"] = best["estimator"].predict(full[p["features"]])
 fig, axes = plt.subplots(1, 3, figsize=(14, 4.8), gridspec_kw={"width_ratios": [1, 1, 1.1]})
 for ax, fips, title in ((axes[0], "Cook County", "(a) Cook County, IL"), (axes[1], "New York County", "(b) New York County, NY")):

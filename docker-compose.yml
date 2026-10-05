@@ -14,7 +14,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sdohtwin}"]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sdohtwin}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -77,7 +77,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
-      - "8501:8501"
+      - "8502:8501"
     volumes:
       - ./backend:/app
       - ./langflow:/langflow:ro

@@ -121,7 +121,7 @@
     },
     "clf_vs_reg_level_agreement": 0.8807
   },
-  "trained_at": "2026-09-28T21:39:56Z",
+  "trained_at": "2026-10-01T14:36:20Z",
   "source": "CDC PLACES (cwsq-ngmh) · valores por census tract cargados por el ETL",
   "year": 2023,
   "study_area": {
@@ -240,15 +240,15 @@
       "best_params": {
         "C": 100.0
       },
-      "cv_f1_mean": 0.9294,
-      "cv_f1_std": 0.0175,
-      "test_accuracy": 0.9358,
-      "test_f1_macro": 0.9357,
-      "test_roc_auc": 0.995,
+      "cv_f1_mean": 0.9287,
+      "cv_f1_std": 0.0182,
+      "test_accuracy": 0.9297,
+      "test_f1_macro": 0.9297,
+      "test_roc_auc": 0.9949,
       "confusion_matrix": [
         [
-          75,
-          7,
+          74,
+          8,
           0,
           0
         ],
@@ -267,11 +267,11 @@
         [
           0,
           0,
-          0,
-          82
+          1,
+          81
         ]
       ],
-      "train_seconds": 2.01,
+      "train_seconds": 0.77,
       "selected": true
     },
     {
@@ -313,7 +313,7 @@
           82
         ]
       ],
-      "train_seconds": 13.0,
+      "train_seconds": 10.1,
       "selected": false
     },
     {
@@ -355,7 +355,7 @@
           82
         ]
       ],
-      "train_seconds": 13.86,
+      "train_seconds": 7.43,
       "selected": false
     },
     {
@@ -400,7 +400,7 @@
           81
         ]
       ],
-      "train_seconds": 2.55,
+      "train_seconds": 2.47,
       "selected": false
     }
   ],
@@ -408,68 +408,68 @@
     {
       "code": "pct_housing_insecurity",
       "name": "Inseguridad de vivienda (%)",
-      "importance": 0.5905
+      "importance": 0.5851
     },
     {
       "code": "pct_utility_shutoff",
       "name": "Amenaza de corte de servicios (%)",
-      "importance": 0.5669
+      "importance": 0.559
     },
     {
       "code": "pct_food_insecurity",
       "name": "Inseguridad alimentaria (%)",
-      "importance": 0.5096
+      "importance": 0.5056
     },
     {
       "code": "pct_smoking",
       "name": "Tabaquismo (%)",
-      "importance": 0.3897
-    },
-    {
-      "code": "pct_inactivity",
-      "name": "Inactividad física (%)",
-      "importance": 0.3864
+      "importance": 0.385
     },
     {
       "code": "pct_no_health_insurance",
       "name": "Sin seguro médico (%)",
-      "importance": 0.3851
+      "importance": 0.3797
+    },
+    {
+      "code": "pct_inactivity",
+      "name": "Inactividad física (%)",
+      "importance": 0.3739
     },
     {
       "code": "pct_food_stamps",
       "name": "Recibe ayuda alimentaria (SNAP) (%)",
-      "importance": 0.3384
+      "importance": 0.3306
     },
     {
       "code": "pct_no_transportation",
       "name": "Falta de transporte confiable (%)",
-      "importance": 0.2624
+      "importance": 0.2576
     },
     {
       "code": "pct_loneliness",
       "name": "Soledad (%)",
-      "importance": 0.2478
+      "importance": 0.2464
     },
     {
       "code": "pct_binge_drinking",
       "name": "Consumo excesivo de alcohol (%)",
-      "importance": 0.2198
+      "importance": 0.212
     },
     {
       "code": "pct_cholesterol_screening",
       "name": "Cribado de colesterol (%)",
-      "importance": 0.1255
-    },
-    {
-      "code": "pct_lack_social_support",
-      "name": "Falta de apoyo social (%)",
-      "importance": 0.0751
+      "importance": 0.1197
     },
     {
       "code": "pct_routine_checkup",
       "name": "Chequeo médico anual (%)",
-      "importance": 0.0693
+      "importance": 0.071
+    },
+    {
+      "code": "pct_lack_social_support",
+      "name": "Falta de apoyo social (%)",
+      "importance": 0.0647
     }
   ],
-  "total_seconds": 32.15
+  "total_seconds": 21.19
 }
